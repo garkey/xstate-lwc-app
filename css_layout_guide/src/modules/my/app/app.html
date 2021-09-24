@@ -1,0 +1,110 @@
+<template>
+  <!-- Page code -->
+  <div class="container">
+    <div>
+      <h2>Responsive left/right side elements</h2>
+      <p>Resize browser window width</p>
+      <div class="flex-space-between page-margin">
+        <div>left</div>
+        <div>right</div>
+      </div>
+    </div>
+    <hr />
+    <div>
+      <h2>Responsive Flexbox for 1x row * (n) columns</h2>
+      <ul>
+        <li>
+          <p>Resize browser window width</p>
+        </li>
+        <li>
+          <p>See source code for 2x rows. Consider below CSS Grids for 2D layouts. </p>
+        </li>
+      </ul>
+      <div class="flexexample-wrap page-margin">
+        <div class='row'>
+          <div class='column'>
+            <div>
+              Some Text in Column One
+            </div>
+          </div>
+          <div class='column'>
+            <div>
+              Some Text in Column Two
+            </div>
+          </div>
+          <div class='column'>
+            <div class="third-color">
+              Some Text in Column Three
+            </div>
+          </div>
+          <!-- uncomment below to see hot module rendering of more columns added -->
+<!--           <div class='column'>
+            <div class="third-color">
+              Some Text in Column Three
+            </div>
+          </div>
+          <div class='column'>
+            <div class="third-color">
+              Some Text in Column Three
+            </div>
+          </div> -->
+        </div>
+        <!-- uncomment below to make it 2X rows -->
+        <!-- instead of 2d flexbox like this, consider CSS Grid -->
+        <!-- <div class='row'>
+          <div class='column'>
+            <div>
+              Some Text in Column One
+            </div>
+          </div>
+          <div class='column'>
+            <div>
+              Some Text in Column Two
+            </div>
+          </div>
+          <div class='column'>
+            <div class="third-color">
+              Some Text in Column Three
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <hr />
+      <div>
+        <h2>Flexbox variable wrap example</h2>
+        <ul class="flexwrap-example page-margin">
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+          <li>6</li>
+          <li>7</li>
+          <li>0</li>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+          <li>5</li>
+        </ul>
+      </div>
+    </div>
+    <hr />
+    <div>
+     <h2>Responsive CSS Grid</h2>
+     <p>Prefer this for 2D layouts</p>
+     <p>Resize the browser width to see media query re-layout the dimensions.</p>
+      <div class="grid page-margin">
+        <div>0</div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div class="stand">6</div>
+      </div>
+    </div>
+  </div>
+
+</template>
