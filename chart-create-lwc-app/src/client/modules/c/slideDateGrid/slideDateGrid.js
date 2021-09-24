@@ -98,7 +98,7 @@ export default class slideDateGrid extends LightningElement {
             return '';
         }
         const left = this.segwidth * this.state.context.segment_index;
-        const width = (this.segwidth * this.state.context.num_segments) + 14;
+        const width = (this.segwidth * this.state.context.num_segments) + 14; // 14 is for the number of pixelss of .handlex. see padding-right: 12px; in src/client/resources/globalStyles.css
         return `left:${left}px;width:${width}px`;
     }
 

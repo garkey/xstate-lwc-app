@@ -1,6 +1,6 @@
 # chartjs-create-lwc-app
 
-This is a generated application from create-lwc-app. It has then been outfitted to test LWCC components, https://salesforcelabs.github.io/LightningWebChartJS
+This is a generated application from create-lwc-app. It has then been outfitted to test LWC components, mostly charts.
 
 `npm run watch`
 
