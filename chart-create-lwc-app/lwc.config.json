@@ -1,0 +1,14 @@
+{
+    "modules": [
+        {
+            "dir": "src/client/modules"
+        },
+        {
+            "npm": "lightning-base-components"
+        },
+        {
+            "name": "@salesforce/resourceUrl/echart",
+            "path": "src/module_proxy/resources/echart.js"
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+Examples:
+Asset Health
+Being able to chart multiple ranges and display multiple values for each range.
+Being able to implement a gradual color gradient, at the separation points for each range (red, yellow, and green)
+Being able to not only display a static value for each range, but also a dynamic value, depending on where the user hovers.
+
+Utilization (Utilization was a line chart in AA, but there was a series of advanced features that weren't easy to implement) 
+"Advanced" chart legend interactions.
+Being able to hide individual lines (legend items)
+Having the lines drop opacity when the user hovers over a specific legend item.
+Sorting legend items
+Searching chart legend items, and having the chart interact with the search performed.
+Rendering (painting) larger data sets was an issue, benchmarking should be done.

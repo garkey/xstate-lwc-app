@@ -1,0 +1,111 @@
+<template>
+    <div>
+        <c-dcx_button label="default"> </c-dcx_button>
+        <c-dcx_button label="default roundy" roundy> </c-dcx_button>
+        <c-dcx_button label="go" dcxstate="go"> </c-dcx_button>
+        <c-dcx_button label="go roundy" dcxstate="go" roundy> </c-dcx_button>
+    </div>
+
+    <!-- Base variant: Makes a button look like a link -->
+    <lightning-datatable
+        key-field="id"
+        data={datatable1.data}
+        columns={datatable1.columns}
+    >
+    </lightning-datatable>
+    <c-bar-chart
+        graph-data={barGraph1.graphData}
+        legend-selected={barGraph1.legend_selected}
+        x-axis-data={barGraph1.x_axis_data}
+        title="Simple bar chart"
+    >
+    </c-bar-chart>
+    <c-bar-chart
+        graph-data={barGraph1.graphData}
+        legend-selected={barGraph1.legend_selected}
+        x-axis-data={barGraph1.x_axis_data}
+        title="Simple bar chart with slotted Legend component"
+    >
+        <c-chart-legend
+            slot="legend"
+            legend={legend_data}
+            lvalue={legend_value}
+        ></c-chart-legend>
+    </c-bar-chart>
+    <c-bar-chart
+        graph-data={barGraph1.graphData}
+        legend-selected={barGraph1.legend_selected}
+        x-axis-data={barGraph1.x_axis_data}
+    >
+        <c-by-data by-callback={byData1.byCallback}>
+            <select>
+                <option value="fee">fee</option>
+                <option value="fi">fi</option>
+                <option value="fo">fo</option>
+                <option value="fum">fum</option>
+            </select>
+        </c-by-data>
+    </c-bar-chart>
+    <div>
+        <h2>timeline</h2>
+        <c-bar-chart
+            graph-data-series={barGraph1.graphDataSeries}
+            x-axis-data={barGraph1.x_axis_data}
+            legend-selected={barGraph1.legend_selected}
+            timeline={barGraph1.timeline}
+        ></c-bar-chart>
+    </div>
+    <div>
+        <h2>Brush</h2>
+        <c-bar-chart
+            graph-data-series={barGraph1.graphDataSeries}
+            x-axis-data={barGraph1.x_axis_data}
+            legend-selected={barGraph1.legend_selected}
+            brush-action={barGraph1.brushAction}
+            brush={barGraph1.brush}
+            toolbox={barGraph1.toolbox}
+        ></c-bar-chart>
+    </div>
+    <div>
+        <h2>Datazoom</h2>
+        <c-bar-chart
+            graph-data-series={barGraph1.graphDataSeries}
+            x-axis-data={barGraph1.x_axis_data}
+            legend-selected={barGraph1.legend_selected}
+            config-zoom={barGraph1.dataZoom}
+        ></c-bar-chart>
+    </div>
+    <c-by-filter
+        class="byFilter"
+        graph-data={byFilter1.graphData}
+        iteration={byFilter1.iteration}
+        series={byFilter1.series}
+        onsort={byFilter1.handleSort}
+        onfilter={byFilter1.handleFilter}
+        ontargetdata={byFilter1.handleTargetData}
+        filter-options={byFilter1.filterOptions}
+        filter={byFilter1.filter}
+        target-data-options={byFilter1.targetDataOptions}
+        target-data={byFilter1.targetData}
+    >
+    </c-by-filter>
+    <c-pie-chart
+        name="test"
+        click-chart={pieGraph1.clickChart}
+        graph-data={pieGraph1.graphData}
+        title="prueba"
+    ></c-pie-chart>
+    <c-pie-chart
+        name="test"
+        timeline={pieGraph1.timeline}
+        click-chart={pieGraph1.clickChart}
+        label={pieGraph1.label}
+        graph-data-series={pieGraph1.graphDataSeries}
+        title="prueba"
+    ></c-pie-chart>
+    <c-gauge-chart
+        graph-data={guage1.graphData}
+        color-series={guage1.colorSeries}
+    ></c-gauge-chart>
+    <c-slide-date-grid data={slidedate1.data} ></c-slide-date-grid>
+</template>

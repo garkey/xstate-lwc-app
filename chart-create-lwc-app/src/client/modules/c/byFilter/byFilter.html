@@ -1,0 +1,31 @@
+<template>
+    <div style="display: none">{iteration}</div>
+    <label>Filter by: </label>
+    <select onchange={filterChanged} class="filter">
+        <template for:each={filterOptions} for:item="f">
+            <option key={f.value} value={f.value}>{f.text}</option>
+        </template>
+    </select>
+    <br />
+    <label>Target data: </label>
+    <select onchange={targetDataChanged} class="targetData">
+        <template for:each={targetDataOptions} for:item="f">
+            <option key={f.value} value={f.value}>{f.text}</option>
+        </template>
+    </select>
+    <br />
+    <label>sort on: </label>
+    <select onchange={handleChange}>
+        <template for:each={xoptions} for:item="option">
+            <option key={option} value={option}>{option}</option>
+        </template>
+    </select>
+
+    <div style="height: 500px; overflow-y: scroll">
+        <div
+            class="chart"
+            lwc:dom="manual"
+            style="height: 10000px; width: auto; padding: 1%"
+        ></div>
+    </div>
+</template>

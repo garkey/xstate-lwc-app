@@ -1,0 +1,9 @@
+<template>
+    <div
+        class="chart"
+        lwc:dom="manual"
+        style="height: 500px; width: auto; padding: 1%"
+    ></div>
+    <slot onslotchange={handleBySlotChange}></slot>
+    <slot name="legend"></slot>
+</template>

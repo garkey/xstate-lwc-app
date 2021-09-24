@@ -1,0 +1,16 @@
+{
+    "name": "mock_charts_server",
+    "version": "1.0.0",
+    "description": "http server of mocked data from exported csv to prototype REST type calls for local charts development",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "garrick.lee@keysight.com",
+    "license": "ISC",
+    "dependencies": {
+        "csv-parse": "^4.16.0",
+        "restify": "^8.5.1"
+    }
+}

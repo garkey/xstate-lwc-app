@@ -1,0 +1,26 @@
+<template>
+    <p>slide date grid</p>
+    <div class="parentcont">
+        <div
+            class="movecont"
+            data-id="state.context.segment_index"
+            data-val={state.context.segment_index}
+            style={segmentsFromLeft}
+        >
+            <div class="datebar" onmousedown={handleHSlide}>
+                <div class="datespan" style={dynamicWidth}></div>
+            </div>
+            <div class="handlex" onmousedown={handleMakeWider}></div>
+        </div>
+        <div class="fullsegment">
+            <template for:each={segmentSections} for:item="seg">
+                <div class="dseg" key={seg.id}>
+                  <c-date-segment segment={seg} ></c-date-segment>
+                </div>
+            </template>
+        </div>
+    </div>
+    <div>
+      <pre>{viewportData}</pre>
+    </div>
+</template>
