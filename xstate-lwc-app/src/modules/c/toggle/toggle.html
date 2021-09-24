@@ -1,0 +1,14 @@
+<template>
+    <div>
+        <p>toggle form demo using XState</p>
+        <div>
+            <div if:true={isActive}>Active</div>
+            <div if:false={isActive}>Not Active</div>
+        </div>
+        <div>
+            <button class={buttonClasses} onclick={handleClick}>
+                {buttonText}
+            </button>
+        </div>
+    </div>
+</template>

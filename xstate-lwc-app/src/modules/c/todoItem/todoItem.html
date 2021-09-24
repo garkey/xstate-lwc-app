@@ -1,0 +1,43 @@
+<template>
+    <!-- className={cn({
+    editing: state.matches("editing"),
+    completed
+  })} -->
+    <li key={id} class={rowClass}>
+        <div class="view">
+            <input
+                class="toggle"
+                type="checkbox"
+                value={completed}
+                checked={completed}
+                onchange={completedToggle}
+            />
+            <!--         onDoubleClick={(e) => {
+          send("EDIT");
+        }} -->
+            <label ondblclick={makeEditable}> {title} </label>
+            <!-- onClick={() => send("DELETE")}  -->
+            <button class="destroy" onclick={deleteItem}></button>
+        </div>
+
+        <!-- onBlur={(_) => send("BLUR")}
+      onChange={(e) => send({ type: "CHANGE", value: e.target.value })}
+      onKeyPress={(e) => {
+        if (e.key === "Enter") {
+          send("COMMIT");
+        }
+      }}
+      onKeyDown={(e) => {
+        if (e.key === "Escape") {
+          send("CANCEL");
+        }
+      }} -->
+        <input
+            class="edit"
+            value={title}
+            onkeyup={editItem}
+            onblur={itemBlur}
+        />
+        <!-- ref={inputRef}  -->
+    </li>
+</template>

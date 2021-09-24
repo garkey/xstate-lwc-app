@@ -1,0 +1,42 @@
+li {
+    border: solid black 1px;
+}
+ul,
+li {
+    list-style-type: none;
+}
+.destroy {
+    display: none;
+    width: 20px;
+    height: 20px;
+    margin: auto 0;
+    font-size: 10px;
+    color: #949494;
+    transition: color 0.2s ease-out;
+}
+li .destroy:hover,
+li .destroy:focus {
+    color: #c18585;
+}
+
+li .destroy:after {
+    content: '×';
+    display: block;
+    height: 100%;
+    line-height: 1.1;
+}
+
+li:hover .destroy {
+    display: block;
+}
+li .edit {
+    display: none;
+}
+
+li.editing .view {
+    display: none;
+}
+
+li.editing .edit {
+    display: block;
+}

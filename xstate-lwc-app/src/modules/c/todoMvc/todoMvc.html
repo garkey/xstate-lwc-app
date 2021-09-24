@@ -1,0 +1,68 @@
+<template>
+    <p>todo mvc</p>
+
+    <section class="todoapp">
+        <header class="header">
+            <h1>todos</h1>
+            <input
+                class="new-todo"
+                placeholder="What needs to be done?"
+                value={state.context.todo}
+                onkeyup={newTodo}
+            />
+        </header>
+        <section class="main">
+            <input
+                id="toggle-all"
+                class="toggle-all"
+                type="checkbox"
+                checked={allCompleted}
+                onchange={markEvents}
+            />
+            <label title="title">{markLabel}</label>
+            <ul class="todo-list">
+                <template
+                    for:each={filteredTodos}
+                    for:item="todo"
+                    for:index="index"
+                >
+                    <c-todo-item
+                        completed={todo.completed}
+                        title={todo.title}
+                        key={todo.id}
+                        id={todo.id}
+                        todo-ref={todo.ref}
+                    ></c-todo-item>
+                </template>
+            </ul>
+        </section>
+        <!-- {!!todos.length && ()} -->
+        <!-- {numActiveTodos === 1 ? "" : "s"} left -->
+        <footer class="footer">
+            <span class="todo-count">
+                <template if:true={showCount}>
+                    <strong>{numActiveTodos}</strong> active item{plural} left
+                </template>
+            </span>
+            <ul class="filters">
+                <li>
+                    <a class={classFilterAll} href="/#"> All </a>
+                </li>
+                <li>
+                    <a class={classFilterActive} href="/#active"> Active </a>
+                </li>
+                <li>
+                    <a class={classFilterCompleted} href="/#completed">
+                        Completed
+                    </a>
+                </li>
+            </ul>
+            <template if:true={showClearCompleted}>
+                <button class="clear-completed" onclick={clearCompleted}>
+                    Clear completed
+                </button>
+            </template>
+        </footer>
+    </section>
+    <pre style="text-align: left">{debugout}</pre>
+</template>

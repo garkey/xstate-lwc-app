@@ -1,0 +1,29 @@
+ul,
+li {
+    list-style-type: none;
+}
+li {
+    display: inline;
+}
+li a {
+    color: inherit;
+    margin: 3px;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+a.selected {
+    border-color: #ce4646;
+}
+/* label:before {
+  content: '\276F';
+  display: inline-block;
+  font-size: 22px;
+  color: #949494;
+  padding: 10px 27px 10px 27px;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+ */
