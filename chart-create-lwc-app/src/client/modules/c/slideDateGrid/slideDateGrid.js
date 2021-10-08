@@ -2,12 +2,15 @@ import { LightningElement, api } from 'lwc';
 import * as xstate from 'c/xstate';
 import { byFilterMachine } from './slideDateGridMachine';
 
+console.log('xstate', xstate);
+
+
 const { interpret } = xstate;
 
 const DAY_MS = 86400000;
 
 export default class slideDateGrid extends LightningElement {
-    @api data;
+    @api rows;
     state;
     segwidth;
     datesegs;
@@ -28,7 +31,7 @@ export default class slideDateGrid extends LightningElement {
           timeend: ts + (i * durms),
         }));
 
-        this.duedatesindexes = this.data.map(d => {          
+        this.duedatesindexes = this.rows.map(d => {          
           if (d['Calibration due date']) {
             const nd = new Date(d['Calibration due date']);
             const dueindex = this.datesegs.findIndex(ds => ds.timeend > nd.getTime());
@@ -62,11 +65,11 @@ export default class slideDateGrid extends LightningElement {
         this.segwidth = width;
     }
 
-    get viewportData() {
+    get viewportrows() {
       const { segment_index, num_segments } = this.state.context;
       const sumindxes = this.segmentSections.slice( segment_index, segment_index + num_segments ).reduce((acc, val) => acc.concat(val.indxs), []);
       
-      return JSON.stringify(sumindxes.map(si => (this.data[si])), null, 2);
+      return JSON.stringify(sumindxes.map(si => (this.rows[si])), null, 2);
     }
 
     get segmentSections() {
@@ -79,7 +82,7 @@ export default class slideDateGrid extends LightningElement {
             
             return { 
               ...ea,
-              num_assets: indxs.map(indx => this.data[indx]).length,
+              num_assets: indxs.map(indx => this.rows[indx]).length,
               indxs
             };
           }
