@@ -4,7 +4,7 @@ import {
   Program,
   ImportDeclaration,
   ModuleItem,
-  StringLiteral
+  StringLiteral,
 } from "https://x.nest.land/swc@0.1.4/types/options.ts";
 import yargs from "https://deno.land/x/yargs/deno.ts";
 import { Arguments } from "https://deno.land/x/yargs/deno-types.ts";
@@ -20,7 +20,7 @@ yargs(Deno.args)
     "move components including dependencies",
     (yargs: any) => {
       return yargs.positional("component", {
-        describe: "component to migrate"
+        describe: "component to migrate",
       });
     },
     async (argv: Arguments) => migrate(argv)
@@ -30,16 +30,15 @@ yargs(Deno.args)
   .parse();
 
 async function migrate(argv: Arguments) {
-  console.log('argv', argv)
+  console.log("argv", argv);
   const { component: onecomponent } = argv;
   // const [onecomponent] = component;
 
-  console.log('onecomponent', onecomponent);
-  
+  console.log("onecomponent", onecomponent);
 
   const compdir = dirname(onecomponent);
-  console.log('compdir', compdir);
-  
+  console.log("compdir", compdir);
+
   const modDir = dirname(compdir);
   const rootdir = dirname(modDir);
   moduledirname = modDir.split("/").slice(-1)[0];
@@ -48,39 +47,34 @@ async function migrate(argv: Arguments) {
   // console.log("text", text);
 
   const rootcomp = parseCode(text);
-  console.log('rootcomp', rootcomp);
-  
-  const imports = rootcomp.body
-  .filter(filter_ImportDeclarations)
-  .filter(filter_localModules);
+  console.log("rootcomp", rootcomp);
 
-  console.log('Deno.cwd()', Deno.cwd());
-  
+  const imports = rootcomp.body
+    .filter(filter_ImportDeclarations)
+    .filter(filter_localModules);
+
+  console.log("Deno.cwd()", Deno.cwd());
+
   // alternatives
   // https://deno.land/x/littlezip@0.4.0
   // https://deno.land/x/jszip@0.10.0
 
-  console.log(
-    await compress([compdir], "compressed.zip", { overwrite: true })
-  );
+  console.log(await compress([compdir], "compressed.zip", { overwrite: true }));
   console.log("imports", imports);
-  console.log('compdir', compdir);
-  console.log('rootdir', rootdir);
-  console.log('relative', relative(rootdir, compdir));
+  console.log("compdir", compdir);
+  console.log("rootdir", rootdir);
+  console.log("relative", relative(rootdir, compdir));
   console.log(resolve(compdir, rootdir));
-  
-  
-  
 
   // console.log(parseCode(text));
   // console.log(print(parseCode(text)));
-};
+}
 
 const swc_config: ParseOptions = {
   target: "es2019",
   syntax: "typescript",
   comments: false,
-  decorators: true
+  decorators: true,
 };
 
 const filter_ImportDeclarations = (value: ImportDeclaration | any) =>
