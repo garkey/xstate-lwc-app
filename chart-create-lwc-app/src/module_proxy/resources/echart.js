@@ -1,3 +1,3 @@
-import * as EChartLib from '/src/client/resources/echart.js';
+import * as JSLib from '/src/client/resources/echart.js';
 
-export default EChartLib;
+export default JSLib;

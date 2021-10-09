@@ -20,7 +20,14 @@ window.echarts = lib;
 */
 export function loadScript(path, lib) {
     if (window) {
-        window.echarts = lib;
+        if (
+            Object.getPrototypeOf(Object.getPrototypeOf(path)).constructor
+                .name === 'EchartBase'
+        ) {
+            window.echarts = lib;
+        } else {
+            window.XState = lib;
+        }
     }
     return Promise.resolve();
 }
