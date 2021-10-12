@@ -2,7 +2,7 @@
 
 This is a generated application from create-lwc-app. It has then been outfitted to test LWC components, mostly charts.
 
-`npm run watch`
+`yarn watch`
 
 ## For Focused View Development
 

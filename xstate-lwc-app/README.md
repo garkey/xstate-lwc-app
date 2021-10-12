@@ -2,7 +2,7 @@ This package was bootstrapped using `create-lwc-app`
 
 This package is to locally develop LWC components using XState. https://xstate.js.org/docs/
 
-Run `npm run watch` and visit localhost:3003;
+Run `yarn watch` and visit localhost:3003;
 
 # xstate-lwc-app
 
