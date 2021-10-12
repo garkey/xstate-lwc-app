@@ -5,7 +5,7 @@ export const defaultVals = {
     num_segments: 2
 };
 
-export const byFilterMachine = (xstate) => {
+export const dcxMachine = (xstate) => {
     const { createMachine, assign } = xstate;
     return createMachine(
         {
