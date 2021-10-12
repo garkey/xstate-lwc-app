@@ -1,9 +1,5 @@
 import { api } from 'lwc';
 import EchartBase from 'c/echartBase';
-import * as xstate from 'c/xstate';
-import { byFilterMachine } from './byFilterMachine';
-
-const { interpret } = xstate;
 
 const staticswatches = {
   Health: {
@@ -29,18 +25,6 @@ export default class ByFilter extends EchartBase {
     service;
     filterIndex;
     targetDataIndex;
-
-    connectedCallback() {
-        this.service = interpret(byFilterMachine)
-            .onTransition((s) => {
-                this.state = s;
-
-                // if (this.state.event.type === 'xstate.init') {
-                //     this.postStateInit();
-                // }
-            })
-            .start();
-    }
 
     renderedCallback() {
         super.renderedCallback();

@@ -1,10 +1,10 @@
 import { LightningElement, api } from 'lwc';
 import { dcxMachine, defaultVals } from './slideDateGridMachine';
-import XStateComp from 'c/xstateComp';
+import xstate from 'c/libXState';
 
 const DAY_MS = 86400000;
 
-export default class slideDateGrid extends XStateComp {
+export default class slideDateGrid extends LightningElement {
     @api rows;
     state = {
         context: defaultVals
@@ -14,10 +14,9 @@ export default class slideDateGrid extends XStateComp {
     duedatesindexes;
 
     async connectedCallback() {
-        await super.connectedCallback();
-        const { interpret } = window.XState;
+        const { interpret } = xstate;
 
-        this.service = interpret(dcxMachine(window.XState))
+        this.service = interpret(dcxMachine(xstate))
             .onTransition((s) => {
                 this.state = s;
             })
