@@ -49,18 +49,10 @@ export default class slideDateGrid extends LightningElement {
         document.addEventListener('keydown', (e) => {
             if (['ArrowRight', 'ArrowLeft'].indexOf(e.key) > -1) {
                 e.preventDefault();
-                if (
-                    e.shiftKey &&
-                    (e.key === 'ArrowRight' || e.key === 'ArrowLeft')
-                ) {
-                    this.service.send({
-                        type: `RESIZE.${e.key.substr(5).toUpperCase()}`
-                    });
-                } else {
-                    this.service.send({
-                        type: `MOVE.${e.key.substr(5).toUpperCase()}`
-                    });
-                }
+                this.service.send({
+                    type: e.key.substr(5).toUpperCase(),
+                    shiftKey: e.shiftKey
+                });
             }
         });
     }
