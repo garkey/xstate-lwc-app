@@ -45,6 +45,7 @@
     "scripts": {
         "build": "lwc-services build -m production",
         "build:development": "lwc-services build",
+        "bundle:xstate": "rollup -c src/bundling/rollup.xstate.config.js",
         "lint": "eslint ./src/**/*.js",
         "prettier": "prettier --write \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
         "prettier:verify": "prettier --list-different \"**/*.{css,html,js,json,md,ts,yaml,yml}\"",
