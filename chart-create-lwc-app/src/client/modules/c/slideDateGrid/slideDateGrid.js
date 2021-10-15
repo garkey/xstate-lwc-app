@@ -13,7 +13,7 @@ export default class slideDateGrid extends LightningElement {
     segwidth;
     duedatesindexes;
 
-    async connectedCallback() {
+    connectedCallback() {
         const { interpret } = xstate;
 
         this.service = interpret(dcxMachine)
