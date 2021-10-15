@@ -1,5 +1,5 @@
 import { LightningElement, api } from 'lwc';
-import { dcxMachine, defaultVals } from './slideDateGridMachine';
+import { compMachine, defaultVals } from './slideDateGridMachine';
 import xstate from 'c/libXState';
 
 const DAY_MS = 86400000;

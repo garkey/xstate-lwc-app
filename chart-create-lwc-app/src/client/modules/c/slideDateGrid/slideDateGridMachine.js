@@ -8,7 +8,7 @@ export const defaultVals = {
 };
 const { createMachine, assign } = xstate;
 
-export const dcxMachine = createMachine(
+export const compMachine = createMachine(
     {
         id: 'slideDateGridMachine',
         initial: 'loading',
