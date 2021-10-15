@@ -1,0 +1,40 @@
+<template>
+  <div
+    if:true={show_kscare_card}
+    class={ks_care.border}
+    onmouseout={handleMouseOut}
+  >
+    <div class={ks_care.header}>
+      <span if:true={ks_care.nokeysightcare} class="kctitle">
+        <div if:false={ks_care.eligible}>
+          <lightning-icon          
+            icon-name="utility:error"
+            variant="inverse"
+            size="x-small"
+            alternative-text="KeysightCare Ineligible"
+            class="slds-m-right_x-small slds-m-left_x-small">
+          </lightning-icon>
+        </div>
+        
+        
+        {ks_care.title}
+      </span>
+
+      <span if:false={ks_care.nokeysightcare} class="kctitle">
+        {ks_care.title}
+      </span>
+
+      <span if:false={ks_care.nokeysightcare} class="kcsummary">
+        {ks_care.summary}
+      </span>
+    </div>
+    <ul if:false={ks_care.nokeysightcare} class="kcdetails slds-p-around_small">
+      <template for:each={ks_care.data} for:item="element">
+        <li class="kcline" key={element.key}>{element.value}</li>
+      </template>
+    </ul>
+    <div if:true={ks_care.nokeysightcare} class="kcdetails slds-p-around_small">
+      {ks_care.summary}
+    </div>
+  </div>
+</template>
