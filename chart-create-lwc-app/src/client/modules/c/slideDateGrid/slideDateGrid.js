@@ -16,7 +16,7 @@ export default class slideDateGrid extends LightningElement {
     connectedCallback() {
         const { interpret } = xstate;
 
-        this.service = interpret(dcxMachine)
+        this.service = interpret(compMachine)
             .onTransition((s) => {
                 this.state = s;
             })
