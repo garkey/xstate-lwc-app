@@ -3,14 +3,13 @@ import {
   ParseOptions,
   Program,
   ImportDeclaration,
-  ModuleItem,
-  StringLiteral,
 } from "https://x.nest.land/swc@0.1.4/types/options.ts";
 import yargs from "https://deno.land/x/yargs/deno.ts";
 import { Arguments } from "https://deno.land/x/yargs/deno-types.ts";
-import { dirname } from "https://deno.land/std@0.110.0/path/mod.ts";
+import { dirname, basename } from "https://deno.land/std@0.110.0/path/mod.ts";
 import { compress } from "https://deno.land/x/zip@v1.2.0/mod.ts";
-import { resolve, relative } from "https://deno.land/std@0.110.0/path/mod.ts";
+import { tar } from "https://deno.land/x/compress@v0.4.1/mod.ts";
+import { copySync, ensureDir } from "https://deno.land/std@0.98.0/fs/mod.ts";
 
 let moduledirname: string;
 
@@ -25,49 +24,110 @@ yargs(Deno.args)
     },
     async (argv: Arguments) => migrate(argv)
   )
+  .example('deno run --unstable --allow-read --allow-run --allow-write scripts/lwc_component.ts migrate ./chart-create-lwc-app/src/client/modules/c/barChart')
+  .example('Bundle (to migrate) LWC component and dependencies.')
+  .command(
+    "tar <path>",
+    "compress generated temp dir path",
+    (yargs: any) => {
+      return yargs.positional("path", {
+        describe: "path to compress"
+      })
+    },
+    async (argv: Arguments) => compressTar(argv)
+  )
   .strictCommands()
   .demandCommand(1)
   .parse();
 
 async function migrate(argv: Arguments) {
-  console.log("argv", argv);
-  const { component: onecomponent } = argv;
-  // const [onecomponent] = component;
-
-  console.log("onecomponent", onecomponent);
-
-  const compdir = dirname(onecomponent);
-  console.log("compdir", compdir);
-
-  const modDir = dirname(compdir);
+  const { component: rootcomp } = argv;
+  const modDir = dirname(rootcomp);
   const rootdir = dirname(modDir);
   moduledirname = modDir.split("/").slice(-1)[0];
 
-  const text = await Deno.readTextFile(onecomponent);
-  // console.log("text", text);
+  const imports = await recurseNeededImports([rootcomp], {rootdir});  
+  const tempdir = await cloneToTempDir(imports);
+  console.log('tempdir', tempdir);
+  // compressComponents(tempdir);
+  
+}
 
-  const rootcomp = parseCode(text);
-  console.log("rootcomp", rootcomp);
+function compressTar(argv: Arguments) {
+  const { path } = argv;
+  console.log('path', path);
+  compressComponents(path);
+  
+}
 
-  const imports = rootcomp.body
+async function recurseNeededImports( components: string[], { rootdir } : { rootdir: string } ): Promise<any> {
+  let resources: string[] = [];
+  const retval = await Promise.all(components.map(async (p: string) => {
+
+    const [compname] = p.split('/').reverse();
+    const comptext = await Deno.readTextFile(`${p}/${compname}.js`);
+    const imports = deriveNeededImports(comptext);
+    resources = deriveNeededResources(comptext, rootdir);
+
+    if (resources.length) console.log('will need resources: ', JSON.stringify(resources));
+
+    const deps = imports
+    .map((e: any) => e.source.value)
+    .map((e: string) => `${rootdir}/${e}`);
+  
+    if (imports.length){
+      return await recurseNeededImports([...deps], { rootdir });
+    } else {
+      return p;
+    }
+  }));
+
+  return Array.from(
+    new Set(
+      components
+      .concat(retval.flat())
+      // .concat(resources)
+    )
+  );
+}
+
+function deriveNeededResources(text: string, rootdir: string) {
+  return parseCode(text).body
     .filter(filter_ImportDeclarations)
-    .filter(filter_localModules);
+    .filter((b: any) => b.source.value.includes('@salesforce/resourceUrl'))
+    .map((e: any) => {
+      const [resourcename] = e.source.value.split('/').reverse();
+      return `${rootdir}/resources/${resourcename}`
+    })
+}
 
-  console.log("Deno.cwd()", Deno.cwd());
+function deriveNeededImports(text: string) {
+    return parseCode(text).body
+      .filter(filter_ImportDeclarations)
+      .filter(filter_localModules)
+}
 
-  // alternatives
-  // https://deno.land/x/littlezip@0.4.0
-  // https://deno.land/x/jszip@0.10.0
+async function cloneToTempDir(component: string[]) {
+  const tempDir = await Deno.makeTempDir({
+    prefix: "dcx_migrate_lwc_",
+  });
 
-  console.log(await compress([compdir], "compressed.zip", { overwrite: true }));
-  console.log("imports", imports);
-  console.log("compdir", compdir);
-  console.log("rootdir", rootdir);
-  console.log("relative", relative(rootdir, compdir));
-  console.log(resolve(compdir, rootdir));
+  for (const comp of component) {
+    const [dirname] = comp.split('/').reverse();
+    ensureDir(`./${dirname}`)
+    copySync(comp, `${tempDir}/${dirname}`, { overwrite: true });
+  }
+  return tempDir;
+}
 
-  // console.log(parseCode(text));
-  // console.log(print(parseCode(text)));
+async function compressComponents(path: string, filename: string = 'compressed') {
+  console.log('..........compressComponents');
+  
+  // console.log('path', path);
+  // await tar.compress(path, `./${filename}.tar`);
+
+  // await compress([path], `./${filename}.zip`, { overwrite: true });
+
 }
 
 const swc_config: ParseOptions = {
@@ -77,26 +137,19 @@ const swc_config: ParseOptions = {
   decorators: true,
 };
 
-const filter_ImportDeclarations = (value: ImportDeclaration | any) =>
-  value.type === "ImportDeclaration";
+const filter_ImportDeclarations = (value: ImportDeclaration | any) => {
+  return value.type === "ImportDeclaration";
+};
 
 const filter_localModules = (item: ImportDeclaration | any) => {
   const { value } = item.source;
-  const [dir] = value.split("/");
+  const [dir] = value.split("/");  
   return dir === moduledirname;
 };
 
-// const code = `const x: string = "Hello, Deno SWC!"`;
-
-// const ast = parse(code, {
-//   target: "es2019",
-//   syntax: "ecmascript",
-//   comments: false
-// });
-
 const parseCode = (code: string): Program => parse(code, swc_config);
 
-/* 
+/*
 
 {
   "jsc": {
