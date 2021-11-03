@@ -3,6 +3,14 @@ import { color_swatch } from 'c/utils';
 import qs from 'qs';
 import labelRequired from '@salesforce/label/c.lightning_LightningControl_required';
 
+import DCX_Asset_Service_Date from '@salesforce/label/c.DCX_Asset_Service_Date';
+import DCX_Asset_Service_Order_Number from '@salesforce/label/c.DCX_Asset_Service_Order_Number';
+import DCX_Cart_Service_Type from '@salesforce/label/c.DCX_Cart_Service_Type';
+import DCX_AssetGrid_AssetActions_SH_Received_Condition from '@salesforce/label/c.DCX_AssetGrid_AssetActions_SH_Received_Condition';
+import DCX_Asset_Service_Returned_Condition from '@salesforce/label/c.DCX_Asset_Service_Returned_Condition';
+import DCX_AuthHome_CalibrationDue from '@salesforce/label/c.DCX_AuthHome_CalibrationDue';
+import DCX_Asset_Service_Returned_Documents from '@salesforce/label/c.DCX_Asset_Service_Returned_Documents';
+
 console.log('labelRequired', labelRequired);
 
 const x_axis_points = ['fee', 'fi', 'fo', 'fum'];
@@ -307,9 +315,655 @@ export default class App extends LightningElement {
     };
 
     slidedate1 = {
-      data: [{"Model Number":"DELL","Project name":"Cobal enginerring","Last used on":"8/19/2020","Last calibration date":"","Calibration interval (months)":12,"Calibration due date":"6/16/2021","Last reported condition":"","Calibration type":"","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"9/30/2019","Last connected":"9/9/2020 15:44"},{"Model Number":"A98734","Project name":"Cobal enginerring","Last used on":"5/2/2019","Last calibration date":"2/21/2018","Calibration interval (months)":19,"Calibration due date":"12/28/2021","Last reported condition":"New or refurbished","Calibration type":"Calibration with uncertainties","Calibration provider":"Keysight technologies Inc.","Use provider calibration type":"TRUE","Use provider calibration schedule":"TRUE","Inventory date":"2/26/2018","Last connected":""},{"Model Number":"N34567A","Project name":"","Last used on":"7/23/2018","Last calibration date":"","Calibration interval (months)":0,"Calibration due date":"","Last reported condition":"","Calibration type":"","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"","Last connected":"6/8/2020 6:28"},{"Model Number":"MSO09404A","Project name":"Cobal enginerring","Last used on":"8/24/2020","Last calibration date":"","Calibration interval (months)":0,"Calibration due date":"10/16/2021","Last reported condition":"","Calibration type":"","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"9/30/2019","Last connected":"8/25/2020 4:35"},{"Model Number":12342,"Project name":"FourthProject","Last used on":"3/21/2018","Last calibration date":"2/21/2018","Calibration interval (months)":0,"Calibration due date":"12/15/2021","Last reported condition":"Compliant extended cal","Calibration type":"Accredited calibration","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"11/11/2017","Last connected":"7/1/2019 3:00"},{"Model Number":12342,"Project name":"Cobal enginerring","Last used on":"11/26/2019","Last calibration date":"","Calibration interval (months)":0,"Calibration due date":"10/16/2021","Last reported condition":"Compliant","Calibration type":"","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"","Last connected":"11/26/2019 0:21"},{"Model Number":"PLUM-1","Project name":"","Last used on":"11/14/2019","Last calibration date":"2/23/2018","Calibration interval (months)":0,"Calibration due date":"10/18/2021","Last reported condition":"","Calibration type":"Accredited calibration","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"","Last connected":"11/14/2019 1:27"},{"Model Number":"Soumya-PC","Project name":"","Last used on":"3/10/2020","Last calibration date":"","Calibration interval (months)":0,"Calibration due date":"10/31/2021","Last reported condition":"Compliant","Calibration type":"","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"9/30/2019","Last connected":"3/10/2020 14:58"},{"Model Number":"Laptop","Project name":"","Last used on":"","Last calibration date":"","Calibration interval (months)":0,"Calibration due date":"12/02/2021","Last reported condition":"","Calibration type":"","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"9/30/2019","Last connected":"6/12/2020 1:43"},{"Model Number":"3458A","Project name":"","Last used on":"11/12/2020","Last calibration date":"","Calibration interval (months)":0,"Calibration due date":"11/23/2021","Last reported condition":"Compliant","Calibration type":"17025 Calibration","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"2/22/2018","Last connected":"11/12/2020 12:43"},{"Model Number":"20S=STEWART","Project name":"","Last used on":"5/26/2020","Last calibration date":"2/26/2018","Calibration interval (months)":0,"Calibration due date":"12/14/2021","Last reported condition":"","Calibration type":"","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"","Last connected":"6/8/2020 6:28"},{"Model Number":"34401A","Project name":"~!@#$%^&*()_+{}|:\"<>?`1234567890-=[]\\;',./qwerty uiopa sdfghjkl zxcvbnm QWERTY UIOPA SDFGHJKL ZXCVBNM1","Last used on":"9/24/2020","Last calibration date":"10/29/2019","Calibration interval (months)":75,"Calibration due date":"9/28/2021","Last reported condition":"","Calibration type":"","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"2/23/2018","Last connected":""},{"Model Number":435,"Project name":"","Last used on":"","Last calibration date":"2/26/2018","Calibration interval (months)":0,"Calibration due date":"10/29/2021","Last reported condition":"","Calibration type":"Standard","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"9/30/2019","Last connected":""},{"Model Number":4543353635,"Project name":"","Last used on":"1/5/2021","Last calibration date":"2/26/2018","Calibration interval (months)":0,"Calibration due date":"","Last reported condition":"","Calibration type":"","Calibration provider":"","Use provider calibration type":"TRUE","Use provider calibration schedule":"FALSE","Inventory date":"9/30/2019","Last connected":"11/15/2019 15:08"},{"Model Number":219193983,"Project name":"ryan laptop","Last used on":"","Last calibration date":"1/1/2018","Calibration interval (months)":0,"Calibration due date":"9/31/2021","Last reported condition":"Compliant","Calibration type":"","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"","Last connected":""},{"Model Number":"R1605-80001","Project name":"","Last used on":"3/6/2018","Last calibration date":"2/28/2018","Calibration interval (months)":0,"Calibration due date":"11/02/2021","Last reported condition":"","Calibration type":"17025 Calibration","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"9/30/2019","Last connected":"4/20/2020 7:04"},{"Model Number":44,"Project name":"testing project3","Last used on":"","Last calibration date":"3/2/2018","Calibration interval (months)":0,"Calibration due date":"11/19/2021","Last reported condition":"","Calibration type":"","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"10/29/2019","Last connected":""},{"Model Number":23,"Project name":"testing project3","Last used on":"11/15/2019","Last calibration date":"10/29/2019","Calibration interval (months)":0,"Calibration due date":"10/09/2021","Last reported condition":"Compliant","Calibration type":"","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"2/26/2018","Last connected":"11/13/2019 23:56"},{"Model Number":"MN 556666","Project name":"PN 00567","Last used on":"2/22/2018","Last calibration date":"1/9/2019","Calibration interval (months)":88,"Calibration due date":"12/27/2021","Last reported condition":"","Calibration type":"17025 Calibration","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"2/26/2018","Last connected":"2/25/2020 7:15"},{"Model Number":"MN 4556","Project name":"","Last used on":"","Last calibration date":"","Calibration interval (months)":0,"Calibration due date":"","Last reported condition":"","Calibration type":"17025 Calibration","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"2/27/2018","Last connected":""},{"Model Number":9999999,"Project name":"","Last used on":"2/23/2018","Last calibration date":"10/29/2019","Calibration interval (months)":3,"Calibration due date":"12/23/2021","Last reported condition":"Compliant","Calibration type":"","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"TRUE","Use provider calibration schedule":"TRUE","Inventory date":"2/28/2018","Last connected":""},{"Model Number":"MSOS804A","Project name":"5G","Last used on":"5/11/2018","Last calibration date":"10/29/2019","Calibration interval (months)":0,"Calibration due date":"7/31/2021","Last reported condition":"New or refurbished","Calibration type":"17025 Calibration","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"3/2/2018","Last connected":"7/1/2019 2:52"},{"Model Number":"MSOS804A","Project name":"testing project3","Last used on":"4/20/2020","Last calibration date":"","Calibration interval (months)":0,"Calibration due date":"10/31/2021","Last reported condition":"","Calibration type":"","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"10/29/2019","Last connected":""},{"Model Number":4545454,"Project name":"","Last used on":"","Last calibration date":"","Calibration interval (months)":0,"Calibration due date":"","Last reported condition":"Compliant","Calibration type":"Standard","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"1/9/2019","Last connected":"12/5/2019 23:30"},{"Model Number":99999,"Project name":"ryan laptop","Last used on":"11/13/2019","Last calibration date":"","Calibration interval (months)":0,"Calibration due date":"11/17/2021","Last reported condition":"Compliant","Calibration type":"17025 Calibration","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"","Last connected":""},{"Model Number":"test12345","Project name":"Health Group","Last used on":"2/25/2020","Last calibration date":"11/29/2019","Calibration interval (months)":34,"Calibration due date":"11/29/2021","Last reported condition":"","Calibration type":"17025 Calibration","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"10/29/2019","Last connected":""},{"Model Number":"N96789","Project name":"","Last used on":"2/26/2018","Last calibration date":"2/26/2018","Calibration interval (months)":0,"Calibration due date":"11/26/2021","Last reported condition":"","Calibration type":"","Calibration provider":"","Use provider calibration type":"TRUE","Use provider calibration schedule":"FALSE","Inventory date":"10/29/2019","Last connected":""},{"Model Number":"B56897A","Project name":"5G","Last used on":"2/26/2018","Last calibration date":"2/26/2018","Calibration interval (months)":0,"Calibration due date":"12/26/2021","Last reported condition":"","Calibration type":"17025 Calibration","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"FALSE","Use provider calibration schedule":"TRUE","Inventory date":"","Last connected":"7/8/2019 23:15"},{"Model Number":"54852B","Project name":"5G","Last used on":"2/27/2018","Last calibration date":"12/31/2018","Calibration interval (months)":12,"Calibration due date":"12/31/2021","Last reported condition":"","Calibration type":"","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"","Last connected":"1/16/2020 3:14"},{"Model Number":99999,"Project name":"5G","Last used on":"2/28/2018","Last calibration date":"7/30/2018","Calibration interval (months)":0,"Calibration due date":"10/30/2021","Last reported condition":"Compliant","Calibration type":"","Calibration provider":"","Use provider calibration type":"TRUE","Use provider calibration schedule":"FALSE","Inventory date":"6/14/2019","Last connected":""},{"Model Number":"34401A","Project name":"","Last used on":"3/2/2018","Last calibration date":"3/2/2018","Calibration interval (months)":0,"Calibration due date":"9/2/2021","Last reported condition":"","Calibration type":"Custom calibration","Calibration provider":"","Use provider calibration type":"TRUE","Use provider calibration schedule":"FALSE","Inventory date":"","Last connected":"5/20/2019 4:32"},{"Model Number":454546644,"Project name":"Health Group","Last used on":"10/29/2019","Last calibration date":"11/29/2019","Calibration interval (months)":34,"Calibration due date":"11/29/2021","Last reported condition":"Unknown","Calibration type":"","Calibration provider":"Keysight Technologies Inc.","Use provider calibration type":"FALSE","Use provider calibration schedule":"TRUE","Inventory date":"10/29/2019","Last connected":""},{"Model Number":"MN 67676","Project name":"Health Group","Last used on":"1/9/2019","Last calibration date":"1/8/2019","Calibration interval (months)":0,"Calibration due date":"12/8/2021","Last reported condition":"Compliant","Calibration type":"Accredited calibration","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"","Last connected":""},{"Model Number":"Test Rack","Project name":"Health Group","Last used on":"10/29/2019","Last calibration date":"","Calibration interval (months)":0,"Calibration due date":"11/29/2021","Last reported condition":"Compliant","Calibration type":"","Calibration provider":"","Use provider calibration type":"FALSE","Use provider calibration schedule":"FALSE","Inventory date":"","Last connected":""}],
+        data: [
+            {
+                'Model Number': 'DELL',
+                'Project name': 'Cobal enginerring',
+                'Last used on': '8/19/2020',
+                'Last calibration date': '',
+                'Calibration interval (months)': 12,
+                'Calibration due date': '6/16/2021',
+                'Last reported condition': '',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '9/30/2019',
+                'Last connected': '9/9/2020 15:44'
+            },
+            {
+                'Model Number': 'A98734',
+                'Project name': 'Cobal enginerring',
+                'Last used on': '5/2/2019',
+                'Last calibration date': '2/21/2018',
+                'Calibration interval (months)': 19,
+                'Calibration due date': '12/28/2021',
+                'Last reported condition': 'New or refurbished',
+                'Calibration type': 'Calibration with uncertainties',
+                'Calibration provider': 'Keysight technologies Inc.',
+                'Use provider calibration type': 'TRUE',
+                'Use provider calibration schedule': 'TRUE',
+                'Inventory date': '2/26/2018',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 'N34567A',
+                'Project name': '',
+                'Last used on': '7/23/2018',
+                'Last calibration date': '',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '',
+                'Last reported condition': '',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '',
+                'Last connected': '6/8/2020 6:28'
+            },
+            {
+                'Model Number': 'MSO09404A',
+                'Project name': 'Cobal enginerring',
+                'Last used on': '8/24/2020',
+                'Last calibration date': '',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '10/16/2021',
+                'Last reported condition': '',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '9/30/2019',
+                'Last connected': '8/25/2020 4:35'
+            },
+            {
+                'Model Number': 12342,
+                'Project name': 'FourthProject',
+                'Last used on': '3/21/2018',
+                'Last calibration date': '2/21/2018',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '12/15/2021',
+                'Last reported condition': 'Compliant extended cal',
+                'Calibration type': 'Accredited calibration',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '11/11/2017',
+                'Last connected': '7/1/2019 3:00'
+            },
+            {
+                'Model Number': 12342,
+                'Project name': 'Cobal enginerring',
+                'Last used on': '11/26/2019',
+                'Last calibration date': '',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '10/16/2021',
+                'Last reported condition': 'Compliant',
+                'Calibration type': '',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '',
+                'Last connected': '11/26/2019 0:21'
+            },
+            {
+                'Model Number': 'PLUM-1',
+                'Project name': '',
+                'Last used on': '11/14/2019',
+                'Last calibration date': '2/23/2018',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '10/18/2021',
+                'Last reported condition': '',
+                'Calibration type': 'Accredited calibration',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '',
+                'Last connected': '11/14/2019 1:27'
+            },
+            {
+                'Model Number': 'Soumya-PC',
+                'Project name': '',
+                'Last used on': '3/10/2020',
+                'Last calibration date': '',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '10/31/2021',
+                'Last reported condition': 'Compliant',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '9/30/2019',
+                'Last connected': '3/10/2020 14:58'
+            },
+            {
+                'Model Number': 'Laptop',
+                'Project name': '',
+                'Last used on': '',
+                'Last calibration date': '',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '12/02/2021',
+                'Last reported condition': '',
+                'Calibration type': '',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '9/30/2019',
+                'Last connected': '6/12/2020 1:43'
+            },
+            {
+                'Model Number': '3458A',
+                'Project name': '',
+                'Last used on': '11/12/2020',
+                'Last calibration date': '',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '11/23/2021',
+                'Last reported condition': 'Compliant',
+                'Calibration type': '17025 Calibration',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '2/22/2018',
+                'Last connected': '11/12/2020 12:43'
+            },
+            {
+                'Model Number': '20S=STEWART',
+                'Project name': '',
+                'Last used on': '5/26/2020',
+                'Last calibration date': '2/26/2018',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '12/14/2021',
+                'Last reported condition': '',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '',
+                'Last connected': '6/8/2020 6:28'
+            },
+            {
+                'Model Number': '34401A',
+                'Project name':
+                    '~!@#$%^&*()_+{}|:"<>?`1234567890-=[]\\;\',./qwerty uiopa sdfghjkl zxcvbnm QWERTY UIOPA SDFGHJKL ZXCVBNM1',
+                'Last used on': '9/24/2020',
+                'Last calibration date': '10/29/2019',
+                'Calibration interval (months)': 75,
+                'Calibration due date': '9/28/2021',
+                'Last reported condition': '',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '2/23/2018',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 435,
+                'Project name': '',
+                'Last used on': '',
+                'Last calibration date': '2/26/2018',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '10/29/2021',
+                'Last reported condition': '',
+                'Calibration type': 'Standard',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '9/30/2019',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 4543353635,
+                'Project name': '',
+                'Last used on': '1/5/2021',
+                'Last calibration date': '2/26/2018',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '',
+                'Last reported condition': '',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'TRUE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '9/30/2019',
+                'Last connected': '11/15/2019 15:08'
+            },
+            {
+                'Model Number': 219193983,
+                'Project name': 'ryan laptop',
+                'Last used on': '',
+                'Last calibration date': '1/1/2018',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '9/31/2021',
+                'Last reported condition': 'Compliant',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 'R1605-80001',
+                'Project name': '',
+                'Last used on': '3/6/2018',
+                'Last calibration date': '2/28/2018',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '11/02/2021',
+                'Last reported condition': '',
+                'Calibration type': '17025 Calibration',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '9/30/2019',
+                'Last connected': '4/20/2020 7:04'
+            },
+            {
+                'Model Number': 44,
+                'Project name': 'testing project3',
+                'Last used on': '',
+                'Last calibration date': '3/2/2018',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '11/19/2021',
+                'Last reported condition': '',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '10/29/2019',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 23,
+                'Project name': 'testing project3',
+                'Last used on': '11/15/2019',
+                'Last calibration date': '10/29/2019',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '10/09/2021',
+                'Last reported condition': 'Compliant',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '2/26/2018',
+                'Last connected': '11/13/2019 23:56'
+            },
+            {
+                'Model Number': 'MN 556666',
+                'Project name': 'PN 00567',
+                'Last used on': '2/22/2018',
+                'Last calibration date': '1/9/2019',
+                'Calibration interval (months)': 88,
+                'Calibration due date': '12/27/2021',
+                'Last reported condition': '',
+                'Calibration type': '17025 Calibration',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '2/26/2018',
+                'Last connected': '2/25/2020 7:15'
+            },
+            {
+                'Model Number': 'MN 4556',
+                'Project name': '',
+                'Last used on': '',
+                'Last calibration date': '',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '',
+                'Last reported condition': '',
+                'Calibration type': '17025 Calibration',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '2/27/2018',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 9999999,
+                'Project name': '',
+                'Last used on': '2/23/2018',
+                'Last calibration date': '10/29/2019',
+                'Calibration interval (months)': 3,
+                'Calibration due date': '12/23/2021',
+                'Last reported condition': 'Compliant',
+                'Calibration type': '',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'TRUE',
+                'Use provider calibration schedule': 'TRUE',
+                'Inventory date': '2/28/2018',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 'MSOS804A',
+                'Project name': '5G',
+                'Last used on': '5/11/2018',
+                'Last calibration date': '10/29/2019',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '7/31/2021',
+                'Last reported condition': 'New or refurbished',
+                'Calibration type': '17025 Calibration',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '3/2/2018',
+                'Last connected': '7/1/2019 2:52'
+            },
+            {
+                'Model Number': 'MSOS804A',
+                'Project name': 'testing project3',
+                'Last used on': '4/20/2020',
+                'Last calibration date': '',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '10/31/2021',
+                'Last reported condition': '',
+                'Calibration type': '',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '10/29/2019',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 4545454,
+                'Project name': '',
+                'Last used on': '',
+                'Last calibration date': '',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '',
+                'Last reported condition': 'Compliant',
+                'Calibration type': 'Standard',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '1/9/2019',
+                'Last connected': '12/5/2019 23:30'
+            },
+            {
+                'Model Number': 99999,
+                'Project name': 'ryan laptop',
+                'Last used on': '11/13/2019',
+                'Last calibration date': '',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '11/17/2021',
+                'Last reported condition': 'Compliant',
+                'Calibration type': '17025 Calibration',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 'test12345',
+                'Project name': 'Health Group',
+                'Last used on': '2/25/2020',
+                'Last calibration date': '11/29/2019',
+                'Calibration interval (months)': 34,
+                'Calibration due date': '11/29/2021',
+                'Last reported condition': '',
+                'Calibration type': '17025 Calibration',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '10/29/2019',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 'N96789',
+                'Project name': '',
+                'Last used on': '2/26/2018',
+                'Last calibration date': '2/26/2018',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '11/26/2021',
+                'Last reported condition': '',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'TRUE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '10/29/2019',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 'B56897A',
+                'Project name': '5G',
+                'Last used on': '2/26/2018',
+                'Last calibration date': '2/26/2018',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '12/26/2021',
+                'Last reported condition': '',
+                'Calibration type': '17025 Calibration',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'TRUE',
+                'Inventory date': '',
+                'Last connected': '7/8/2019 23:15'
+            },
+            {
+                'Model Number': '54852B',
+                'Project name': '5G',
+                'Last used on': '2/27/2018',
+                'Last calibration date': '12/31/2018',
+                'Calibration interval (months)': 12,
+                'Calibration due date': '12/31/2021',
+                'Last reported condition': '',
+                'Calibration type': '',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '',
+                'Last connected': '1/16/2020 3:14'
+            },
+            {
+                'Model Number': 99999,
+                'Project name': '5G',
+                'Last used on': '2/28/2018',
+                'Last calibration date': '7/30/2018',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '10/30/2021',
+                'Last reported condition': 'Compliant',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'TRUE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '6/14/2019',
+                'Last connected': ''
+            },
+            {
+                'Model Number': '34401A',
+                'Project name': '',
+                'Last used on': '3/2/2018',
+                'Last calibration date': '3/2/2018',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '9/2/2021',
+                'Last reported condition': '',
+                'Calibration type': 'Custom calibration',
+                'Calibration provider': '',
+                'Use provider calibration type': 'TRUE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '',
+                'Last connected': '5/20/2019 4:32'
+            },
+            {
+                'Model Number': 454546644,
+                'Project name': 'Health Group',
+                'Last used on': '10/29/2019',
+                'Last calibration date': '11/29/2019',
+                'Calibration interval (months)': 34,
+                'Calibration due date': '11/29/2021',
+                'Last reported condition': 'Unknown',
+                'Calibration type': '',
+                'Calibration provider': 'Keysight Technologies Inc.',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'TRUE',
+                'Inventory date': '10/29/2019',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 'MN 67676',
+                'Project name': 'Health Group',
+                'Last used on': '1/9/2019',
+                'Last calibration date': '1/8/2019',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '12/8/2021',
+                'Last reported condition': 'Compliant',
+                'Calibration type': 'Accredited calibration',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '',
+                'Last connected': ''
+            },
+            {
+                'Model Number': 'Test Rack',
+                'Project name': 'Health Group',
+                'Last used on': '10/29/2019',
+                'Last calibration date': '',
+                'Calibration interval (months)': 0,
+                'Calibration due date': '11/29/2021',
+                'Last reported condition': 'Compliant',
+                'Calibration type': '',
+                'Calibration provider': '',
+                'Use provider calibration type': 'FALSE',
+                'Use provider calibration schedule': 'FALSE',
+                'Inventory date': '',
+                'Last connected': ''
+            }
+        ]
+    };
 
-    }
+    servicehistorydata = {
+        data: [
+            {
+                factory_cal: 'N',
+                serial_no: '3124A00112',
+                _id: '11101668',
+                factory_cal_interval: 12,
+                srv_order_no_lower: '1-7440549555-1',
+                srv_due_date: '11/18/2016',
+                condition: 'In Tolerance (17025) - In Tolerance (17025)',
+                site_name: 'USO-8213;ABERDEEN PROVING;US',
+                shipped_condition: 'IN_TOLERANCE_17025',
+                product_no: '8720C',
+                srv_order_no: '1-7440549555-1',
+                partition_key: 68,
+                comments: '',
+                as_received_condition: 'IN_TOLERANCE_17025',
+                id: 11101668,
+                cust_asset_no: 'C004163',
+                manuf_model_no: '8720C',
+                siteid: 300253,
+                assetId: 18114459,
+                manufacturer: 'Hewlett Packard',
+                serial_no_lower: '3124a00112',
+                description: 'Network analyzer, 50 MHz to 20 GHz',
+                new_shipment: 'N',
+                manuf_model_no_lower: '8720c',
+                cal_type: 'Keysight Cal + Uncertainties + Guardbanding',
+                srv_date: '11/18/2015',
+                sfdc_id: '02i2L000005uFQHQA2',
+                mod_srv_order_no: '1-7440549555',
+                download: [
+                    {
+                        title: 'Calibration Report',
+                        download_url:
+                            'https://service.keysight.com/archivews/streamer.aspx?fileId=11C964FC49A6031AD8CDC0EBC4719FDCOTg2MjIzMQ=='
+                    }
+                ]
+            },
+            {
+                factory_cal: 'N',
+                serial_no: '3124A00112',
+                _id: '12801919',
+                factory_cal_interval: 12,
+                srv_order_no_lower: '1-9360516144-1',
+                srv_due_date: '11/2/2018',
+                condition: 'In Tolerance (17025) - In Tolerance (17025)',
+                site_name: 'USO-8213;ABERDEEN PROVING;US',
+                shipped_condition: 'IN_TOLERANCE_17025',
+                product_no: '8720C',
+                srv_order_no: '1-9360516144-1',
+                partition_key: 119,
+                comments: '',
+                as_received_condition: 'IN_TOLERANCE_17025',
+                id: 12801919,
+                cust_asset_no: 'C004163',
+                manuf_model_no: '8720C',
+                siteid: 300253,
+                assetId: 18114459,
+                manufacturer: 'Hewlett Packard',
+                serial_no_lower: '3124a00112',
+                description: 'Network analyzer, 50 MHz to 20 GHz',
+                new_shipment: 'N',
+                manuf_model_no_lower: '8720c',
+                cal_type: 'Keysight Cal + Uncertainties + Guardbanding',
+                srv_date: '11/2/2017',
+                sfdc_id: '02i2L000005uFQHQA2',
+                mod_srv_order_no: '1-9360516144',
+                download: [
+                    {
+                        title: 'Calibration Report',
+                        download_url:
+                            'https://service.keysight.com/archivews/streamer.aspx?fileId=E6ABB183F7F40670B2805D7F9B4A8311MTI3MzEzMDY='
+                    }
+                ]
+            }
+        ].map((e, i) => ({ ...e, editable: i % 2 })),
+        columns: [
+            {
+                type: 'editinform',
+                label: 'editable?',
+                fieldName: 'editable',
+                sortedBy: 'editable',
+                sortable: true,
+                typeAttributes: {
+                    rowid: { fieldName: 'id' }
+                }
+            },
+            {
+                label: DCX_Asset_Service_Date,
+                fieldName: 'srv_date',
+                sortedBy: 'srv_date',
+                sortable: true
+                // columnKey: 'srv_date'
+            },
+            {
+                label: DCX_Asset_Service_Order_Number,
+                fieldName: 'srv_order_no',
+                sortedBy: 'srv_order_no',
+                sortable: true
+            },
+            {
+                label: DCX_Cart_Service_Type,
+                fieldName: 'cal_type',
+                sortedBy: 'cal_type',
+                sortable: true
+            },
+            {
+                label: DCX_AssetGrid_AssetActions_SH_Received_Condition,
+                fieldName: 'as_received_condition',
+                sortedBy: 'as_received_condition',
+                sortable: true
+            },
+            {
+                label: DCX_Asset_Service_Returned_Condition,
+                fieldName: 'shipped_condition',
+                sortedBy: 'shipped_condition',
+                sortable: true
+            },
+            {
+                label: DCX_AuthHome_CalibrationDue,
+                fieldName: 'srv_due_date',
+                sortable: true
+            },
+            {
+                label: DCX_Asset_Service_Returned_Documents,
+                fieldName: 'download',
+                sortable: true
+            }
+        ],
+        onEditRow: (e) => {
+            console.log('onEditRow.e', e);
+        }
+    };
 
     connectedCallback() {
         if (!this.datatable1.initialized) {
@@ -378,6 +1032,7 @@ export default class App extends LightningElement {
             .catch((err) => {
                 throw new Error(err);
             });
+
         this.datatable1 = { ...this.datatable1, initialized: true, data };
     }
 

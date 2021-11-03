@@ -795,3 +795,19 @@ input:focus {
 }
 
 /* end */
+
+.slds-icon {
+  fill: #225792;
+}
+
+button.edit {
+  border: unset;
+  background: unset;
+}
+button.edit:hover {
+  border: unset;
+  background: unset;
+}
+button.edit:hover > .slds-icon {
+  fill: #555555;
+}
