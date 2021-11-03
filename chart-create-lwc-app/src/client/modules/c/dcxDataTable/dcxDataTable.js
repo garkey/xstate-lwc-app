@@ -7,8 +7,8 @@ export default class DcxDataTable extends LightningDatatable {
             template: editButtonTemplate,
             // editTemplate:
             standardCellLayout: false,
-            typeAttributes: ['rowid']
-        }
+            typeAttributes: ['rowid'],
+        },
     };
 
     renderedCallback() {
