@@ -29,3 +29,5 @@ ehthumbs.db
 $RECYCLE.BIN/
 
 /src/client/resources/assets
+
+/dcx_component
