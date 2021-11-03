@@ -17,7 +17,7 @@ const x_axis_points = ['fee', 'fi', 'fo', 'fum'];
 const barGraph1_data = [
     { name: 'bar2', markLine: { data: [{ yAxis: 30, name: 'test' }] } },
     { name: 'bar1', markLine: { data: [{ yAxis: 20, name: 'test' }] } },
-    { name: 'bar3' }
+    { name: 'bar3' },
 ].map((item) => {
     return {
         type: 'bar',
@@ -27,10 +27,10 @@ const barGraph1_data = [
             itemStyle: {
                 // shadowBlur: 200,
                 // shadowColor: 'rgba(255,0,0,1)',
-                borderColor: 'rgba(255,0,0,1)'
-            }
+                borderColor: 'rgba(255,0,0,1)',
+            },
         },
-        ...item
+        ...item,
     };
 });
 
@@ -49,17 +49,17 @@ export default class App extends LightningElement {
     barGraph1 = {
         graphData: barGraph1_data.map((e) => ({
             ...e,
-            data: x_axis_points.map(() => Math.round(Math.random() * 40))
+            data: x_axis_points.map(() => Math.round(Math.random() * 40)),
         })),
         graphDataSeries: barGraph1_data.map((e) => ({
             ...e,
             series: [
                 {
                     data: x_axis_points.map(() =>
-                        Math.round(Math.random() * 40)
-                    )
-                }
-            ]
+                        Math.round(Math.random() * 40),
+                    ),
+                },
+            ],
         })),
         x_axis_data: x_axis_points,
         // uncomment below to see programatic selection of named graphData
@@ -74,12 +74,12 @@ export default class App extends LightningElement {
             label: {
                 formatter: function (s) {
                     return new Date(s).getFullYear();
-                }
-            }
+                },
+            },
         },
         timelineBar: {
             axisType: 'category',
-            data: ['Jan', 'Feb']
+            data: ['Jan', 'Feb'],
         },
         brushAction: {
             type: 'brush',
@@ -87,9 +87,9 @@ export default class App extends LightningElement {
                 {
                     brushType: 'lineX',
                     coordRange: [2, 3],
-                    xAxisIndex: 0
-                }
-            ]
+                    xAxisIndex: 0,
+                },
+            ],
         },
         dataZoom: [
             {
@@ -97,12 +97,12 @@ export default class App extends LightningElement {
                 show: true,
                 start: 100,
                 end: 0,
-                handleSize: 8
+                handleSize: 8,
             },
             {
                 type: 'inside',
                 start: 0,
-                end: 100
+                end: 100,
             },
             {
                 type: 'slider',
@@ -113,26 +113,26 @@ export default class App extends LightningElement {
                 height: '70%',
                 handleSize: 8,
                 showDataShadow: false,
-                left: '95%'
-            }
+                left: '95%',
+            },
         ],
         toolbox: {
             feature: {
                 dataZoom: {
-                    yAxisIndex: false
+                    yAxisIndex: false,
                 },
                 brush: {
-                    type: ['lineX', 'clear']
-                }
-            }
+                    type: ['lineX', 'clear'],
+                },
+            },
         },
         brush: {
             xAxisIndex: 'all',
             brushLink: 'all',
             outOfBrush: {
-                colorAlpha: 0.1
-            }
-        }
+                colorAlpha: 0.1,
+            },
+        },
     };
 
     pieGraph1 = {
@@ -141,7 +141,7 @@ export default class App extends LightningElement {
             { value: 735, name: 'test1' },
             { value: 580, name: 'test2' },
             { value: 484, name: 'test3' },
-            { value: 300, name: 'test4' }
+            { value: 300, name: 'test4' },
         ],
         graphDataSeries: [
             {
@@ -153,10 +153,10 @@ export default class App extends LightningElement {
                             { value: 735, name: 'test2' },
                             { value: 580, name: 'test3' },
                             { value: 484, name: 'test4' },
-                            { value: 300, name: 'test5' }
-                        ]
-                    }
-                ]
+                            { value: 300, name: 'test5' },
+                        ],
+                    },
+                ],
             },
             {
                 title: { text: '2002' },
@@ -167,20 +167,20 @@ export default class App extends LightningElement {
                             { value: 73, name: 'test2' },
                             { value: 58, name: 'test3' },
                             { value: 48, name: 'test4' },
-                            { value: 30, name: 'test5' }
-                        ]
-                    }
-                ]
-            }
+                            { value: 30, name: 'test5' },
+                        ],
+                    },
+                ],
+            },
         ],
         label: {
             rich: {
                 title: {
                     color: 'blue',
-                    align: 'center'
-                }
+                    align: 'center',
+                },
             },
-            formatter: '{b}: {@2012} ({d}%)'
+            formatter: '{b}: {@2012} ({d}%)',
         },
         timeline: {
             axisType: 'category',
@@ -188,15 +188,15 @@ export default class App extends LightningElement {
             label: {
                 formatter: function (s) {
                     return new Date(s).getFullYear();
-                }
-            }
+                },
+            },
         },
         clickChart: (e) => {
             console.log(e);
         },
         clickFunction: (evt) => {
             console.log(evt);
-        }
+        },
     };
 
     datatable1 = {
@@ -207,8 +207,8 @@ export default class App extends LightningElement {
             { label: 'Website', fieldName: 'website', type: 'url' },
             { label: 'Phone', fieldName: 'phone', type: 'phone' },
             { label: 'Balance', fieldName: 'amount', type: 'currency' },
-            { label: 'CloseAt', fieldName: 'closeAt', type: 'date' }
-        ]
+            { label: 'CloseAt', fieldName: 'closeAt', type: 'date' },
+        ],
     };
 
     byData1 = {
@@ -216,7 +216,7 @@ export default class App extends LightningElement {
             console.log('v', v);
             console.log('v.target.value', v.target.value);
             console.log('this.barGraph1.graphData', this.barGraph1.graphData);
-        }
+        },
     };
 
     byFilter1 = {
@@ -229,49 +229,49 @@ export default class App extends LightningElement {
         targetData: 'Health',
         // targetData: 'Borrowable',
         series: {
-            encode: []
+            encode: [],
         },
         filterOptions: [
             {
                 text: 'Model Number',
-                value: 'Model number'
+                value: 'Model number',
             },
             {
                 text: 'Location',
-                value: 'Location'
-            }
+                value: 'Location',
+            },
         ],
         targetDataOptions: [
             {
                 text: 'Asset Health',
-                value: 'Health'
+                value: 'Health',
             },
             {
                 text: 'Borrowable Assets',
-                value: 'Borrowable'
-            }
+                value: 'Borrowable',
+            },
         ],
         handleSort: (evt) => {
             this.fetchMockBarChart({
                 filters: this.byFilter1.filter,
                 targetData: this.byFilter1.targetData,
-                sort: evt.detail
+                sort: evt.detail,
             });
         },
         handleFilter: (evt) => {
             this.byFilter1.filter = evt.detail;
             this.fetchMockBarChart({
                 filters: this.byFilter1.filter,
-                targetData: this.byFilter1.targetData
+                targetData: this.byFilter1.targetData,
             });
         },
         handleTargetData: (evt) => {
             this.byFilter1.targetData = evt.detail;
             this.fetchMockBarChart({
                 filters: this.byFilter1.filter,
-                targetData: this.byFilter1.targetData
+                targetData: this.byFilter1.targetData,
             });
-        }
+        },
     };
 
     guage1 = {
@@ -280,38 +280,38 @@ export default class App extends LightningElement {
                 value: 20,
                 name: 'Perfect',
                 title: {
-                    offsetCenter: ['0%', '-30%']
+                    offsetCenter: ['0%', '-30%'],
                 },
                 detail: {
-                    offsetCenter: ['0%', '-20%']
-                }
+                    offsetCenter: ['0%', '-20%'],
+                },
             },
             {
                 value: 40,
                 name: 'Good',
                 title: {
-                    offsetCenter: ['0%', '0%']
+                    offsetCenter: ['0%', '0%'],
                 },
                 detail: {
-                    offsetCenter: ['0%', '10%']
-                }
+                    offsetCenter: ['0%', '10%'],
+                },
             },
             {
                 value: 60,
                 name: 'Commonly',
                 title: {
-                    offsetCenter: ['0%', '30%']
+                    offsetCenter: ['0%', '30%'],
                 },
                 detail: {
-                    offsetCenter: ['0%', '40%']
-                }
-            }
+                    offsetCenter: ['0%', '40%'],
+                },
+            },
         ],
         colorSeries: [
             [0.3, 'green'],
             [0.7, 'yellow'],
-            [1, 'red']
-        ]
+            [1, 'red'],
+        ],
     };
 
     slidedate1 = {
@@ -329,7 +329,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '9/30/2019',
-                'Last connected': '9/9/2020 15:44'
+                'Last connected': '9/9/2020 15:44',
             },
             {
                 'Model Number': 'A98734',
@@ -344,7 +344,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'TRUE',
                 'Use provider calibration schedule': 'TRUE',
                 'Inventory date': '2/26/2018',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 'N34567A',
@@ -359,7 +359,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '',
-                'Last connected': '6/8/2020 6:28'
+                'Last connected': '6/8/2020 6:28',
             },
             {
                 'Model Number': 'MSO09404A',
@@ -374,7 +374,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '9/30/2019',
-                'Last connected': '8/25/2020 4:35'
+                'Last connected': '8/25/2020 4:35',
             },
             {
                 'Model Number': 12342,
@@ -389,7 +389,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '11/11/2017',
-                'Last connected': '7/1/2019 3:00'
+                'Last connected': '7/1/2019 3:00',
             },
             {
                 'Model Number': 12342,
@@ -404,7 +404,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '',
-                'Last connected': '11/26/2019 0:21'
+                'Last connected': '11/26/2019 0:21',
             },
             {
                 'Model Number': 'PLUM-1',
@@ -419,7 +419,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '',
-                'Last connected': '11/14/2019 1:27'
+                'Last connected': '11/14/2019 1:27',
             },
             {
                 'Model Number': 'Soumya-PC',
@@ -434,7 +434,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '9/30/2019',
-                'Last connected': '3/10/2020 14:58'
+                'Last connected': '3/10/2020 14:58',
             },
             {
                 'Model Number': 'Laptop',
@@ -449,7 +449,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '9/30/2019',
-                'Last connected': '6/12/2020 1:43'
+                'Last connected': '6/12/2020 1:43',
             },
             {
                 'Model Number': '3458A',
@@ -464,7 +464,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '2/22/2018',
-                'Last connected': '11/12/2020 12:43'
+                'Last connected': '11/12/2020 12:43',
             },
             {
                 'Model Number': '20S=STEWART',
@@ -479,7 +479,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '',
-                'Last connected': '6/8/2020 6:28'
+                'Last connected': '6/8/2020 6:28',
             },
             {
                 'Model Number': '34401A',
@@ -495,7 +495,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '2/23/2018',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 435,
@@ -510,7 +510,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '9/30/2019',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 4543353635,
@@ -525,7 +525,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'TRUE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '9/30/2019',
-                'Last connected': '11/15/2019 15:08'
+                'Last connected': '11/15/2019 15:08',
             },
             {
                 'Model Number': 219193983,
@@ -540,7 +540,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 'R1605-80001',
@@ -555,7 +555,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '9/30/2019',
-                'Last connected': '4/20/2020 7:04'
+                'Last connected': '4/20/2020 7:04',
             },
             {
                 'Model Number': 44,
@@ -570,7 +570,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '10/29/2019',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 23,
@@ -585,7 +585,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '2/26/2018',
-                'Last connected': '11/13/2019 23:56'
+                'Last connected': '11/13/2019 23:56',
             },
             {
                 'Model Number': 'MN 556666',
@@ -600,7 +600,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '2/26/2018',
-                'Last connected': '2/25/2020 7:15'
+                'Last connected': '2/25/2020 7:15',
             },
             {
                 'Model Number': 'MN 4556',
@@ -615,7 +615,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '2/27/2018',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 9999999,
@@ -630,7 +630,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'TRUE',
                 'Use provider calibration schedule': 'TRUE',
                 'Inventory date': '2/28/2018',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 'MSOS804A',
@@ -645,7 +645,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '3/2/2018',
-                'Last connected': '7/1/2019 2:52'
+                'Last connected': '7/1/2019 2:52',
             },
             {
                 'Model Number': 'MSOS804A',
@@ -660,7 +660,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '10/29/2019',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 4545454,
@@ -675,7 +675,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '1/9/2019',
-                'Last connected': '12/5/2019 23:30'
+                'Last connected': '12/5/2019 23:30',
             },
             {
                 'Model Number': 99999,
@@ -690,7 +690,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 'test12345',
@@ -705,7 +705,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '10/29/2019',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 'N96789',
@@ -720,7 +720,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'TRUE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '10/29/2019',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 'B56897A',
@@ -735,7 +735,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'TRUE',
                 'Inventory date': '',
-                'Last connected': '7/8/2019 23:15'
+                'Last connected': '7/8/2019 23:15',
             },
             {
                 'Model Number': '54852B',
@@ -750,7 +750,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '',
-                'Last connected': '1/16/2020 3:14'
+                'Last connected': '1/16/2020 3:14',
             },
             {
                 'Model Number': 99999,
@@ -765,7 +765,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'TRUE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '6/14/2019',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': '34401A',
@@ -780,7 +780,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'TRUE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '',
-                'Last connected': '5/20/2019 4:32'
+                'Last connected': '5/20/2019 4:32',
             },
             {
                 'Model Number': 454546644,
@@ -795,7 +795,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'TRUE',
                 'Inventory date': '10/29/2019',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 'MN 67676',
@@ -810,7 +810,7 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '',
-                'Last connected': ''
+                'Last connected': '',
             },
             {
                 'Model Number': 'Test Rack',
@@ -825,9 +825,9 @@ export default class App extends LightningElement {
                 'Use provider calibration type': 'FALSE',
                 'Use provider calibration schedule': 'FALSE',
                 'Inventory date': '',
-                'Last connected': ''
-            }
-        ]
+                'Last connected': '',
+            },
+        ],
     };
 
     servicehistorydata = {
@@ -865,9 +865,9 @@ export default class App extends LightningElement {
                     {
                         title: 'Calibration Report',
                         download_url:
-                            'https://service.keysight.com/archivews/streamer.aspx?fileId=11C964FC49A6031AD8CDC0EBC4719FDCOTg2MjIzMQ=='
-                    }
-                ]
+                            'https://service.keysight.com/archivews/streamer.aspx?fileId=11C964FC49A6031AD8CDC0EBC4719FDCOTg2MjIzMQ==',
+                    },
+                ],
             },
             {
                 factory_cal: 'N',
@@ -902,10 +902,10 @@ export default class App extends LightningElement {
                     {
                         title: 'Calibration Report',
                         download_url:
-                            'https://service.keysight.com/archivews/streamer.aspx?fileId=E6ABB183F7F40670B2805D7F9B4A8311MTI3MzEzMDY='
-                    }
-                ]
-            }
+                            'https://service.keysight.com/archivews/streamer.aspx?fileId=E6ABB183F7F40670B2805D7F9B4A8311MTI3MzEzMDY=',
+                    },
+                ],
+            },
         ].map((e, i) => ({ ...e, editable: i % 2 })),
         columns: [
             {
@@ -915,54 +915,54 @@ export default class App extends LightningElement {
                 sortedBy: 'editable',
                 sortable: true,
                 typeAttributes: {
-                    rowid: { fieldName: 'id' }
-                }
+                    rowid: { fieldName: 'id' },
+                },
             },
             {
                 label: DCX_Asset_Service_Date,
                 fieldName: 'srv_date',
                 sortedBy: 'srv_date',
-                sortable: true
+                sortable: true,
                 // columnKey: 'srv_date'
             },
             {
                 label: DCX_Asset_Service_Order_Number,
                 fieldName: 'srv_order_no',
                 sortedBy: 'srv_order_no',
-                sortable: true
+                sortable: true,
             },
             {
                 label: DCX_Cart_Service_Type,
                 fieldName: 'cal_type',
                 sortedBy: 'cal_type',
-                sortable: true
+                sortable: true,
             },
             {
                 label: DCX_AssetGrid_AssetActions_SH_Received_Condition,
                 fieldName: 'as_received_condition',
                 sortedBy: 'as_received_condition',
-                sortable: true
+                sortable: true,
             },
             {
                 label: DCX_Asset_Service_Returned_Condition,
                 fieldName: 'shipped_condition',
                 sortedBy: 'shipped_condition',
-                sortable: true
+                sortable: true,
             },
             {
                 label: DCX_AuthHome_CalibrationDue,
                 fieldName: 'srv_due_date',
-                sortable: true
+                sortable: true,
             },
             {
                 label: DCX_Asset_Service_Returned_Documents,
                 fieldName: 'download',
-                sortable: true
-            }
+                sortable: true,
+            },
         ],
         onEditRow: (e) => {
             console.log('onEditRow.e', e);
-        }
+        },
     };
 
     connectedCallback() {
@@ -975,7 +975,7 @@ export default class App extends LightningElement {
         if (!this.byFilter1.initialized) {
             this.fetchMockBarChart({
                 filters: this.byFilter1.filter,
-                targetData: this.byFilter1.targetData
+                targetData: this.byFilter1.targetData,
             });
         }
     }
@@ -996,7 +996,7 @@ export default class App extends LightningElement {
             const childelems = Array.from(this.template.childNodes);
             console.log(
                 'root level elements for `onlyshow` query: ',
-                childelems
+                childelems,
             );
 
             childelems.forEach((elem, i) => {
@@ -1013,7 +1013,7 @@ export default class App extends LightningElement {
             {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json; charset=utf-8'
+                    'Content-Type': 'application/json; charset=utf-8',
                 },
                 body: JSON.stringify({
                     amountOfRecords: 10,
@@ -1023,10 +1023,10 @@ export default class App extends LightningElement {
                         website: 'url',
                         amount: 'currency',
                         phone: 'phoneNumber',
-                        closeAt: 'dateInFuture'
-                    }
-                })
-            }
+                        closeAt: 'dateInFuture',
+                    },
+                }),
+            },
         )
             .then((response) => response.json())
             .catch((err) => {
@@ -1066,12 +1066,12 @@ export default class App extends LightningElement {
             replaceorder.splice(indx, 1);
             series = {
                 y: this.byFilter1.filter,
-                encode: [{ x: first }].concat(replaceorder)
+                encode: [{ x: first }].concat(replaceorder),
             };
         } else {
             series = {
                 y: this.byFilter1.filter,
-                encode: colkeys.map((e) => ({ x: e }))
+                encode: colkeys.map((e) => ({ x: e })),
             };
         }
 
@@ -1081,7 +1081,7 @@ export default class App extends LightningElement {
                 initialized: true,
                 iteration: this.byFilter1.iteration + 1,
                 graphData: data,
-                series
+                series,
             };
         }
     };

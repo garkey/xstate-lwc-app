@@ -5,7 +5,7 @@ export default class EditButton extends LightningElement {
     @api rowid;
 
     label = {
-        DCX_Cart_ConfigureButton
+        DCX_Cart_ConfigureButton,
     };
 
     fireEditRowElement(e) {
@@ -14,8 +14,8 @@ export default class EditButton extends LightningElement {
             bubbles: true,
             cancelable: true,
             detail: {
-                rowid: this.rowid
-            }
+                rowid: this.rowid,
+            },
         });
         this.dispatchEvent(event);
     }
