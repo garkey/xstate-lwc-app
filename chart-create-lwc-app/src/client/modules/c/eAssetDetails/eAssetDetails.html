@@ -1,463 +1,930 @@
 <template>
-  <h2>Enhanced Asset Details</h2>
-  <lightning-layout-item class="navrightcustombox viewdetailsnavRight">
-      <lightning-layout class="detailsHeader">
-          <lightning-layout-item class="srchrn" size="6">
-              <div class="srchrndiv">
-                  <lightning-input name="details-search" label="Search" type="search" variant="label-hidden"
-                      value={detailSearchInput} autocomplete="search" onchange={handleSearch}
-                      placeholder={details_label.DCX_Asset_Search_All_Asset_Details} class="detailsinput"
-                      onkeyup={handleKeyPressSearch}>
-                  </lightning-input>
-              </div>
-          </lightning-layout-item>
-          <lightning-layout-item size="6">
-              <div class="detactrn">
-                  <div class="detclsrn">
-                      <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
-                          size="x-small" title="Close" class="close" onclick={closeDetails}></lightning-icon>
-                  </div>
-                  <div class="deteditrn">
-                      <div class="sectionrn" onmouseleave={hideDropDown}>
-                          <div class="sections" onclick={handleSections}>
-                              <div class="sectionstitle">{details_label.DCX_AssetGrid_Sections}</div>
-                              <div class="sectionsicon">
-                                  <lightning-icon icon-name="utility:chevrondown" alternative-text="Connected"
-                                      variant="inverse" size="xx-small" title="Sections"></lightning-icon>
-                              </div>
-                          </div>
-                          <div class="sectiondropdown" if:true={showSections}>
-                              <template for:each={detailsOptions} for:item="option" for:index="ind">
-                                  <div key={option.value} data-id={option.value} class="sectionitem"
-                                      data-label={option.label} onclick={handleDetNav}>
-                                      {option.label}
-                                  </div>
-                              </template>
-                          </div>
-                      </div>
-                      <div class="editbtn">
-                          <lightning-button variant="base" label="Edit" title="Edit" icon-name="utility:edit"
-                              onclick={editDetails} class="slds-m-left_x-small editicon"></lightning-button>
-                      </div>
+    <h2>Enhanced Asset Details</h2>
+    <lightning-layout-item class="navrightcustombox viewdetailsnavRight">
+        <lightning-layout class="detailsHeader">
+            <lightning-layout-item class="srchrn" size="6">
+                <div class="srchrndiv">
+                    <lightning-input
+                        name="details-search"
+                        label="Search"
+                        type="search"
+                        variant="label-hidden"
+                        value={detailSearchInput}
+                        autocomplete="search"
+                        onchange={handleSearch}
+                        placeholder={details_label.DCX_Asset_Search_All_Asset_Details}
+                        class="detailsinput"
+                        onkeyup={handleKeyPressSearch}
+                    >
+                    </lightning-input>
+                </div>
+            </lightning-layout-item>
+            <lightning-layout-item size="6">
+                <div class="detactrn">
+                    <div class="detclsrn">
+                        <lightning-icon
+                            icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="x-small"
+                            title="Close"
+                            class="close"
+                            onclick={closeDetails}
+                        ></lightning-icon>
+                    </div>
+                    <div class="deteditrn">
+                        <div class="sectionrn" onmouseleave={hideDropDown}>
+                            <div class="sections" onclick={handleSections}>
+                                <div class="sectionstitle">
+                                    {details_label.DCX_AssetGrid_Sections}
+                                </div>
+                                <div class="sectionsicon">
+                                    <lightning-icon
+                                        icon-name="utility:chevrondown"
+                                        alternative-text="Connected"
+                                        variant="inverse"
+                                        size="xx-small"
+                                        title="Sections"
+                                    ></lightning-icon>
+                                </div>
+                            </div>
+                            <div class="sectiondropdown" if:true={showSections}>
+                                <template
+                                    for:each={detailsOptions}
+                                    for:item="option"
+                                    for:index="ind"
+                                >
+                                    <div
+                                        key={option.value}
+                                        data-id={option.value}
+                                        class="sectionitem"
+                                        data-label={option.label}
+                                        onclick={handleDetNav}
+                                    >
+                                        {option.label}
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <div class="editbtn">
+                            <lightning-button
+                                variant="base"
+                                label="Edit"
+                                title="Edit"
+                                icon-name="utility:edit"
+                                onclick={editDetails}
+                                class="slds-m-left_x-small editicon"
+                            ></lightning-button>
+                        </div>
 
-
-                      <div class="editbtn">
-                          <lightning-button if:false={modalDetails} variant="base"
-                              label={details_label.DCX_Asset_Grid_Expand} title={details_label.DCX_Asset_Grid_Expand}
-                              icon-name="utility:expand_alt" onclick={showModalDetails}
-                              class="slds-m-left_x-small editicon"></lightning-button>
-                          <lightning-button if:true={modalDetails} variant="base"
-                              label={details_label.DCX_Asset_Grid_Restore}
-                              title={details_label.DCX_Asset_Grid_Restore} icon-name="utility:contract_alt"
-                              onclick={hideModalDetails} class="slds-m-left_x-small editicon"></lightning-button>
-                      </div>
-                      <!-- <c-dcx_combobox name="progress" label="Status" value="main" options={detailsOptions}
+                        <div class="editbtn">
+                            <lightning-button
+                                if:false={modalDetails}
+                                variant="base"
+                                label={details_label.DCX_Asset_Grid_Expand}
+                                title={details_label.DCX_Asset_Grid_Expand}
+                                icon-name="utility:expand_alt"
+                                onclick={showModalDetails}
+                                class="slds-m-left_x-small editicon"
+                            ></lightning-button>
+                            <lightning-button
+                                if:true={modalDetails}
+                                variant="base"
+                                label={details_label.DCX_Asset_Grid_Restore}
+                                title={details_label.DCX_Asset_Grid_Restore}
+                                icon-name="utility:contract_alt"
+                                onclick={hideModalDetails}
+                                class="slds-m-left_x-small editicon"
+                            ></lightning-button>
+                        </div>
+                        <!-- <c-dcx_combobox name="progress" label="Status" value="main" options={detailsOptions}
                           onchange={handleDetNav} variant="label-hidden" class="detailcombo" placeholder="Sections">
                       </c-dcx_combobox> -->
-                  </div>
-              </div>
-          </lightning-layout-item>
-      </lightning-layout>
-      <template if:true={loading}>
-          <lightning-spinner alternative-text="Loading..." size="large" variant="brand">
-          </lightning-spinner>
-      </template>
-      <template if:true={loading}>
+                    </div>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+        <template if:true={loading}>
+            <lightning-spinner
+                alternative-text="Loading..."
+                size="large"
+                variant="brand"
+            >
+            </lightning-spinner>
+        </template>
+        <template if:true={loading}> </template>
+        <lightning-layout multiple-rows="true" class="detailcentersec">
+            <template if:false={loading}>
+                <lightning-layout-item padding="around-small" size="12">
+                    <div class="page-section page-header">
+                        <span class="detailHeader"
+                            >{produc_details.model_no}</span
+                        >
+                    </div>
+                    <div class="page-section page-header">
+                        <span class="detailSummary"
+                            >{produc_details.title}</span
+                        >
+                    </div>
+                    <div class="page-section page-header">
+                        <span class="detailDescription"
+                            >{produc_details.description}</span
+                        >
+                    </div>
+                </lightning-layout-item>
+                <lightning-layout class="productimages">
+                    <lightning-layout-item
+                        size="6"
+                        padding="around-small"
+                        class="imgbox"
+                    >
+                        <img
+                            src={produc_details.image}
+                            alt="ModelNo"
+                            width="313"
+                            height="235"
+                            onerror={handleNoImage}
+                            class="prodimage"
+                        />
+                    </lightning-layout-item>
+                    <lightning-layout-item
+                        if:true={ksCareEligibleFlag}
+                        size="6"
+                        padding="around-small"
+                        class="keysightcarebox"
+                    >
+                        <div class="kscarern">
+                            <div class="kscarelogo">
+                                <img
+                                    src={produc_details.keysight_care_url}
+                                    alt="KeysightCare"
+                                    width="54"
+                                    height="39"
+                                />
+                                <c-dcx_kscarecard
+                                    if:false={keysightcarelearnmore}
+                                    show_kscare_card="true"
+                                    ks_care={kscarecard}
+                                    class="kscarecard"
+                                >
+                                </c-dcx_kscarecard>
+                            </div>
+                            <div class="kscareline"></div>
+                            <div class="kscaretextrn">
+                                <div class="kscaretext">KeysightCare</div>
+                                <div class="kscaretext">{kscaretext}</div>
+                                <c-dcx_button
+                                    class="kscarebtn"
+                                    if:true={keysightcarelearnmore}
+                                    label={details_label.DCX_AssetGrid_Learn_More}
+                                    dcxstate="pause"
+                                    click-restate={restateCallback}
+                                    onclick={kscareLearnMore}
+                                ></c-dcx_button>
+                            </div>
+                        </div>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </template>
+            <!--Identification Section-->
+            <lightning-layout-item size="12" class="details-bar">
+                <lightning-layout>
+                    <lightning-layout-item
+                        size="11"
+                        class="details-line detailbartext"
+                    >
+                        <span style="padding-left: 10px"
+                            >{details_label.DCX_AssetGrid_AddAsset_navigationItem_Identification}</span
+                        >
+                    </lightning-layout-item>
+                    <lightning-layout-item
+                        size="1"
+                        class="detail-bar-arrow-right"
+                        alignment-bump="left"
+                    >
+                        <lightning-icon
+                            icon-name={utility_icon_id}
+                            size="x-small"
+                            alternative-text="Hide"
+                            title="Hide"
+                            class="detailsbaricon"
+                            data-id="identification"
+                            onclick={showHide}
+                        >
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item
+                size="12"
+                padding="around-medium"
+                class="details-form identification"
+            >
+                <lightning-layout multiple-rows>
+                    <template if:false={loading}>
+                        <template
+                            for:each={asset_identification.form}
+                            for:item="element"
+                        >
+                            <lightning-layout-item
+                                size="6"
+                                padding="around-small"
+                                key={element.key}
+                            >
+                                <lightning-input
+                                    type="text"
+                                    label={element.label}
+                                    class="details-input"
+                                    value={element.data}
+                                    read-only
+                                >
+                                </lightning-input>
+                            </lightning-layout-item>
+                        </template>
+                    </template>
+                </lightning-layout>
+            </lightning-layout-item>
+            <!--Configuration Section-->
+            <lightning-layout-item size="12" class="details-bar">
+                <lightning-layout>
+                    <lightning-layout-item
+                        size="11"
+                        class="details-line detailbartext"
+                    >
+                        <span style="padding-left: 10px"
+                            >{details_label.DCX_AssetGrid_AddAsset_navigationItem_Configuration}</span
+                        >
+                    </lightning-layout-item>
+                    <lightning-layout-item
+                        size="1"
+                        class="detail-bar-arrow-right"
+                        alignment-bump="left"
+                    >
+                        <lightning-icon
+                            icon-name={utility_icon_conf}
+                            size="x-small"
+                            alternative-text="Hide"
+                            title="Hide"
+                            class="detailsbaricon"
+                            data-id="configurations"
+                            onclick={showHide}
+                        >
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item
+                size="12"
+                padding="around-medium"
+                class="details-form configurations"
+            >
+                <lightning-layout multiple-rows>
+                    <template if:false={loading}>
+                        <template
+                            for:each={asset_configuration.form}
+                            for:item="element"
+                        >
+                            <lightning-layout-item
+                                size="6"
+                                padding="around-small"
+                                key={element.key}
+                            >
+                                <lightning-input
+                                    type="text"
+                                    label={element.label}
+                                    class="details-input"
+                                    value={element.data}
+                                    read-only
+                                >
+                                </lightning-input>
+                            </lightning-layout-item>
+                        </template>
+                    </template>
+                </lightning-layout>
+                <lightning-layout-item
+                    padding="around-medium"
+                    size="12"
+                    class="linesSec"
+                >
+                    <lightning-layout horizontal-align="spread">
+                        <div class="tablecont">
+                            <div class="tableheader">
+                                {details_label.DCX_AssetGrid_AddAsset_Field_Installed_Options}
+                            </div>
+                            <div
+                                class="installedoptions"
+                                lwc:dom="manual"
+                                style="border-top: 4px solid #edecee"
+                            ></div>
+                        </div>
+                    </lightning-layout>
+                </lightning-layout-item>
+                <lightning-layout-item
+                    padding="around-medium"
+                    size="12"
+                    class="linesSec"
+                >
+                    <lightning-layout horizontal-align="spread">
+                        <div class="tablecont">
+                            <div class="tableheader">
+                                {details_label.DCX_Asset_Latest_Firmware_Software}
+                            </div>
+                            <div
+                                class="firmware"
+                                lwc:dom="manual"
+                                style="border-top: 4px solid #edecee"
+                            ></div>
+                        </div>
+                    </lightning-layout>
+                </lightning-layout-item>
+                <lightning-layout-item
+                    padding="around-medium"
+                    size="12"
+                    class="linesSec"
+                >
+                    <lightning-layout horizontal-align="spread">
+                        <div class="tablecont">
+                            <div class="tableheader">
+                                {details_label.DCX_AssetGrid_Column_Installed_Licenses}
+                            </div>
+                            <div
+                                class="license"
+                                lwc:dom="manual"
+                                style="border-top: 4px solid #edecee"
+                            ></div>
+                        </div>
+                    </lightning-layout>
+                </lightning-layout-item>
+                <lightning-layout-item
+                    padding="around-medium"
+                    size="12"
+                    class="linesSec"
+                >
+                    <lightning-layout horizontal-align="spread">
+                        <div class="buttonrn">
+                            <template
+                                for:each={asset_configuration.button}
+                                for:item="element"
+                            >
+                                <c-dcx_button
+                                    key={element.key}
+                                    label={element.label}
+                                    title={element.label}
+                                    class="btnpad"
+                                    data-id={element.link}
+                                    value={element.link}
+                                    onclick={handleButtonClick}
+                                >
+                                </c-dcx_button>
+                            </template>
+                        </div>
+                    </lightning-layout>
+                </lightning-layout-item>
+            </lightning-layout-item>
 
-      </template>
-      <lightning-layout multiple-rows="true" class="detailcentersec">
-          <template if:false={loading}>
-              <lightning-layout-item padding="around-small" size="12">
-                  <div class="page-section page-header">
-                      <span class="detailHeader">{produc_details.model_no}</span>
-                  </div>
-                  <div class="page-section page-header">
-                      <span class="detailSummary">{produc_details.title}</span>
-                  </div>
-                  <div class="page-section page-header">
-                      <span class="detailDescription">{produc_details.description}</span>
-                  </div>
-              </lightning-layout-item>
-              <lightning-layout class="productimages">
-                  <lightning-layout-item size="6" padding="around-small" class="imgbox">
-                      <img src={produc_details.image} alt="ModelNo" width="313" height="235" onerror={handleNoImage}
-                          class="prodimage">
-                  </lightning-layout-item>
-                  <lightning-layout-item if:true={ksCareEligibleFlag} size="6" padding="around-small"
-                      class="keysightcarebox">
-                      <div class="kscarern">
-                          <div class="kscarelogo">
-                              <img src={produc_details.keysight_care_url} alt="KeysightCare" width="54" height="39">
-                              <c-dcx_kscarecard if:false={keysightcarelearnmore} show_kscare_card=true
-                                  ks_care={kscarecard} class="kscarecard">
-                              </c-dcx_kscarecard>
-                          </div>
-                          <div class='kscareline'></div>
-                          <div class="kscaretextrn">
-                              <div class="kscaretext">KeysightCare</div>
-                              <div class="kscaretext">{kscaretext}</div>
-                              <c-dcx_button class="kscarebtn" if:true={keysightcarelearnmore}
-                                  label={details_label.DCX_AssetGrid_Learn_More} dcxstate="pause"
-                                  click-restate={restateCallback} onclick={kscareLearnMore}></c-dcx_button>
-                          </div>
+            <!--Coverage Section-->
+            <lightning-layout-item size="12" class="details-bar">
+                <lightning-layout>
+                    <lightning-layout-item
+                        size="11"
+                        class="details-line detailbartext"
+                    >
+                        <span style="padding-left: 10px"
+                            >{details_label.DCX_Asset_Coverage}</span
+                        >
+                    </lightning-layout-item>
+                    <lightning-layout-item
+                        size="1"
+                        class="detail-bar-arrow-right"
+                        alignment-bump="left"
+                    >
+                        <lightning-icon
+                            icon-name={utility_icon_cov}
+                            size="x-small"
+                            alternative-text="Hide"
+                            title="Hide"
+                            class="detailsbaricon"
+                            data-id="coverage"
+                            onclick={showHide}
+                        >
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item
+                size="12"
+                padding="around-medium"
+                class="details-form coverage"
+            >
+                <lightning-layout multiple-rows>
+                    <template if:false={loading}>
+                        <template
+                            for:each={asset_coverage.form}
+                            for:item="element"
+                        >
+                            <lightning-layout-item
+                                size="6"
+                                padding="around-small"
+                                key={element.key}
+                            >
+                                <lightning-input
+                                    type="text"
+                                    label={element.label}
+                                    class="details-input"
+                                    value={element.data}
+                                    read-only
+                                >
+                                </lightning-input>
+                            </lightning-layout-item>
+                        </template>
+                    </template>
+                </lightning-layout>
+                <lightning-layout-item
+                    padding="around-medium"
+                    size="12"
+                    class="linesSec"
+                >
+                    <lightning-layout horizontal-align="spread">
+                        <div class="tablecont">
+                            <div class="tableheader">
+                                {details_label.dcx_Agreements}
+                            </div>
+                            <div
+                                class="agreement"
+                                lwc:dom="manual"
+                                style="border-top: 4px solid #edecee"
+                            ></div>
+                        </div>
+                    </lightning-layout>
+                </lightning-layout-item>
+                <lightning-layout-item
+                    padding="around-medium"
+                    size="12"
+                    class="linesSec"
+                >
+                    <lightning-layout horizontal-align="spread">
+                        <div class="tablecont">
+                            <div class="tableheader">
+                                {details_label.DCX_Asset_Coverage}
+                            </div>
+                            <div
+                                class="warranty"
+                                lwc:dom="manual"
+                                style="border-top: 4px solid #edecee"
+                            ></div>
+                        </div>
+                    </lightning-layout>
+                </lightning-layout-item>
+                <lightning-layout-item
+                    padding="around-medium"
+                    size="12"
+                    class="linesSec"
+                >
+                    <lightning-layout horizontal-align="spread">
+                        <div class="buttonrn">
+                            <template
+                                for:each={asset_coverage.button}
+                                for:item="element"
+                            >
+                                <c-dcx_button
+                                    key={element.key}
+                                    label={element.label}
+                                    title={element.label}
+                                    class="btnpad"
+                                    data-id={element.link}
+                                    value={element.link}
+                                    onclick={handleButtonClick}
+                                >
+                                </c-dcx_button>
+                            </template>
+                        </div>
+                    </lightning-layout>
+                </lightning-layout-item>
+            </lightning-layout-item>
 
-                      </div>
+            <!--Service-->
+            <lightning-layout-item size="12" class="details-bar">
+                <lightning-layout>
+                    <lightning-layout-item
+                        size="11"
+                        class="details-line detailbartext"
+                    >
+                        <span style="padding-left: 10px"
+                            >{details_label.DCX_AssetGrid_AddAsset_navigationItem_Service}</span
+                        >
+                    </lightning-layout-item>
+                    <lightning-layout-item
+                        size="1"
+                        class="detail-bar-arrow-right"
+                        alignment-bump="left"
+                    >
+                        <lightning-icon
+                            icon-name={utility_icon_service}
+                            size="x-small"
+                            alternative-text="Hide"
+                            title="Hide"
+                            class="detailsbaricon"
+                            data-id="service"
+                            onclick={showHide}
+                        >
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item
+                size="12"
+                padding="around-medium"
+                class="details-form service"
+            >
+                <lightning-layout multiple-rows>
+                    <template if:false={loading}>
+                        <template
+                            for:each={asset_service.form}
+                            for:item="element"
+                        >
+                            <lightning-layout-item
+                                size="6"
+                                padding="around-small"
+                                key={element.key}
+                            >
+                                <lightning-input
+                                    type="text"
+                                    label={element.label}
+                                    class="details-input"
+                                    value={element.data}
+                                    read-only
+                                >
+                                </lightning-input>
+                            </lightning-layout-item>
+                        </template>
+                    </template>
+                </lightning-layout>
 
-                  </lightning-layout-item>
-              </lightning-layout>
-          </template>
-          <!--Identification Section-->
-          <lightning-layout-item size="12" class="details-bar">
-              <lightning-layout>
-                  <lightning-layout-item size="11" class="details-line detailbartext">
-                      <span
-                          style="padding-left: 10px">{details_label.DCX_AssetGrid_AddAsset_navigationItem_Identification}</span>
-                  </lightning-layout-item>
-                  <lightning-layout-item size="1" class="detail-bar-arrow-right" alignment-bump="left">
-                      <lightning-icon icon-name={utility_icon_id} size="x-small" alternative-text="Hide" title="Hide"
-                          class="detailsbaricon" data-id="identification" onclick={showHide}>
-                      </lightning-icon>
-                  </lightning-layout-item>
-              </lightning-layout>
-          </lightning-layout-item>
-          <lightning-layout-item size="12" padding="around-medium" class="details-form identification">
-              <lightning-layout multiple-rows>
-                  <template if:false={loading}>
-                      <template for:each={asset_identification.form} for:item="element">
-                          <lightning-layout-item size="6" padding="around-small" key={element.key}>
-                              <lightning-input type="text" label={element.label} class="details-input"
-                                  value={element.data} read-only>
-                              </lightning-input>
-                          </lightning-layout-item>
-                      </template>
-                  </template>
-              </lightning-layout>
-          </lightning-layout-item>
-          <!--Configuration Section-->
-          <lightning-layout-item size="12" class="details-bar">
-              <lightning-layout>
-                  <lightning-layout-item size="11" class="details-line detailbartext">
-                      <span
-                          style="padding-left: 10px">{details_label.DCX_AssetGrid_AddAsset_navigationItem_Configuration}</span>
-                  </lightning-layout-item>
-                  <lightning-layout-item size="1" class="detail-bar-arrow-right" alignment-bump="left">
-                      <lightning-icon icon-name={utility_icon_conf} size="x-small" alternative-text="Hide"
-                          title="Hide" class="detailsbaricon" data-id="configurations" onclick={showHide}>
-                      </lightning-icon>
-                  </lightning-layout-item>
-              </lightning-layout>
-          </lightning-layout-item>
-          <lightning-layout-item size="12" padding="around-medium" class="details-form configurations">
-              <lightning-layout multiple-rows>
-                  <template if:false={loading}>
-                      <template for:each={asset_configuration.form} for:item="element">
-                          <lightning-layout-item size="6" padding="around-small" key={element.key}>
-                              <lightning-input type="text" label={element.label} class="details-input"
-                                  value={element.data} read-only>
-                              </lightning-input>
-                          </lightning-layout-item>
-                      </template>
-                  </template>
-              </lightning-layout>
-              <lightning-layout-item padding="around-medium" size="12" class="linesSec">
-                  <lightning-layout horizontal-align="spread">
-                      <div class="tablecont">
-                          <div class="tableheader">
-                              {details_label.DCX_AssetGrid_AddAsset_Field_Installed_Options}</div>
-                          <div class="installedoptions" lwc:dom="manual" style="border-top: 4px solid #edecee;">
-                          </div>
-                      </div>
-                  </lightning-layout>
-              </lightning-layout-item>
-              <lightning-layout-item padding="around-medium" size="12" class="linesSec">
-                  <lightning-layout horizontal-align="spread">
-                      <div class="tablecont">
-                          <div class="tableheader">{details_label.DCX_Asset_Latest_Firmware_Software}</div>
-                          <div class="firmware" lwc:dom="manual" style="border-top: 4px solid #edecee;">
-                          </div>
-                      </div>
-                  </lightning-layout>
-              </lightning-layout-item>
-              <lightning-layout-item padding="around-medium" size="12" class="linesSec">
-                  <lightning-layout horizontal-align="spread">
-                      <div class="tablecont">
-                          <div class="tableheader">{details_label.DCX_AssetGrid_Column_Installed_Licenses}</div>
-                          <div class="license" lwc:dom="manual" style="border-top: 4px solid #edecee;">
-                          </div>
-                      </div>
-                  </lightning-layout>
-              </lightning-layout-item>
-              <lightning-layout-item padding="around-medium" size="12" class="linesSec">
-                  <lightning-layout horizontal-align="spread">
-                      <div class="buttonrn">
-                          <template for:each={asset_configuration.button} for:item="element">
-                              <c-dcx_button key={element.key} label={element.label} title={element.label}
-                                  class="btnpad" data-id={element.link} value={element.link}
-                                  onclick={handleButtonClick}>
-                              </c-dcx_button>
-                          </template>
-                      </div>
-                  </lightning-layout>
-              </lightning-layout-item>
-          </lightning-layout-item>
+                <lightning-layout-item
+                    padding="around-medium"
+                    size="12"
+                    class="linesSec service"
+                >
+                    <lightning-layout horizontal-align="spread">
+                        <div class="tablecont">
+                            <div class="tableheader">
+                                {details_label.DCX_AssetGrid_Open_Service_Orders}
+                            </div>
+                            <div
+                                class="serviceorder"
+                                lwc:dom="manual"
+                                style="border-top: 4px solid #edecee"
+                            ></div>
+                        </div>
+                    </lightning-layout>
+                </lightning-layout-item>
+            </lightning-layout-item>
 
-          <!--Coverage Section-->
-          <lightning-layout-item size="12" class="details-bar">
-              <lightning-layout>
-                  <lightning-layout-item size="11" class="details-line detailbartext">
-                      <span style="padding-left: 10px">{details_label.DCX_Asset_Coverage}</span>
-                  </lightning-layout-item>
-                  <lightning-layout-item size="1" class="detail-bar-arrow-right" alignment-bump="left">
-                      <lightning-icon icon-name={utility_icon_cov} size="x-small" alternative-text="Hide" title="Hide"
-                          class="detailsbaricon" data-id="coverage" onclick={showHide}>
-                      </lightning-icon>
-                  </lightning-layout-item>
-              </lightning-layout>
-          </lightning-layout-item>
-          <lightning-layout-item size="12" padding="around-medium" class="details-form coverage">
-              <lightning-layout multiple-rows>
-                  <template if:false={loading}>
-                      <template for:each={asset_coverage.form} for:item="element">
-                          <lightning-layout-item size="6" padding="around-small" key={element.key}>
-                              <lightning-input type="text" label={element.label} class="details-input"
-                                  value={element.data} read-only>
-                              </lightning-input>
-                          </lightning-layout-item>
-                      </template>
-                  </template>
-              </lightning-layout>
-              <lightning-layout-item padding="around-medium" size="12" class="linesSec">
-                  <lightning-layout horizontal-align="spread">
-                      <div class="tablecont">
-                          <div class="tableheader">{details_label.dcx_Agreements}</div>
-                          <div class="agreement" lwc:dom="manual" style="border-top: 4px solid #edecee;">
-                          </div>
-                      </div>
-                  </lightning-layout>
-              </lightning-layout-item>
-              <lightning-layout-item padding="around-medium" size="12" class="linesSec">
-                  <lightning-layout horizontal-align="spread">
-                      <div class="tablecont">
-                          <div class="tableheader">{details_label.DCX_Asset_Coverage}</div>
-                          <div class="warranty" lwc:dom="manual" style="border-top: 4px solid #edecee;">
-                          </div>
-                      </div>
-                  </lightning-layout>
-              </lightning-layout-item>
-              <lightning-layout-item padding="around-medium" size="12" class="linesSec">
-                  <lightning-layout horizontal-align="spread">
-                      <div class="buttonrn">
-                          <template for:each={asset_coverage.button} for:item="element">
-                              <c-dcx_button key={element.key} label={element.label} title={element.label}
-                                  class="btnpad" data-id={element.link} value={element.link}
-                                  onclick={handleButtonClick}>
-                              </c-dcx_button>
-                          </template>
-                      </div>
-                  </lightning-layout>
-              </lightning-layout-item>
-          </lightning-layout-item>
-
-          <!--Service-->
-          <lightning-layout-item size="12" class="details-bar">
-              <lightning-layout>
-                  <lightning-layout-item size="11" class="details-line detailbartext">
-                      <span
-                          style="padding-left: 10px">{details_label.DCX_AssetGrid_AddAsset_navigationItem_Service}</span>
-                  </lightning-layout-item>
-                  <lightning-layout-item size="1" class="detail-bar-arrow-right" alignment-bump="left">
-                      <lightning-icon icon-name={utility_icon_service} size="x-small" alternative-text="Hide"
-                          title="Hide" class="detailsbaricon" data-id="service" onclick={showHide}>
-                      </lightning-icon>
-                  </lightning-layout-item>
-              </lightning-layout>
-          </lightning-layout-item>
-          <lightning-layout-item size="12" padding="around-medium" class="details-form service">
-              <lightning-layout multiple-rows>
-                  <template if:false={loading}>
-                      <template for:each={asset_service.form} for:item="element">
-                          <lightning-layout-item size="6" padding="around-small" key={element.key}>
-                              <lightning-input type="text" label={element.label} class="details-input"
-                                  value={element.data} read-only>
-                              </lightning-input>
-                          </lightning-layout-item>
-                      </template>
-                  </template>
-              </lightning-layout>
-
-              <lightning-layout-item padding="around-medium" size="12" class="linesSec service">
-                  <lightning-layout horizontal-align="spread">
-                      <div class="tablecont">
-                          <div class="tableheader">{details_label.DCX_AssetGrid_Open_Service_Orders}</div>
-                          <div class="serviceorder" lwc:dom="manual" style="border-top: 4px solid #edecee;"></div>
-                      </div>
-                  </lightning-layout>
-              </lightning-layout-item>
-          </lightning-layout-item>
-
-
-
-          <!--Service History-->
-          <lightning-layout-item size="12" class="details-bar">
-              <lightning-layout>
-                  <lightning-layout-item size="11" class="details-line detailbartext">
-                      <span style="padding-left: 10px">{details_label.DCX_SupportGrid_History}</span>
-                  </lightning-layout-item>
-                  <lightning-layout-item size="1" class="detail-bar-arrow-right" alignment-bump="left">
-                      <lightning-icon icon-name={utility_icon_history} size="x-small" alternative-text="Hide"
-                          title="Hide" class="detailsbaricon" data-id="servicehistory" onclick={showHide}>
-                      </lightning-icon>
-                  </lightning-layout-item>
-              </lightning-layout>
-          </lightning-layout-item>
-          <lightning-layout-item padding="around-medium" size="12" class="linesSec servicehistory">
-              <lightning-layout horizontal-align="spread">
-                  <div class="tablecont">
-                      <div class="tableheader">{details_label.DCX_AssetGrid_AddAsset_navigationItem_Service_History}</div>
-                      <div class="history" lwc:dom="manual" style="border-top: 4px solid #edecee;"></div>
-                  </div>
-              </lightning-layout>
-          </lightning-layout-item>
-          <!--Service Notes-->
-          <lightning-layout-item size="12" class="details-bar">
-              <lightning-layout>
-                  <lightning-layout-item size="11" class="details-line detailbartext">
-                      <span style="padding-left: 10px">{details_label.DCX_ProductLifeCycle_ServiceNotes}</span>
-                  </lightning-layout-item>
-                  <lightning-layout-item size="1" class="detail-bar-arrow-right" alignment-bump="left">
-                      <lightning-icon icon-name={utility_icon_servnotes} size="x-small" alternative-text="Hide"
-                          title="Hide" class="detailsbaricon" data-id="servicenotes" onclick={showHide}>
-                      </lightning-icon>
-                  </lightning-layout-item>
-              </lightning-layout>
-          </lightning-layout-item>
-          <lightning-layout-item padding="around-medium" size="12" class="linesSec servicenotes">
-              <lightning-layout horizontal-align="spread">
-                  <div class="tablecont">
-                      <div class="tableheader">{details_label.DCX_AssetGrid_Notes}</div>
-                      <template if:false={displayServiceNotes}>
-                          <lightning-formatted-text value={details_label.DCX_No_Applicable_Service_Notes_Found}></lightning-formatted-text>
-                      </template>
-                      <div class="notes" lwc:dom="manual" style="border-top: 4px solid #edecee;">
-                      </div>
-                  </div>
-              </lightning-layout>
-          </lightning-layout-item>
-          <!--LifeCycle-->
-          <lightning-layout-item size="12" class="details-bar">
-              <lightning-layout>
-                  <lightning-layout-item size="11" class="details-line detailbartext">
-                      <span
-                          style="padding-left: 10px">{details_label.DCX_AssetGrid_AddAsset_navigationItem_Lifecycle}</span>
-                  </lightning-layout-item>
-                  <lightning-layout-item size="1" class="detail-bar-arrow-right" alignment-bump="left">
-                      <lightning-icon icon-name={utility_icon_lifecycle} size="x-small" alternative-text="Hide"
-                          title="Hide" class="detailsbaricon" data-id="lifecycle" onclick={showHide}>
-                      </lightning-icon>
-                  </lightning-layout-item>
-              </lightning-layout>
-          </lightning-layout-item>
-          <lightning-layout-item size="12" padding="around-medium" class="details-form lifecycle">
-              <lightning-layout multiple-rows>
-                  <template if:false={loading}>
-                      <template for:each={asset_lifecycle.form} for:item="element">
-                          <lightning-layout-item size="6" padding="around-small" key={element.key}>
-                              <lightning-input type="text" label={element.label} class="details-input"
-                                  value={element.data} read-only>
-                              </lightning-input>
-                          </lightning-layout-item>
-                      </template>
-                  </template>
-              </lightning-layout>
-              <lightning-layout-item padding="around-medium" size="12" class="linesSec">
-                  <lightning-layout horizontal-align="spread">
-                      <div class="buttonrn">
-                          <template for:each={asset_lifecycle.button} for:item="element">
-                              <c-dcx_button key={element.key} label={element.label} title={element.label}
-                                  class="btnpad" data-id={element.link} value={element.link}
-                                  onclick={handleButtonClick}>
-                              </c-dcx_button>
-                          </template>
-                      </div>
-                  </lightning-layout>
-              </lightning-layout-item>
-          </lightning-layout-item>
-          <!--Order-->
-          <lightning-layout-item size="12" class="details-bar">
-              <lightning-layout>
-                  <lightning-layout-item size="11" class="details-line detailbartext">
-                      <span
-                          style="padding-left: 10px">{details_label.DCX_AssetGrid_AddAsset_navigationItem_Ordering}</span>
-                  </lightning-layout-item>
-                  <lightning-layout-item size="1" class="detail-bar-arrow-right" alignment-bump="left">
-                      <lightning-icon icon-name={utility_icon_order} size="x-small" alternative-text="Hide"
-                          title="Hide" class="detailsbaricon" data-id="order" onclick={showHide}>
-                      </lightning-icon>
-                  </lightning-layout-item>
-              </lightning-layout>
-          </lightning-layout-item>
-          <lightning-layout-item size="12" padding="around-medium" class="details-form order">
-              <lightning-layout multiple-rows>
-                  <template if:false={loading}>
-                      <template for:each={asset_order.form} for:item="element">
-                          <lightning-layout-item size="6" padding="around-small" key={element.key}>
-                              <lightning-input type="text" label={element.label} class="details-input"
-                                  value={element.data} read-only>
-                              </lightning-input>
-                          </lightning-layout-item>
-                      </template>
-                  </template>
-              </lightning-layout>
-          </lightning-layout-item>
-          <!--Inventory-->
-          <lightning-layout-item size="12" class="details-bar">
-              <lightning-layout>
-                  <lightning-layout-item size="11" class="details-line detailbartext">
-                      <span
-                          style="padding-left: 10px">{details_label.DCX_AssetGrid_AddAsset_navigationItem_Inventory}</span>
-                  </lightning-layout-item>
-                  <lightning-layout-item size="1" class="detail-bar-arrow-right" alignment-bump="left">
-                      <lightning-icon icon-name={utility_icon_inv} size="x-small" alternative-text="Hide" title="Hide"
-                          class="detailsbaricon" data-id="inventory" onclick={showHide}>
-                      </lightning-icon>
-                  </lightning-layout-item>
-              </lightning-layout>
-          </lightning-layout-item>
-          <lightning-layout-item size="12" padding="around-medium" class="details-form inventory">
-              <lightning-layout multiple-rows>
-                  <template if:false={loading}>
-                      <template for:each={asset_invetory.form} for:item="element">
-                          <lightning-layout-item size="6" padding="around-small" key={element.key}>
-                              <lightning-input type="text" label={element.label} class="details-input"
-                                  value={element.data} read-only>
-                              </lightning-input>
-                          </lightning-layout-item>
-                      </template>
-                  </template>
-              </lightning-layout>
-          </lightning-layout-item>
-          <!--Audit-->
-          <lightning-layout-item size="12" class="details-bar">
-              <lightning-layout>
-                  <lightning-layout-item size="11" class="details-line detailbartext">
-                      <span style="padding-left: 10px">{details_label.DCX_Asset_Grid_Audit}</span>
-                  </lightning-layout-item>
-                  <lightning-layout-item size="1" class="detail-bar-arrow-right" alignment-bump="left">
-                      <lightning-icon icon-name={utility_icon_audit} size="x-small" alternative-text="Hide"
-                          title="Hide" class="detailsbaricon" data-id="audit" onclick={showHide}>
-                      </lightning-icon>
-                  </lightning-layout-item>
-              </lightning-layout>
-          </lightning-layout-item>
-          <lightning-layout-item padding="around-medium" size="12" class="linesSec audit">
-              <lightning-layout horizontal-align="spread">
-                  <div class="tablecont">
-                      <div class="tableheader">{details_label.DCX_Asset_Grid_Audit}</div>
-                      <div class="audit" lwc:dom="manual" style="border-top: 4px solid #edecee;">
-                      </div>
-                  </div>
-              </lightning-layout>
-          </lightning-layout-item>
-      </lightning-layout>
-  </lightning-layout-item>
+            <!--Service History-->
+            <lightning-layout-item size="12" class="details-bar">
+                <lightning-layout>
+                    <lightning-layout-item
+                        size="11"
+                        class="details-line detailbartext"
+                    >
+                        <span style="padding-left: 10px"
+                            >{details_label.DCX_SupportGrid_History}</span
+                        >
+                    </lightning-layout-item>
+                    <lightning-layout-item
+                        size="1"
+                        class="detail-bar-arrow-right"
+                        alignment-bump="left"
+                    >
+                        <lightning-icon
+                            icon-name={utility_icon_history}
+                            size="x-small"
+                            alternative-text="Hide"
+                            title="Hide"
+                            class="detailsbaricon"
+                            data-id="servicehistory"
+                            onclick={showHide}
+                        >
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item
+                padding="around-medium"
+                size="12"
+                class="linesSec servicehistory"
+            >
+                <lightning-layout horizontal-align="spread">
+                    <div class="tablecont">
+                        <div class="tableheader">
+                            {details_label.DCX_AssetGrid_AddAsset_navigationItem_Service_History}
+                        </div>
+                        <div
+                            class="history"
+                            lwc:dom="manual"
+                            style="border-top: 4px solid #edecee"
+                        ></div>
+                    </div>
+                </lightning-layout>
+            </lightning-layout-item>
+            <!--Service Notes-->
+            <lightning-layout-item size="12" class="details-bar">
+                <lightning-layout>
+                    <lightning-layout-item
+                        size="11"
+                        class="details-line detailbartext"
+                    >
+                        <span style="padding-left: 10px"
+                            >{details_label.DCX_ProductLifeCycle_ServiceNotes}</span
+                        >
+                    </lightning-layout-item>
+                    <lightning-layout-item
+                        size="1"
+                        class="detail-bar-arrow-right"
+                        alignment-bump="left"
+                    >
+                        <lightning-icon
+                            icon-name={utility_icon_servnotes}
+                            size="x-small"
+                            alternative-text="Hide"
+                            title="Hide"
+                            class="detailsbaricon"
+                            data-id="servicenotes"
+                            onclick={showHide}
+                        >
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item
+                padding="around-medium"
+                size="12"
+                class="linesSec servicenotes"
+            >
+                <lightning-layout horizontal-align="spread">
+                    <div class="tablecont">
+                        <div class="tableheader">
+                            {details_label.DCX_AssetGrid_Notes}
+                        </div>
+                        <template if:false={displayServiceNotes}>
+                            <lightning-formatted-text
+                                value={details_label.DCX_No_Applicable_Service_Notes_Found}
+                            ></lightning-formatted-text>
+                        </template>
+                        <div
+                            class="notes"
+                            lwc:dom="manual"
+                            style="border-top: 4px solid #edecee"
+                        ></div>
+                    </div>
+                </lightning-layout>
+            </lightning-layout-item>
+            <!--LifeCycle-->
+            <lightning-layout-item size="12" class="details-bar">
+                <lightning-layout>
+                    <lightning-layout-item
+                        size="11"
+                        class="details-line detailbartext"
+                    >
+                        <span style="padding-left: 10px"
+                            >{details_label.DCX_AssetGrid_AddAsset_navigationItem_Lifecycle}</span
+                        >
+                    </lightning-layout-item>
+                    <lightning-layout-item
+                        size="1"
+                        class="detail-bar-arrow-right"
+                        alignment-bump="left"
+                    >
+                        <lightning-icon
+                            icon-name={utility_icon_lifecycle}
+                            size="x-small"
+                            alternative-text="Hide"
+                            title="Hide"
+                            class="detailsbaricon"
+                            data-id="lifecycle"
+                            onclick={showHide}
+                        >
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item
+                size="12"
+                padding="around-medium"
+                class="details-form lifecycle"
+            >
+                <lightning-layout multiple-rows>
+                    <template if:false={loading}>
+                        <template
+                            for:each={asset_lifecycle.form}
+                            for:item="element"
+                        >
+                            <lightning-layout-item
+                                size="6"
+                                padding="around-small"
+                                key={element.key}
+                            >
+                                <lightning-input
+                                    type="text"
+                                    label={element.label}
+                                    class="details-input"
+                                    value={element.data}
+                                    read-only
+                                >
+                                </lightning-input>
+                            </lightning-layout-item>
+                        </template>
+                    </template>
+                </lightning-layout>
+                <lightning-layout-item
+                    padding="around-medium"
+                    size="12"
+                    class="linesSec"
+                >
+                    <lightning-layout horizontal-align="spread">
+                        <div class="buttonrn">
+                            <template
+                                for:each={asset_lifecycle.button}
+                                for:item="element"
+                            >
+                                <c-dcx_button
+                                    key={element.key}
+                                    label={element.label}
+                                    title={element.label}
+                                    class="btnpad"
+                                    data-id={element.link}
+                                    value={element.link}
+                                    onclick={handleButtonClick}
+                                >
+                                </c-dcx_button>
+                            </template>
+                        </div>
+                    </lightning-layout>
+                </lightning-layout-item>
+            </lightning-layout-item>
+            <!--Order-->
+            <lightning-layout-item size="12" class="details-bar">
+                <lightning-layout>
+                    <lightning-layout-item
+                        size="11"
+                        class="details-line detailbartext"
+                    >
+                        <span style="padding-left: 10px"
+                            >{details_label.DCX_AssetGrid_AddAsset_navigationItem_Ordering}</span
+                        >
+                    </lightning-layout-item>
+                    <lightning-layout-item
+                        size="1"
+                        class="detail-bar-arrow-right"
+                        alignment-bump="left"
+                    >
+                        <lightning-icon
+                            icon-name={utility_icon_order}
+                            size="x-small"
+                            alternative-text="Hide"
+                            title="Hide"
+                            class="detailsbaricon"
+                            data-id="order"
+                            onclick={showHide}
+                        >
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item
+                size="12"
+                padding="around-medium"
+                class="details-form order"
+            >
+                <lightning-layout multiple-rows>
+                    <template if:false={loading}>
+                        <template
+                            for:each={asset_order.form}
+                            for:item="element"
+                        >
+                            <lightning-layout-item
+                                size="6"
+                                padding="around-small"
+                                key={element.key}
+                            >
+                                <lightning-input
+                                    type="text"
+                                    label={element.label}
+                                    class="details-input"
+                                    value={element.data}
+                                    read-only
+                                >
+                                </lightning-input>
+                            </lightning-layout-item>
+                        </template>
+                    </template>
+                </lightning-layout>
+            </lightning-layout-item>
+            <!--Inventory-->
+            <lightning-layout-item size="12" class="details-bar">
+                <lightning-layout>
+                    <lightning-layout-item
+                        size="11"
+                        class="details-line detailbartext"
+                    >
+                        <span style="padding-left: 10px"
+                            >{details_label.DCX_AssetGrid_AddAsset_navigationItem_Inventory}</span
+                        >
+                    </lightning-layout-item>
+                    <lightning-layout-item
+                        size="1"
+                        class="detail-bar-arrow-right"
+                        alignment-bump="left"
+                    >
+                        <lightning-icon
+                            icon-name={utility_icon_inv}
+                            size="x-small"
+                            alternative-text="Hide"
+                            title="Hide"
+                            class="detailsbaricon"
+                            data-id="inventory"
+                            onclick={showHide}
+                        >
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item
+                size="12"
+                padding="around-medium"
+                class="details-form inventory"
+            >
+                <lightning-layout multiple-rows>
+                    <template if:false={loading}>
+                        <template
+                            for:each={asset_invetory.form}
+                            for:item="element"
+                        >
+                            <lightning-layout-item
+                                size="6"
+                                padding="around-small"
+                                key={element.key}
+                            >
+                                <lightning-input
+                                    type="text"
+                                    label={element.label}
+                                    class="details-input"
+                                    value={element.data}
+                                    read-only
+                                >
+                                </lightning-input>
+                            </lightning-layout-item>
+                        </template>
+                    </template>
+                </lightning-layout>
+            </lightning-layout-item>
+            <!--Audit-->
+            <lightning-layout-item size="12" class="details-bar">
+                <lightning-layout>
+                    <lightning-layout-item
+                        size="11"
+                        class="details-line detailbartext"
+                    >
+                        <span style="padding-left: 10px"
+                            >{details_label.DCX_Asset_Grid_Audit}</span
+                        >
+                    </lightning-layout-item>
+                    <lightning-layout-item
+                        size="1"
+                        class="detail-bar-arrow-right"
+                        alignment-bump="left"
+                    >
+                        <lightning-icon
+                            icon-name={utility_icon_audit}
+                            size="x-small"
+                            alternative-text="Hide"
+                            title="Hide"
+                            class="detailsbaricon"
+                            data-id="audit"
+                            onclick={showHide}
+                        >
+                        </lightning-icon>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <lightning-layout-item
+                padding="around-medium"
+                size="12"
+                class="linesSec audit"
+            >
+                <lightning-layout horizontal-align="spread">
+                    <div class="tablecont">
+                        <div class="tableheader">
+                            {details_label.DCX_Asset_Grid_Audit}
+                        </div>
+                        <div
+                            class="audit"
+                            lwc:dom="manual"
+                            style="border-top: 4px solid #edecee"
+                        ></div>
+                    </div>
+                </lightning-layout>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-layout-item>
 </template>

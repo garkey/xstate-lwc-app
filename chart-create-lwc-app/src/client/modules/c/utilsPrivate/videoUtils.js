@@ -16,18 +16,18 @@ const ALLOWED_DOMAINS = new Set([
     'i1.adis.ws',
     's1.adis.ws',
     'scormanywhere.secure.force.com',
-    'appiniummastertrial.secure.force.com'
+    'appiniummastertrial.secure.force.com',
 ]);
 
 export function hasOnlyAllowedVideoIframes(htmlString) {
     if (htmlString && htmlString.indexOf('<iframe') > -1) {
         const parsedHtml = new DOMParser().parseFromString(
             htmlString,
-            'text/html'
+            'text/html',
         );
 
         const iframesList = Array.prototype.slice.call(
-            parsedHtml.querySelectorAll('iframe')
+            parsedHtml.querySelectorAll('iframe'),
         );
 
         return (

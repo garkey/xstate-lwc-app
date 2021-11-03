@@ -17,5 +17,5 @@ svg {
     pointer-events: none;
 }
 .dcxhover:hover {
-  fill: #225792;
+    fill: #225792;
 }

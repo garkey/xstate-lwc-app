@@ -13,7 +13,7 @@ export default class ByData extends LightningElement {
         if (this.slotchildren.length > 1) {
             console.error(
                 `found ${this.slotchildren.length} slotted elements`,
-                this.slotchildren.join(', ')
+                this.slotchildren.join(', '),
             );
             throw new Error('Expected only one element.');
         }
@@ -22,7 +22,7 @@ export default class ByData extends LightningElement {
 
         if (first.tagName !== 'INPUT' && first.tagName !== 'SELECT') {
             throw new Error(
-                'so far, we expect only one of specific input elements'
+                'so far, we expect only one of specific input elements',
             );
         }
 

@@ -11,7 +11,7 @@ export {
     buildSyntheticValidity,
     getErrorMessage,
     FieldConstraintApiWithProxyInput,
-    FieldConstraintApi
+    FieldConstraintApi,
 } from './validity';
 export { normalizeVariant, VARIANT } from './normalize';
 

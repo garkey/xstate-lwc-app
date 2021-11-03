@@ -4,7 +4,7 @@ export const defaultVals = {
     segment_dur_days: 14,
     total_segments: 6,
     segment_index: 1,
-    num_segments: 2
+    num_segments: 2,
 };
 const { createMachine, assign } = xstate;
 
@@ -16,21 +16,21 @@ export const compMachine = createMachine(
         states: {
             loading: {
                 on: {
-                    complete: 'ready'
-                }
+                    complete: 'ready',
+                },
             },
-            ready: {}
+            ready: {},
         },
         on: {
             RIGHT: [
                 { actions: 'shiftRight', cond: 'isShiftClick' },
-                { actions: 'right' }
+                { actions: 'right' },
             ],
             LEFT: [
                 { actions: 'shiftLeft', cond: 'isShiftClick' },
-                { actions: 'left' }
-            ]
-        }
+                { actions: 'left' },
+            ],
+        },
     },
     {
         actions: {
@@ -40,7 +40,7 @@ export const compMachine = createMachine(
                     return segment_index + 1 < total_segments
                         ? segment_index + 1
                         : segment_index;
-                }
+                },
             }),
             shiftRight: assign({
                 num_segments: (context) => {
@@ -49,25 +49,25 @@ export const compMachine = createMachine(
                     return segment_index + num_segments < total_segments
                         ? num_segments + 1
                         : num_segments;
-                }
+                },
             }),
             left: assign({
                 segment_index: (context) => {
                     return context.segment_index > 0
                         ? context.segment_index - 1
                         : context.segment_index;
-                }
+                },
             }),
             shiftLeft: assign({
                 num_segments: (context) => {
                     return context.num_segments > 1
                         ? context.num_segments - 1
                         : context.num_segments;
-                }
-            })
+                },
+            }),
         },
         guards: {
-            isShiftClick: (_, event) => event.shiftKey
-        }
-    }
+            isShiftClick: (_, event) => event.shiftKey,
+        },
+    },
 );

@@ -11,7 +11,7 @@ export const VARIANT = {
     STANDARD: 'standard',
     LABEL_HIDDEN: 'label-hidden',
     LABEL_STACKED: 'label-stacked',
-    LABEL_INLINE: 'label-inline'
+    LABEL_INLINE: 'label-inline',
 };
 
 export function normalizeVariant(value) {
@@ -21,7 +21,7 @@ export function normalizeVariant(value) {
             VARIANT.STANDARD,
             VARIANT.LABEL_HIDDEN,
             VARIANT.LABEL_STACKED,
-            VARIANT.LABEL_INLINE
-        ]
+            VARIANT.LABEL_INLINE,
+        ],
     });
 }

@@ -14,24 +14,24 @@ export default class LoanManagementHome extends LightningElement {
             })
             .start();
 
-        document.addEventListener('keydown', (e) => {          
+        document.addEventListener('keydown', (e) => {
             if (['ArrowRight', 'ArrowLeft'].indexOf(e.key) > -1) {
                 e.preventDefault();
-                this.pageChange(e.key.substr(5).toUpperCase())
+                this.pageChange(e.key.substr(5).toUpperCase());
             }
         });
     }
 
     pageChange(dir) {
-      this.service.send({
-          type: `PAGE.${dir}`,
-          // shiftKey: e.shiftKey,
-      });
+        this.service.send({
+            type: `PAGE.${dir}`,
+            // shiftKey: e.shiftKey,
+        });
     }
     pageLeft() {
-      this.pageChange('LEFT')
+        this.pageChange('LEFT');
     }
     pageRight() {
-      this.pageChange('RIGHT')
+        this.pageChange('RIGHT');
     }
 }

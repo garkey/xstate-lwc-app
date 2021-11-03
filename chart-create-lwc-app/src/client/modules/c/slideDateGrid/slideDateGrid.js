@@ -7,7 +7,7 @@ const DAY_MS = 86400000;
 export default class slideDateGrid extends LightningElement {
     @api rows;
     state = {
-        context: defaultVals
+        context: defaultVals,
     };
     datesegs = [];
     segwidth;
@@ -27,14 +27,14 @@ export default class slideDateGrid extends LightningElement {
         const durms = DAY_MS * segment_dur_days;
         this.datesegs = Array.from({ length: total_segments }).map((e, i) => ({
             id: 's' + i,
-            timeend: ts + i * durms
+            timeend: ts + i * durms,
         }));
 
         this.duedatesindexes = this.rows.map((d) => {
             if (d['Calibration due date']) {
                 const nd = new Date(d['Calibration due date']);
                 const dueindex = this.datesegs.findIndex(
-                    (ds) => ds.timeend > nd.getTime()
+                    (ds) => ds.timeend > nd.getTime(),
                 );
                 return dueindex;
             }
@@ -46,7 +46,7 @@ export default class slideDateGrid extends LightningElement {
                 e.preventDefault();
                 this.service.send({
                     type: e.key.substr(5).toUpperCase(),
-                    shiftKey: e.shiftKey
+                    shiftKey: e.shiftKey,
                 });
             }
         });
@@ -69,7 +69,7 @@ export default class slideDateGrid extends LightningElement {
         return JSON.stringify(
             sumindxes.map((si) => this.rows[si]),
             null,
-            2
+            2,
         );
     }
 
@@ -78,13 +78,13 @@ export default class slideDateGrid extends LightningElement {
             const indxs = this.duedatesindexes.reduce(
                 (acc, val, dueindex) =>
                     val === i ? acc.concat([dueindex]) : acc,
-                []
+                [],
             );
 
             return {
                 ...ea,
                 num_assets: indxs.map((indx) => this.rows[indx]).length,
-                indxs
+                indxs,
             };
         });
     }

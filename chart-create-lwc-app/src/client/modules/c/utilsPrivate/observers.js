@@ -10,7 +10,7 @@ export function observePosition(
     target,
     threshold = POSITION_CHANGE_THRESHOLD,
     originalRect,
-    callback
+    callback,
 ) {
     const newBoundingRect = target.getBoundingClientRect();
     const newLeft = newBoundingRect.left;

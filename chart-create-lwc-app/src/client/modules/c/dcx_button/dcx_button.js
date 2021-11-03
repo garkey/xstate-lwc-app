@@ -16,7 +16,7 @@ const buttonstates = {
     pause: 'red',
     cancel: 'gray',
     transparent: 'transparent',
-    default: ''
+    default: '',
 };
 
 export default class cButton extends cPrimitiveButton {
@@ -64,7 +64,9 @@ export default class cButton extends cPrimitiveButton {
     clickCallback(event) {
         if (this.clickRestate) {
             const reqnextstate = this.clickRestate(event).dcxstate;
-            const postnextstate = Object.keys(buttonstates).indexOf(reqnextstate) > -1 && reqnextstate;
+            const postnextstate =
+                Object.keys(buttonstates).indexOf(reqnextstate) > -1 &&
+                reqnextstate;
             if (postnextstate) {
                 this.dcxstate = postnextstate;
             }
@@ -72,8 +74,7 @@ export default class cButton extends cPrimitiveButton {
     }
 
     get dcxButtonStyle() {
-
-        let style = ''
+        let style = '';
 
         if (this.fontSize) {
             style = style + ` font-size:${this.fontSize};`;
@@ -99,7 +100,7 @@ export default class cButton extends cPrimitiveButton {
     }
 
     get dcxButtonClass() {
-        let btnstate = (buttonstates[this.dcxstate] || '');
+        let btnstate = buttonstates[this.dcxstate] || '';
         if (this.roundy) {
             btnstate = btnstate + ' roundy';
         }
@@ -124,22 +125,22 @@ export default class cButton extends cPrimitiveButton {
                 'destructive',
                 'destructive-text',
                 'inverse',
-                'success'
-            ]
+                'success',
+            ],
         });
     }
 
     get normalizedType() {
         return normalize(this.type, {
             fallbackValue: 'button',
-            validValues: ['button', 'reset', 'submit']
+            validValues: ['button', 'reset', 'submit'],
         });
     }
 
     get normalizedIconPosition() {
         return normalize(this.iconPosition, {
             fallbackValue: 'left',
-            validValues: ['left', 'right']
+            validValues: ['left', 'right'],
         });
     }
 
@@ -157,7 +158,7 @@ export default class cButton extends cPrimitiveButton {
                 'slds-button__icon_left':
                     this.normalizedIconPosition === 'left',
                 'slds-button__icon_right':
-                    this.normalizedIconPosition === 'right'
+                    this.normalizedIconPosition === 'right',
             })
             .toString();
     }
@@ -197,9 +198,9 @@ export default class cButton extends cPrimitiveButton {
                     setOrder: this.setOrder.bind(this),
                     setDeRegistrationCallback: (deRegistrationCallback) => {
                         this._deRegistrationCallback = deRegistrationCallback;
-                    }
-                }
-            }
+                    },
+                },
+            },
         });
 
         this.dispatchEvent(privatebuttonregister);
@@ -223,6 +224,6 @@ cButton.interopMap = {
     exposeNativeEvent: {
         click: true,
         focus: true,
-        blur: true
-    }
+        blur: true,
+    },
 };

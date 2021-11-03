@@ -18,7 +18,7 @@ const tokenNameMap = Object.assign(Object.create(null), {
     custom: 'lightning.customSprite',
     doctype: 'lightning.doctypeSprite',
     standard: 'lightning.standardSprite',
-    utility: 'lightning.utilitySprite'
+    utility: 'lightning.utilitySprite',
 });
 
 const tokenNameMapRtl = Object.assign(Object.create(null), {
@@ -26,7 +26,7 @@ const tokenNameMapRtl = Object.assign(Object.create(null), {
     custom: 'lightning.customSpriteRtl',
     doctype: 'lightning.doctypeSpriteRtl',
     standard: 'lightning.standardSpriteRtl',
-    utility: 'lightning.utilitySpriteRtl'
+    utility: 'lightning.utilitySpriteRtl',
 });
 
 const defaultTokenValueMap = Object.assign(Object.create(null), {
@@ -41,7 +41,8 @@ const defaultTokenValueMap = Object.assign(Object.create(null), {
     'lightning.standardSpriteRtl':
         '/assets/icons/standard-sprite/svg/symbols.svg',
     'lightning.utilitySprite': '/assets/icons/utility-sprite/svg/symbols.svg',
-    'lightning.utilitySpriteRtl': '/assets/icons/utility-sprite/svg/symbols.svg'
+    'lightning.utilitySpriteRtl':
+        '/assets/icons/utility-sprite/svg/symbols.svg',
 });
 
 const getDefaultBaseIconPath = (category, nameMap) =>
@@ -74,7 +75,7 @@ export const getIconPath = (iconName, direction = 'ltr') => {
             if (isIframeInEdge) {
                 const origin = `${window.location.protocol}//${window.location.host}`;
                 return `${origin}${pathPrefix}${baseIconPath}#${getName(
-                    iconName
+                    iconName,
                 )}`;
             }
             return `${pathPrefix}${baseIconPath}#${getName(iconName)}`;

@@ -11,7 +11,7 @@ import cp from 'lightning/configProvider';
 describe('getIconPath()', () => {
     it('respects lightning-config-provider overrides', () => {
         cp({
-            getPathPrefix: () => '/overridePrefix'
+            getPathPrefix: () => '/overridePrefix',
         });
 
         // expect(getIconPath('action:foo')).toBe(
@@ -21,7 +21,7 @@ describe('getIconPath()', () => {
 
     it('requests the RTL sprites when specified', () => {
         cp({
-            getToken: (name) => `/${name}`
+            getToken: (name) => `/${name}`,
         });
 
         // expect(getIconPath('action:foo', 'rtl')).toBe(

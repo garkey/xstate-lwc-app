@@ -33,7 +33,7 @@ export default class EchartBase extends LightningElement {
 
         this.echart = await window.echarts.init(
             chartparent,
-            themesUtils.selected_theme
+            themesUtils.selected_theme,
         );
 
         return new Promise((resolve) => {
@@ -53,6 +53,6 @@ export default class EchartBase extends LightningElement {
         if (this.setOption) {
             this.setOption();
         }
-        this.themecolors = themesUtils.color_swatch.map(e => e[0]);
+        this.themecolors = themesUtils.color_swatch.map((e) => e[0]);
     }
 }

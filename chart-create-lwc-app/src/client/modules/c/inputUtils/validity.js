@@ -26,7 +26,7 @@ const constraintsSortedByPriority = [
     'tooLong',
     'tooShort',
     'typeMismatch',
-    'valueMissing'
+    'valueMissing',
 ];
 
 const defaultLabels = {
@@ -39,7 +39,7 @@ const defaultLabels = {
     tooLong: labelTooLong,
     tooShort: labelTooShort,
     typeMismatch: labelTypeMismatch,
-    valueMissing: labelValueMissing
+    valueMissing: labelValueMissing,
 };
 
 function resolveBestMatch(validity) {
@@ -156,7 +156,7 @@ export class FieldConstraintApi {
     get validity() {
         if (!this._constraint) {
             this._constraint = buildSyntheticValidity(
-                this._constraintsProvider
+                this._constraintsProvider,
             );
         }
 
@@ -168,7 +168,7 @@ export class FieldConstraintApi {
         if (!isValid) {
             if (this.inputComponent) {
                 this.inputComponent.dispatchEvent(
-                    new CustomEvent('invalid', { cancellable: true })
+                    new CustomEvent('invalid', { cancellable: true }),
                 );
             }
         }
@@ -204,7 +204,7 @@ export class FieldConstraintApi {
             tooShort: this.inputComponent.messageWhenTooShort,
             tooLong: this.inputComponent.messageWhenTooLong,
             typeMismatch: this.inputComponent.messageWhenTypeMismatch,
-            valueMissing: this.inputComponent.messageWhenValueMissing
+            valueMissing: this.inputComponent.messageWhenValueMissing,
         });
     }
 
@@ -233,13 +233,13 @@ export class FieldConstraintApiWithProxyInput {
             if (typeof attributeNames === 'string') {
                 this._setAttribute(
                     attributeNames,
-                    attributes[attributeNames]()
+                    attributes[attributeNames](),
                 );
             } else {
                 attributeNames.forEach((attributeName) => {
                     this._setAttribute(
                         attributeName,
-                        attributes[attributeName]()
+                        attributes[attributeName](),
                     );
                 });
             }
@@ -311,17 +311,17 @@ export class FieldConstraintApiWithProxyInput {
                 (provider, constraint) => {
                     provider[constraint] = computeConstraintWithProxyInput.bind(
                         this,
-                        constraint
+                        constraint,
                     );
 
                     return provider;
                 },
-                {}
+                {},
             );
 
             this._privateConstraintApi = new FieldConstraintApi(
                 this._inputComponent,
-                constraintsProvider
+                constraintsProvider,
             );
         }
         return this._privateConstraintApi;

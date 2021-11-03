@@ -21,31 +21,31 @@ export default class PieChart extends EchartBase {
             option = {
                 baseOption: {
                     title: {
-                        text: this.title
+                        text: this.title,
                     },
                     timeline: this.timeline,
                     series: [
                         {
                             name: this.name,
                             type: 'pie',
-                            label: this.label
-                        }
-                    ]
+                            label: this.label,
+                        },
+                    ],
                 },
-                options: this.graphDataSeries
+                options: this.graphDataSeries,
             };
         } else {
             option = {
                 title: {
-                    text: this.title
+                    text: this.title,
                     // subtext: '纯属虚构',
                 },
                 tooltip: {
-                    trigger: 'item'
+                    trigger: 'item',
                 },
                 legend: {
                     orient: 'vertical',
-                    left: 'left'
+                    left: 'left',
                 },
                 series: [
                     {
@@ -57,11 +57,11 @@ export default class PieChart extends EchartBase {
                             itemStyle: {
                                 shadowBlur: 10,
                                 shadowOffsetX: 0,
-                                shadowColor: 'rgba(0, 0, 0, 0.5)'
-                            }
-                        }
-                    }
-                ]
+                                shadowColor: 'rgba(0, 0, 0, 0.5)',
+                            },
+                        },
+                    },
+                ],
             };
         }
 

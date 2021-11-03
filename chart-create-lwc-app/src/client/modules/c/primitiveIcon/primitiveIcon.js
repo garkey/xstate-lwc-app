@@ -45,14 +45,14 @@ export default class cPrimitiveIcon extends LightningElement {
     get normalizedSize() {
         return normalize(this.size, {
             fallbackValue: 'medium',
-            validValues: ['xx-small', 'x-small', 'small', 'medium', 'large']
+            validValues: ['xx-small', 'x-small', 'small', 'medium', 'large'],
         });
     }
 
     get normalizedVariant() {
         return normalize(this.variant, {
             fallbackValue: '',
-            validValues: ['bare', 'error', 'inverse', 'warning', 'success']
+            validValues: ['bare', 'error', 'inverse', 'warning', 'success'],
         });
     }
 
@@ -94,9 +94,8 @@ export default class cPrimitiveIcon extends LightningElement {
         const name = this.iconName;
         if (iconUtils.isValidName(name)) {
             const [spriteName, iconName] = name.split(':');
-            const template = this.privateIconSvgTemplates[
-                `${spriteName}_${iconName}`
-            ];
+            const template =
+                this.privateIconSvgTemplates[`${spriteName}_${iconName}`];
 
             if (template) {
                 return template;

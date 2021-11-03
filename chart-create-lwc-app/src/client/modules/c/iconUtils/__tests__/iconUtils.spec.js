@@ -10,7 +10,7 @@ import {
     getCategory,
     getIconPath,
     getName,
-    isValidName
+    isValidName,
 } from '../iconUtils';
 
 const invalidIconNames = [
@@ -21,7 +21,7 @@ const invalidIconNames = [
     'action1:foo',
     'foo_bar:baz',
     'foo-bar:baz',
-    'foo:bar-baz'
+    'foo:bar-baz',
 ];
 
 const validIconNames = [
@@ -29,7 +29,7 @@ const validIconNames = [
     'foo:bar1',
     'foo:bar_baz',
     'foo:bar_baz2',
-    'foo:bar_baz_piyo'
+    'foo:bar_baz_piyo',
 ];
 
 describe('computeSldsClass()', () => {
@@ -44,7 +44,7 @@ describe('computeSldsClass()', () => {
         expect(computeSldsClass('foo:bar1')).toBe('slds-icon-foo-bar1');
         expect(computeSldsClass('foo:bar_baz')).toBe('slds-icon-foo-bar-baz');
         expect(computeSldsClass('foo:bar_baz_piyo')).toBe(
-            'slds-icon-foo-bar-baz-piyo'
+            'slds-icon-foo-bar-baz-piyo',
         );
     });
 });
@@ -76,19 +76,15 @@ describe('getIconPath()', () => {
         // expect(getIconPath('action:foo')).toBe(
         //     '/assets/icons/action-sprite/svg/symbols.svg#foo'
         // );
-
         // expect(getIconPath('custom:bar')).toBe(
         //     '/assets/icons/custom-sprite/svg/symbols.svg#bar'
         // );
-
         // expect(getIconPath('doctype:baz')).toBe(
         //     '/assets/icons/doctype-sprite/svg/symbols.svg#baz'
         // );
-
         // expect(getIconPath('standard:hoge')).toBe(
         //     '/assets/icons/standard-sprite/svg/symbols.svg#hoge'
         // );
-
         // expect(getIconPath('utility:piyo')).toBe(
         //     '/assets/icons/utility-sprite/svg/symbols.svg#piyo'
         // );

@@ -63,7 +63,7 @@ export function polyfill(el) {
                         if (!symbolEls[href]) {
                             const svgFragment = svgFragments[url];
                             const symbolEl = svgFragment.querySelector(
-                                `#${id}`
+                                `#${id}`,
                             );
 
                             symbolEls[href] = true;

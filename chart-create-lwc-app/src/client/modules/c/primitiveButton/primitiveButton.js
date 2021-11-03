@@ -10,7 +10,7 @@ import {
     isIE11,
     normalizeBoolean,
     normalizeString,
-    synchronizeAttrs
+    synchronizeAttrs,
 } from 'c/utilsPrivate';
 
 const ARIA_DESCRIBEDBY = 'aria-describedby';
@@ -28,7 +28,7 @@ export default class cPrimitiveButton extends LightningElement {
         ariaExpanded: null,
         ariaLabel: null,
         ariaLive: null,
-        disabled: false
+        disabled: false,
     };
 
     @api get disabled() {
@@ -79,7 +79,7 @@ export default class cPrimitiveButton extends LightningElement {
         this.state.ariaDescribedBy = value;
         const button = this.template.querySelector('button');
         synchronizeAttrs(button, {
-            [ARIA_DESCRIBEDBY]: value
+            [ARIA_DESCRIBEDBY]: value,
         });
     }
 
@@ -91,7 +91,7 @@ export default class cPrimitiveButton extends LightningElement {
         this.state.ariaControls = value;
         const button = this.template.querySelector('button');
         synchronizeAttrs(button, {
-            [ARIA_CONTROLS]: value
+            [ARIA_CONTROLS]: value,
         });
     }
 
@@ -102,7 +102,7 @@ export default class cPrimitiveButton extends LightningElement {
     set ariaExpanded(value) {
         this.state.ariaExpanded = normalizeString(value, {
             fallbackValue: undefined,
-            validValues: ['true', 'false']
+            validValues: ['true', 'false'],
         });
     }
 
@@ -129,7 +129,7 @@ export default class cPrimitiveButton extends LightningElement {
     set ariaAtomic(value) {
         this.state.ariaAtomic = normalizeString(value, {
             fallbackValue: undefined,
-            validValues: ['true', 'false']
+            validValues: ['true', 'false'],
         });
     }
 
@@ -154,7 +154,7 @@ export default class cPrimitiveButton extends LightningElement {
             const button = this.template.querySelector('button');
             synchronizeAttrs(button, {
                 [ARIA_CONTROLS]: this.state.ariaControls,
-                [ARIA_DESCRIBEDBY]: this.state.ariaDescribedBy
+                [ARIA_DESCRIBEDBY]: this.state.ariaDescribedBy,
             });
 
             this._initialized = true;

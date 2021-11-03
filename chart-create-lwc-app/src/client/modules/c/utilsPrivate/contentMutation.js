@@ -60,7 +60,7 @@ function addAriaRefWhenNeeded(elm, attrName, computedIds) {
         smartSetAttribute(
             elm,
             attrName,
-            oldIds + (oldIds.length === 0 ? '' : ' ') + suffix.join(' ')
+            oldIds + (oldIds.length === 0 ? '' : ' ') + suffix.join(' '),
         );
     }
 }
@@ -114,7 +114,7 @@ export class ContentMutation {
             attrState = this.state[attrName] = {
                 ids,
                 innerSelector,
-                placeholderContainerSelector
+                placeholderContainerSelector,
             };
         }
         if (this.isNative) {
@@ -134,7 +134,7 @@ export class ContentMutation {
     sync() {
         if (!this.component.isConnected) {
             throw new Error(
-                `Invalid sync invocation. It can only be invoked during renderedCallback().`
+                `Invalid sync invocation. It can only be invoked during renderedCallback().`,
             );
         }
         if (this.isNative && !this.mo) {
@@ -170,7 +170,7 @@ export class ContentMutation {
                 const thisId = this.liveIds[liveId];
                 if (!thisId.elements) {
                     thisId.elements = Array.prototype.slice.call(
-                        root.querySelectorAll(thisId.selector)
+                        root.querySelectorAll(thisId.selector),
                     );
                 }
                 const newIds = this.privateExtractIds(thisId.elements);
@@ -195,20 +195,19 @@ export class ContentMutation {
                 outerSelector,
                 content,
                 placeholder,
-                placeholderContainerSelector
+                placeholderContainerSelector,
             } = this.state[attrName];
             const newContent = extractContent(
-                extractElements(this.root, outerSelector)
+                extractElements(this.root, outerSelector),
             );
 
             if (content !== newContent) {
-                this.state[
-                    attrName
-                ].content = placeholder.textContent = newContent;
+                this.state[attrName].content = placeholder.textContent =
+                    newContent;
             }
             if (!placeholder.parentNode) {
                 const container = this.template.querySelector(
-                    placeholderContainerSelector
+                    placeholderContainerSelector,
                 );
 
                 if (container) {
@@ -234,7 +233,7 @@ export class ContentMutation {
         mo.observe(this.root, {
             characterData: true,
             childList: true,
-            subtree: true
+            subtree: true,
         });
     }
 }

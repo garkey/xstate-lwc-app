@@ -14,7 +14,7 @@ export {
     newLineRegexString,
     tagRegexString,
     createHttpHref,
-    createEmailHref
+    createEmailHref,
 } from './linkUtils';
 export { deepCopy, arraysEqual, ArraySlice } from './utility';
 export { guid } from './guid';
@@ -23,13 +23,13 @@ export {
     normalizeBoolean,
     normalizeString,
     normalizeArray,
-    normalizeAriaAttribute
+    normalizeAriaAttribute,
 } from './normalize';
 export {
     keyCodes,
     runActionOnBufferedTypedCharacters,
     normalizeKeyValue,
-    isShiftMetaOrControlKey
+    isShiftMetaOrControlKey,
 } from './keyboard';
 export { raf } from './scroll';
 export { isChrome, isIE11, isSafari } from './browser';
@@ -38,7 +38,7 @@ export { observePosition } from './observers';
 export { hasOnlyAllowedVideoIframes } from './videoUtils';
 export {
     parseToFormattedLinkifiedParts,
-    parseToFormattedParts
+    parseToFormattedParts,
 } from './linkify';
 import { smartSetAttribute } from './smartSetAttribute';
 
@@ -131,12 +131,12 @@ export function animationFrame() {
     });
 }
 
-export function decorateInputForDragon(element) { }
+export function decorateInputForDragon(element) {}
 
 function getInputValuePropertyDescriptor(element) {
     return Object.getOwnPropertyDescriptor(
         Object.getPrototypeOf(element),
-        'value'
+        'value',
     );
 }
 

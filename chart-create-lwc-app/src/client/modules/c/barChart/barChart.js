@@ -14,7 +14,7 @@ export default class BarChart extends EchartBase {
     @api brush = {};
     @api configZoom = [];
     @api toolbox = {
-        show: false
+        show: false,
     };
     @api clickChart;
 
@@ -33,8 +33,8 @@ export default class BarChart extends EchartBase {
                 // type: 'scroll',
                 // show: false,
                 ...(this.legendSelected && {
-                    selected: this.legendSelected
-                })
+                    selected: this.legendSelected,
+                }),
             },
             selector: false,
             tooltip: {},
@@ -45,22 +45,22 @@ export default class BarChart extends EchartBase {
                 splitLine: { show: false },
                 splitArea: { show: false },
                 axisLabel: {
-                    rotate: 90
-                }
+                    rotate: 90,
+                },
             },
             yAxis: {},
             grid: {
-                bottom: 100
+                bottom: 100,
             },
             title: {
-                text: this.title
-            }
+                text: this.title,
+            },
         };
 
         if (this.graphDataSeries === undefined) {
             option = {
                 ...common,
-                series: this.graphData
+                series: this.graphData,
             };
         } else {
             option = {
@@ -70,9 +70,9 @@ export default class BarChart extends EchartBase {
                     brush: this.brush,
                     toolbox: this.toolbox,
                     dataZoom: this.configZoom,
-                    series: this.graphDataSeries.map(() => ({ type: 'bar' }))
+                    series: this.graphDataSeries.map(() => ({ type: 'bar' })),
                 },
-                options: this.graphDataSeries
+                options: this.graphDataSeries,
             };
         }
         this.option = option;

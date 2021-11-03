@@ -2,12 +2,12 @@ import { api } from 'lwc';
 import EchartBase from 'c/echartBase';
 
 const staticswatches = {
-  Health: {
-      GREY: '#666',
-      GREEN: '#0f0',
-      YELLOW: '#ff0',
-      RED: '#f00'
-  }
+    Health: {
+        GREY: '#666',
+        GREEN: '#0f0',
+        YELLOW: '#ff0',
+        RED: '#f00',
+    },
 };
 
 const staticswatchkeys = Object.keys(staticswatches);
@@ -32,38 +32,45 @@ export default class ByFilter extends EchartBase {
             encode: { ...o, y: this.series.y },
             type: 'bar',
             stack: 'one',
-            name: o.x
+            name: o.x,
         }));
 
         const option = {
             dataset: {
-                source: this.graphData
+                source: this.graphData,
             },
             legend: { data: series.map((o) => o.name) },
             // grid: { containLabel: true },
             xAxis: {
                 name: 'health statuses',
-                position: 'top'
+                position: 'top',
             },
             yAxis: {
                 type: 'category',
-                inverse: true
+                inverse: true,
                 // max: 100,
             },
             series,
         };
 
         let currswatch;
-        
+
         if (staticswatchkeys.indexOf(this.targetData) > -1) {
-          currswatch = Object.fromEntries(this.series.encode.map((o) => [o.x, staticswatches[this.targetData][o.x]]));
+            currswatch = Object.fromEntries(
+                this.series.encode.map((o) => [
+                    o.x,
+                    staticswatches[this.targetData][o.x],
+                ]),
+            );
         } else {
-          const plate = this.series.encode.map(e => e.x).sort();
-          currswatch = Object.fromEntries(plate.map((o, i) => [o, this.themecolors[i]]));
+            const plate = this.series.encode.map((e) => e.x).sort();
+            currswatch = Object.fromEntries(
+                plate.map((o, i) => [o, this.themecolors[i]]),
+            );
         }
 
         if (Object.keys(currswatch).length > 0) {
-          option.color = this.series.encode.map((o) => currswatch[o.x]);
+            option.color = this.series.encode.map((o) => currswatch[o.x]);
         }
 
         this.option = option;
@@ -84,7 +91,7 @@ export default class ByFilter extends EchartBase {
         const opt = this.filterOptions.find((o) => o.value === this.filter);
         const filterIndex = this.filterOptions.indexOf(opt);
         const opt2 = this.targetDataOptions.find(
-            (o) => o.value === this.targetData
+            (o) => o.value === this.targetData,
         );
         const targetDataIndex = this.targetDataOptions.indexOf(opt2);
 
@@ -95,13 +102,13 @@ export default class ByFilter extends EchartBase {
 
     filterChanged(e) {
         this.dispatchEvent(
-            new CustomEvent('filter', { detail: e.target.value })
+            new CustomEvent('filter', { detail: e.target.value }),
         );
     }
 
     targetDataChanged(e) {
         this.dispatchEvent(
-            new CustomEvent('targetdata', { detail: e.target.value })
+            new CustomEvent('targetdata', { detail: e.target.value }),
         );
     }
 

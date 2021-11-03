@@ -8,7 +8,7 @@ export default class GaugeChart extends EchartBase {
     @api colorSeries = [
         [0.3, 'green'],
         [0.7, 'yellow'],
-        [1, 'red']
+        [1, 'red'],
     ];
     @api colorText = 'red';
     @api clickChart;
@@ -24,7 +24,7 @@ export default class GaugeChart extends EchartBase {
                     startAngle: 90,
                     endAngle: -270,
                     pointer: {
-                        show: false
+                        show: false,
                     },
                     progress: {
                         show: true,
@@ -33,60 +33,60 @@ export default class GaugeChart extends EchartBase {
                         clip: false,
                         itemStyle: {
                             borderWidth: 1,
-                            borderColor: '#464646'
-                        }
+                            borderColor: '#464646',
+                        },
                     },
                     axisLine: {
                         lineStyle: {
-                            width: 40
-                        }
+                            width: 40,
+                        },
                     },
                     splitLine: {
                         show: false,
                         distance: 0,
-                        length: 10
+                        length: 10,
                     },
                     axisTick: {
-                        show: false
+                        show: false,
                     },
                     axisLabel: {
                         show: false,
-                        distance: 50
+                        distance: 50,
                     },
                     data: [
                         {
                             value: 20,
                             name: 'Perfect',
                             title: {
-                                offsetCenter: ['0%', '-30%']
+                                offsetCenter: ['0%', '-30%'],
                             },
                             detail: {
-                                offsetCenter: ['0%', '-20%']
-                            }
+                                offsetCenter: ['0%', '-20%'],
+                            },
                         },
                         {
                             value: 40,
                             name: 'Good',
                             title: {
-                                offsetCenter: ['0%', '0%']
+                                offsetCenter: ['0%', '0%'],
                             },
                             detail: {
-                                offsetCenter: ['0%', '10%']
-                            }
+                                offsetCenter: ['0%', '10%'],
+                            },
                         },
                         {
                             value: 60,
                             name: 'Commonly',
                             title: {
-                                offsetCenter: ['0%', '30%']
+                                offsetCenter: ['0%', '30%'],
                             },
                             detail: {
-                                offsetCenter: ['0%', '40%']
-                            }
-                        }
+                                offsetCenter: ['0%', '40%'],
+                            },
+                        },
                     ],
                     title: {
-                        fontSize: 14
+                        fontSize: 14,
                     },
                     detail: {
                         width: 50,
@@ -96,10 +96,10 @@ export default class GaugeChart extends EchartBase {
                         borderColor: 'auto',
                         borderRadius: 20,
                         borderWidth: 1,
-                        formatter: '{value}%'
-                    }
-                }
-            ]
+                        formatter: '{value}%',
+                    },
+                },
+            ],
         };
 
         this.option = option;
