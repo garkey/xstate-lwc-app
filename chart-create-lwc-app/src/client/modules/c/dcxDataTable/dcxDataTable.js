@@ -10,8 +10,4 @@ export default class DcxDataTable extends LightningDatatable {
             typeAttributes: ['rowid'],
         },
     };
-
-    renderedCallback() {
-        // console.log(JSON.stringify(this.data, null, 2));
-    }
 }
