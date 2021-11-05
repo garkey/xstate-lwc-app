@@ -81,6 +81,22 @@ async function recurseNeededImports(
                 const htmltext = await Deno.readTextFile(
                     `${p}/${compname}.html`,
                 );
+                console.log('htmltext', htmltext);
+                /* 
+                
+                <template>
+                    <c-features-gate >
+                      <slot name="std"></slot>
+                    </c-features-gate>
+                    <c-features-gate cams >
+                      <slot name="cams"></slot>
+                    </c-features-gate>
+
+                    <slot name="selfintel" ></slot>
+
+                  </template>
+                */
+                
                 const xml = xmlparse(
                     `<root>${htmltext}</root>`.replace(/[{,}]/g, '"'),
                 );
