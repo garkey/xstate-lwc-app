@@ -1,5 +1,5 @@
 <template>
-    <div>
+<!--     <div>
         <c-dcx_button label="default"> </c-dcx_button>
         <c-dcx_button label="default roundy" roundy> </c-dcx_button>
         <c-dcx_button label="go" dcxstate="go"> </c-dcx_button>
@@ -107,10 +107,32 @@
     ></c-gauge-chart>
     <c-slide-date-grid rows={slidedate1.data}></c-slide-date-grid>
     <c-loan-management-home></c-loan-management-home>
-    <!-- <c-e-asset-details></c-e-asset-details> -->
     <c-details-table
-        tabledata={servicehistorydata.data}
-        columns={servicehistorydata.columns}
-        oneditrow={servicehistorydata.onEditRow}
-    ></c-details-table>
+    tabledata={servicehistorydata.data}
+    columns={servicehistorydata.columns}
+    oneditrow={servicehistorydata.onEditRow}
+    ></c-details-table> -->
+
+    <c-added-features>
+      <div slot="std">
+        <div>
+          <h4>Some Standard feature that needs to be hidden, if the user is a CAMS user.</h4>
+        </div>
+      </div>
+      <div slot="cams">
+        <div>
+          <h4>Some CAMS feature that in addition to, or replacement feature (related to above)</h4>
+        </div>
+      </div>
+      <div slot="selfintel">
+        <br />
+        <br />
+        <div>
+          <h4>Some component that will define its own capabilities depending on the user.</h4>
+          <c-demo-some-self-intel-comp></c-demo-some-self-intel-comp>
+        </div>
+      </div>
+    </c-added-features>
+
+    <!-- <c-e-asset-details></c-e-asset-details> -->
 </template>
