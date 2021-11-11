@@ -958,6 +958,7 @@ export default class App extends LightningElement {
                 label: DCX_Asset_Service_Returned_Documents,
                 fieldName: 'download',
                 sortable: true,
+                type: "download",
             },
         ],
         onEditRow: (e) => {

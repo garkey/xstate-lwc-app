@@ -1,0 +1,9 @@
+<template>
+  <div class="caldownloadlink">
+    <template for:each={valueEntries} for:item="entry">
+      <div key={entry.download_url}>
+        <a href={entry.download_url} target="_blank">{entry.title}</a>
+      </div>
+    </template>
+  </div>
+</template>
