@@ -25,13 +25,7 @@
         title="Simple bar chart with slotted Legend component"
     >
         <c-chart-legend
-            slot="legend"
-            legend={legend_data}
-            lvalue={legend_value}
-        ></c-chart-legend>
-    </c-bar-chart>
-    <c-bar-chart
-        graph-data={barGraph1.graphData}
+            slot="legendhttps://github.com/salesforce/base-components-recipesraph1.graphData}
         legend-selected={barGraph1.legend_selected}
         x-axis-data={barGraph1.x_axis_data}
     >
@@ -134,8 +128,8 @@
 
   -->
 
-  <c-tree items={tree_items} header="Roles"></c-tree>
-  <lightning-tree items={tree_items} header="Roles"></lightning-tree>
+  <c-tree onadditem={tree_items.handleAdd} items={tree_items.data} header="Roles"></c-tree>
+  <lightning-tree items={tree_items.data} header="Roles"></lightning-tree>
 
   <!-- <c-e-asset-details></c-e-asset-details> -->
 </template>
