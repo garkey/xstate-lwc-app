@@ -107,12 +107,12 @@ export default class cTreeItem extends LightningElement {
     }
 
     get computedIconName() {
-      const icon = document.dir === 'rtl'
-        ? 'utility:chevronleft'
-        : 'utility:chevronright';
-      console.log('icon', icon)
-        
-      return icon;
+        const icon = document.dir === 'rtl' ?
+            'utility:chevronleft' :
+            'utility:chevronright';
+        console.log('icon', icon)
+
+        return icon;
     }
 
     get children() {
@@ -134,7 +134,7 @@ export default class cTreeItem extends LightningElement {
         if (!this.isDisabled) {
             // eslint-disable-next-line no-script-url
             event.preventDefault();
-            
+
             let target = 'anchor';
             if (
                 event.target.tagName === 'BUTTON' ||
@@ -158,8 +158,8 @@ export default class cTreeItem extends LightningElement {
     }
 
     handleKeydown(event) {
-      console.log('handleKeydown.event.keyCode', event.keyCode)
-      
+        console.log('handleKeydown.event.keyCode', event.keyCode)
+
         switch (event.keyCode) {
             case keyCodes.space:
             case keyCodes.enter:
@@ -217,9 +217,9 @@ export default class cTreeItem extends LightningElement {
     getChildNum(childKey) {
         const idx = childKey.lastIndexOf('.');
         const childNum =
-            idx > -1
-                ? parseInt(childKey.substring(idx + 1), 10)
-                : parseInt(childKey, 10);
+            idx > -1 ?
+            parseInt(childKey.substring(idx + 1), 10) :
+            parseInt(childKey, 10);
         return childNum - 1;
     }
 
@@ -256,7 +256,19 @@ export default class cTreeItem extends LightningElement {
     }
 
     lineModal(e) {
-      console.log('e', e)
-      
+        console.log('e', e)
+
+    }
+    newHandle(e) {
+        console.log('title', e.target.title)
+    }
+
+
+    editHandle(e) {
+        console.log('title', e.target.title)
+    }
+
+    deleteHandle(e) {
+        console.log('title', e.target.title)
     }
 }

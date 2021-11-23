@@ -1,0 +1,38 @@
+.slds-media__body>div {
+    display: inline-block;
+    margin-bottom: -8px;
+}
+
+.slds-media__body>div:not(:last-child) {
+    border-right: #979797 2px solid;
+}
+
+
+/* take out blue*/
+
+.slds-media__body>div>button {
+    background-color: blue;
+    width: 20px;
+    height: 20px;
+}
+
+.dcx-tree__item>div {
+    margin-top: -7px;
+}
+
+.slds-popover__body {
+    padding: 5px;
+}
+
+.slds-popover[c-treeItem_treeItem] {
+    width: 100px;
+    height: 33px;
+}
+
+.slds-popover__body[c-treeItem_treeItem] {
+    padding-top: 3px;
+}
+
+.slds-popover {
+    margin-bottom: -5px;
+}
