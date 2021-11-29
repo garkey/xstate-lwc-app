@@ -10,19 +10,15 @@ import labelExpandBranch from '@salesforce/label/c.lightning_LightningTree_expan
 import { LightningElement, api, track } from 'lwc';
 import { classSet } from 'c/utils';
 import { keyCodes } from 'c/utilsPrivate';
-
 const i18n = {
     collapseBranch: labelCollapseBranch,
-    expandBranch: labelExpandBranch
+    expandBranch: labelExpandBranch,
 };
-
 export default class cTreeItem extends LightningElement {
     @track _children = [];
     @track _tabindexes = {};
     @track _selected = {};
-
     _focusedChild = null;
-
     @api isRoot = false;
     @api label;
     @api href;
@@ -67,9 +63,9 @@ export default class cTreeItem extends LightningElement {
                 detail: {
                     focusCallback: this.makeChildFocusable.bind(this),
                     unfocusCallback: this.makeChildUnfocusable.bind(this),
-                    key: this.nodeKey
-                }
-            })
+                    key: this.nodeKey,
+                },
+            }),
         );
 
         this.addEventListener('keydown', this.handleKeydown.bind(this));
@@ -101,16 +97,17 @@ export default class cTreeItem extends LightningElement {
     get computedButtonClass() {
         return classSet('slds-button slds-button_icon slds-m-right_x-small ')
             .add({
-                'slds-hidden': this.isLeaf || this.isDisabled
+                'slds-hidden': this.isLeaf || this.isDisabled,
             })
             .toString();
     }
 
     get computedIconName() {
-        const icon = document.dir === 'rtl' ?
+        const icon =
+            document.dir === 'rtl' ?
             'utility:chevronleft' :
             'utility:chevronright';
-        console.log('icon', icon)
+        console.log('icon', icon);
 
         return icon;
     }
@@ -120,7 +117,7 @@ export default class cTreeItem extends LightningElement {
             return {
                 node: child,
                 tabindex: this._tabindexes[idx],
-                selected: this._selected[idx]
+                selected: this._selected[idx],
             };
         });
     }
@@ -149,22 +146,23 @@ export default class cTreeItem extends LightningElement {
                 detail: {
                     name: this.nodename,
                     key: this.nodeKey,
-                    target
-                }
+                    target,
+                },
             });
 
             this.dispatchEvent(customEvent);
         }
     }
-
     handleKeydown(event) {
-        console.log('handleKeydown.event.keyCode', event.keyCode)
+        console.log('handleKeydown.event.keyCode', event.keyCode);
 
         switch (event.keyCode) {
             case keyCodes.space:
             case keyCodes.enter:
                 this.preventDefaultAndStopPropagation(event);
-                this.template.querySelector('.slds-tree__item .dcxclick').click();
+                this.template
+                    .querySelector('.slds-tree__item .dcxclick')
+                    .click();
                 break;
             case keyCodes.up:
             case keyCodes.down:
@@ -180,9 +178,9 @@ export default class cTreeItem extends LightningElement {
                         cancelable: true,
                         detail: {
                             key: this.nodeKey,
-                            keyCode: event.keyCode
-                        }
-                    })
+                            keyCode: event.keyCode,
+                        },
+                    }),
                 );
 
                 break;
@@ -191,12 +189,11 @@ export default class cTreeItem extends LightningElement {
                 break;
         }
     }
-
     fireCustomEvent(eventName, item) {
         const eventObject = {
             bubbles: true,
             composed: true,
-            cancelable: false
+            cancelable: false,
         };
 
         if (item !== undefined) {
@@ -205,15 +202,12 @@ export default class cTreeItem extends LightningElement {
         // eslint-disable-next-line lightning-global/no-custom-event-identifier-arguments
         this.dispatchEvent(new CustomEvent(eventName, eventObject));
     }
-
     handleFocus() {
         this.fireCustomEvent('privatechildfocused', this.nodeKey);
     }
-
     handleBlur() {
         this.fireCustomEvent('privatechildunfocused', this.nodeKey);
     }
-
     getChildNum(childKey) {
         const idx = childKey.lastIndexOf('.');
         const childNum =
@@ -222,7 +216,6 @@ export default class cTreeItem extends LightningElement {
             parseInt(childKey, 10);
         return childNum - 1;
     }
-
     makeChildFocusable(childKey, shouldFocus, shouldSelect) {
         const child = this.getImmediateChildItem(childKey);
         if (child) {
@@ -237,38 +230,31 @@ export default class cTreeItem extends LightningElement {
             }
         }
     }
-
     makeChildUnfocusable() {
         this.ariaSelected = 'false';
         this.removeAttribute('tabindex');
     }
-
     getImmediateChildItem(key) {
         return this.template.querySelector(
-            "c-tree-item[data-key='" + key + "']"
+            "c-tree-item[data-key='" + key + "']",
         );
     }
 
     getNthChildItem(n) {
         return this.template.querySelector(
-            'c-tree-item:nth-of-type(' + n + ')'
+            'c-tree-item:nth-of-type(' + n + ')',
         );
     }
-
     lineModal(e) {
-        console.log('e', e)
-
+        console.log('e', e);
     }
     newHandle(e) {
-        console.log('title', e.target.title)
+        console.log('title', e.target.title);
     }
-
-
     editHandle(e) {
-        console.log('title', e.target.title)
+        console.log('title', e.target.title);
     }
-
     deleteHandle(e) {
-        console.log('title', e.target.title)
+        console.log('title', e.target.title);
     }
 }

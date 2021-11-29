@@ -7,11 +7,7 @@
     border-right: #979797 2px solid;
 }
 
-
-/* take out blue*/
-
 .slds-media__body>div>button {
-    background-color: blue;
     width: 20px;
     height: 20px;
 }
