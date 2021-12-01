@@ -30,6 +30,10 @@ export default class cTreeItem extends LightningElement {
     @api nodeKey;
     @api isLeaf;
     @api selected;
+    @api isTreeModalOpen = false;
+    @api isNewModalOpen = false;
+    @api isEditModalOpen = false;
+    @api isDeleteModalOpen = false;
 
     @api get childItems() {
         return this._children;
@@ -78,6 +82,8 @@ export default class cTreeItem extends LightningElement {
                 child.tabIndex = '0';
             }
         }
+
+
     }
 
     get buttonLabel() {
@@ -248,13 +254,44 @@ export default class cTreeItem extends LightningElement {
     lineModal(e) {
         console.log('e', e);
     }
-    newHandle(e) {
-        console.log('title', e.target.title);
+
+
+
+    newHandle(event) {
+        event.preventDefault();
+        this.isTreeModalOpen = true;
+        this.isNewModalOpen = true
     }
-    editHandle(e) {
-        console.log('title', e.target.title);
+    editHandle(event) {
+        event.preventDefault();
+        this.isTreeModalOpen = true;
+        this.isEditModalOpen = true
     }
-    deleteHandle(e) {
-        console.log('title', e.target.title);
+    deleteHandle(event) {
+        event.preventDefault();
+        this.isTreeModalOpen = true;
+        this.isDeleteModalOpen = true
     }
+
+
+    submitDetails() {
+        this.resetModal();
+
+    }
+    closeModal() {
+        this.resetModal()
+
+    }
+
+    resetModal() {
+        this.isTreeModalOpen = false;
+        this.isNewModalOpen = false
+        this.isEditModalOpen = false
+        this.isDeleteModalOpen = false
+
+    }
+
+
+
+
 }

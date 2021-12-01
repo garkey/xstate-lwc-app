@@ -74,10 +74,18 @@
                 <div class="slds-media__body">
                     <div>
                         <!-- b1 -->
-                        <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close" title="New dialog" onclick={newHandle}>
+                        <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close" id="newevent" title="New dialog" onclick={newHandle}>
                                         <!-- icons -->
-                                        <svg class="slds-button__icon" aria-hidden="true">
-                                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#new"></use>
+                                        <svg width="18px" height="18px" viewBox="0 0 18 18"  class="" aria-hidden="true">
+                                            <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                                                fill-rule="evenodd">
+                                                <g id="add_circle---material" transform="translate(0.680000, 0.680000)"
+                                                    fill="#555555" fill-rule="nonzero">
+                                                    <path
+                                                        d="M12.5,9.14 L12.5,7.5 L9.14,7.5 L9.14,4.14 L7.5,4.14 L7.5,7.5 L4.14,7.5 L4.14,9.14 L7.5,9.14 L7.5,12.5 L9.14,12.5 L9.14,9.14 L12.5,9.14 Z M8.32,0 C9.84,0 11.2466667,0.38 12.54,1.14 C13.7933333,1.86 14.78,2.84666667 15.5,4.1 C16.26,5.39333333 16.64,6.8 16.64,8.32 C16.64,9.84 16.26,11.2466667 15.5,12.54 C14.78,13.7933333 13.7933333,14.78 12.54,15.5 C11.2466667,16.26 9.84,16.64 8.32,16.64 C6.8,16.64 5.39333333,16.26 4.1,15.5 C2.84666667,14.7666667 1.86,13.7733333 1.14,12.52 C0.38,11.2266667 0,9.82666667 0,8.32 C0,6.81333333 0.38,5.41333333 1.14,4.12 C1.87333333,2.86666667 2.86666667,1.87333333 4.12,1.14 C5.41333333,0.38 6.81333333,0 8.32,0 Z"
+                                                        id=""></path>
+                                                </g>
+                                            </g>
                                         </svg>
                                         <span class="slds-assistive-text">new</span>
                                     </button>
@@ -86,8 +94,16 @@
                     <div>
                         <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close" title="Edit dialog" onclick={editHandle}>
                                         <!-- icons -->
-                                        <svg class="slds-button__icon" aria-hidden="true">
-                                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#edit"></use>
+                                        <svg  width="16px" height="16px" viewBox="0 0 16 16"  class="" aria-hidden="true">
+                                            <g id="Page-2" stroke="none" stroke-width="1" fill="none"
+                                                fill-rule="evenodd">
+                                                <g id="mode_edit---material" transform="translate(0.500000, 0.500000)"
+                                                    fill="#555555" fill-rule="nonzero">
+                                                    <path
+                                                        d="M14.76,3.36 L13.24,4.88 L10.12,1.76 L11.64,0.24 C11.8,0.08 11.9966667,0 12.23,0 C12.4633333,0 12.66,0.08 12.82,0.24 L14.76,2.18 C14.92,2.34 15,2.53666667 15,2.77 C15,3.00333333 14.92,3.2 14.76,3.36 Z M0,11.88 L9.22,2.66 L12.34,5.78 L3.12,15 L0,15 L0,11.88 Z"
+                                                        id=""></path>
+                                                </g>
+                                            </g>
                                         </svg>
                                         <span class="slds-assistive-text">edit</span>
                                     </button>
@@ -96,8 +112,17 @@
                     <div>
                         <button class="slds-button slds-button_icon slds-button_icon-small slds-float_right slds-popover__close" title="Delete dialog" onclick={deleteHandle}>
                                         <!-- icons -->
-                                        <svg class="slds-button__icon" aria-hidden="true">
-                                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#delete"></use>
+                                        <svg  width="12px" height="16px" viewBox="0 0 12 16" class="" aria-hidden="true">
+                                            <g id="Page-3" stroke="none" stroke-width="1" fill="none"
+                                                fill-rule="evenodd">
+                                                <g id="delete_forever---material"
+                                                    transform="translate(0.180000, 0.500000)" fill="#555555"
+                                                    fill-rule="nonzero">
+                                                    <path
+                                                        d="M8.76,0.82 L11.64,0.82 L11.64,2.5 L0,2.5 L0,0.82 L2.9,0.82 L3.76,0 L7.9,0 L8.76,0.82 Z M2.86,7.38 L4.64,9.18 L2.9,10.94 L4.06,12.1 L5.82,10.36 L7.58,12.1 L8.76,10.94 L7,9.18 L8.76,7.38 L7.58,6.2 L5.82,8 L4.06,6.2 L2.86,7.38 Z M0.82,13.32 L0.82,3.32 L10.82,3.32 L10.82,13.32 C10.82,13.7733333 10.6533333,14.1666667 10.32,14.5 C9.98666667,14.8333333 9.59333333,15 9.14,15 L2.5,15 C2.04666667,15 1.65333333,14.8333333 1.32,14.5 C0.986666667,14.1666667 0.82,13.7733333 0.82,13.32 Z"
+                                                        id=""></path>
+                                                </g>
+                                            </g>
                                         </svg>
                                         <span class="slds-assistive-text">delete</span>
                                     </button>
@@ -134,6 +159,70 @@
                     </template>
 </template>
 </div>
+
+<!-- modal start -->
+<template if:true={isTreeModalOpen}>
+    <!-- Modal/Popup Box LWC starts here -->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <!-- Modal/Popup Box LWC header here -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                    <lightning-icon icon-name="utility:close"
+                        alternative-text="close"
+                        variant="inverse"
+                        size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <template if:true={isNewModalOpen}>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Add Location / North America</h2>
+            </template>
+
+<template if:true={isEditModalOpen}>
+                <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Edit Location / North America</h2>
+            </template>
+
+<template if:true={isDeleteModalOpen}>
+                <h2 id="modal-heading-03" class="slds-text-heading_medium slds-hyphenate">Delete Location / North America</h2>
+            </template>
+</header>
+
+<template if:true={isNewModalOpen}>
+            <!-- Modal/Popup Box LWC body starts here -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+               <label for="newinput" class="mb-10">Location Name</label>
+               <input type="text" name="newinput" id="newinput">
+            </div>
+        </template>
+
+<template if:true={isEditModalOpen}>
+            <!-- Modal/Popup Box LWC body starts here -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+               <label for="editinput" class="mb-10">Location Name</label>
+               <input type="text" name="editinput" id="editinput">
+            </div>
+        </template>
+
+
+<template if:true={isDeleteModalOpen}>
+            <!-- Modal/Popup Box LWC body starts here -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
+               <label for="deleteinput" class="mb-10">Location Name</label>
+               <input type="text" name="deleteinput" id="deleteinput">
+            </div>
+        </template>
+
+<!-- Modal/Popup Box LWC footer starts here -->
+<footer class="slds-modal__footer">
+    <button class="slds-button slds-button_neutral" onclick={closeModal} title="Cancel">Cancel</button>
+    <button class="slds-button slds-button_brand" onclick={submitDetails} title="OK">OK</button>
+</footer>
+</div>
+</section>
+<div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+<!-- modal end -->
+
 </template>
 </template>
 </template>
