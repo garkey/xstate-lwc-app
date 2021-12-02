@@ -23,6 +23,7 @@
 .slds-popover[c-treeItem_treeItem] {
     width: 95px;
     box-shadow: black 4px 3px 8px;
+    margin-left: 10px;
 }
 
 .slds-popover__body[c-treeItem_treeItem] {
@@ -75,4 +76,10 @@
 
 .mb-10 {
     margin-bottom: 10px;
+}
+
+.slds-has-flexi-truncate {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
 }

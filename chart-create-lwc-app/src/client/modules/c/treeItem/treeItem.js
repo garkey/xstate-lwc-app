@@ -25,6 +25,7 @@ export default class cTreeItem extends LightningElement {
     @api metatext;
     @api nodeRef;
     @api isExpanded;
+    @api istoolBox = false;
     @api isDisabled = false;
     @api nodename;
     @api nodeKey;
@@ -134,7 +135,9 @@ export default class cTreeItem extends LightningElement {
     }
 
     handleClick(event) {
+
         if (!this.isDisabled) {
+
             // eslint-disable-next-line no-script-url
             event.preventDefault();
 
@@ -253,24 +256,60 @@ export default class cTreeItem extends LightningElement {
     }
     lineModal(e) {
         console.log('e', e);
+        this.istoolBox = !this.istoolBox;
     }
 
 
 
     newHandle(event) {
-        event.preventDefault();
+        console.log('newHandle', event);
+        //this.preventDefaultAndStopPropagation(event);
+        this.resetModal();
         this.isTreeModalOpen = true;
-        this.isNewModalOpen = true
+        this.isNewModalOpen = true;
+
+        // const newevent = new CustomEvent('neweventclick', {
+        //     bubbles: true,
+        //     composed: true,
+        //     cancelable: true,
+        // });
+
+        // this.dispatchEvent(newevent);
+
+
+
     }
     editHandle(event) {
-        event.preventDefault();
+        console.log('editHandle', event);
+        this.preventDefaultAndStopPropagation(event);
+        this.resetModal();
         this.isTreeModalOpen = true;
-        this.isEditModalOpen = true
+        this.isEditModalOpen = true;
+
+        const editevent = new CustomEvent('editeventclick', {
+            bubbles: true,
+            composed: true,
+            cancelable: true,
+        });
+
+        this.dispatchEvent(editevent);
+
     }
     deleteHandle(event) {
+        console.log('deleteHandle', event);
         event.preventDefault();
+        this.preventDefaultAndStopPropagation(event);
+        this.resetModal();
         this.isTreeModalOpen = true;
-        this.isDeleteModalOpen = true
+        this.isDeleteModalOpen = true;
+
+        const deleteevent = new CustomEvent('deleteeventclick', {
+            bubbles: false,
+            composed: false,
+            cancelable: false,
+        });
+
+        this.dispatchEvent(deleteevent);
     }
 
 
@@ -285,9 +324,9 @@ export default class cTreeItem extends LightningElement {
 
     resetModal() {
         this.isTreeModalOpen = false;
-        this.isNewModalOpen = false
-        this.isEditModalOpen = false
-        this.isDeleteModalOpen = false
+        this.isNewModalOpen = false;
+        this.isEditModalOpen = false;
+        this.isDeleteModalOpen = false;
 
     }
 
