@@ -1,0 +1,72 @@
+{
+	// Place your dcx_prod workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	"dcx_button": {
+		"scope": "html",
+		"prefix": "button",
+		"body": [
+      "<c-dcx_button",
+      "  label={$1}",
+      "  dcxstate=\"$2\"",
+      "></c-dcx_button>"
+		]
+	},
+	"dcx_combobox": {
+		"scope": "html",
+		"prefix": "combobox",
+		"body": [
+      "<c-dcx_combobox",
+      "  label={$1}",
+      "  value={$2}",
+      "  placeholder={$3}",
+      "  options={$4}",
+      "></c-dcx_combobox>"
+		]
+	},
+  "dcx_textinput": {
+    "scope": "html",
+    "prefix": "input",
+    "body": [
+      "<c-dcx_textinput",
+      "  name=\"$1\"",
+      "  placeholder={$2}",
+      "  label={$3}",
+      "></c-dcx_textinput>"
+    ]
+  },
+  "dcx_searchinput": {
+    "scope": "html",
+    "prefix": "search",
+    "body": [
+      "<c-dcx_searchinput",
+      "  placeholder={$1}",
+      "  search-keyword={$2}",
+      "  type-search=\"$3\"",
+      "></c-dcx_searchinput>"
+    ]
+  },
+  "dcx_image": {
+    "scope": "html",
+    "prefix": "image",
+    "body": [
+      "<c-dcx_image src=\"$1\"></c-dcx_searchinput>" 
+    ]
+  },
+  "added-feature": {
+	  "prefix": "feat",
+	  "scope": "html",
+	  "body": [
+		"<c-added-features>",
+    "  <div slot=\"cams\">",
+		"    $2",
+    "  </div>",
+    "</c-added-features>"
+	  ],
+	  "description": "log w/ label"
+	}
+}
