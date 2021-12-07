@@ -1,0 +1,47 @@
+@import 'c/globalStyles';
+.primicon {
+    top: 0.6rem;
+    right: 0.4rem;
+    cursor: pointer;
+    color: #989898;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+}
+
+.primicon:hover {
+    color: #555555;
+}
+
+.label {
+    font-family: 'Neue Helvetica Condensed';
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.slds-modal__header {
+    display: flex;
+    justify-content: space-between;
+    border: 0;
+    padding: 1rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.slds-modal__footer {
+    border: 0;
+    padding-top: 0;
+    padding-bottom: 0.7rem;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.slds-modal__content {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    overflow: unset;
+}
+
+.slds-modal__header[c-dcx_modal_dcx_modal] {
+    border-bottom: #D5D5D5 2px solid;
+}

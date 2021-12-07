@@ -1,0 +1,14 @@
+.slds-modal__content {
+    flex-direction: column;
+    display: flex;
+    align-items: baseline;
+    box-shadow: none;
+}
+
+.slds-modal__content input {
+    background-color: #EFEFEF;
+}
+
+.slds-modal__header[c-dcx_modal_dcx_modal] {
+    border-bottom: #D5D5D5 2px solid;
+}

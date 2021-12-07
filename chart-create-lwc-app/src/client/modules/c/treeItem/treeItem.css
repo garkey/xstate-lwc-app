@@ -3,8 +3,16 @@
     margin-bottom: -8px;
 }
 
+.slds-popover__body {
+    margin-top: -2px;
+}
+
 .slds-media__body>div:not(:last-child) {
     border-right: #979797 1px solid;
+}
+
+.slds-media__body>div:last-child {
+    margin-left: 5px;
 }
 
 .slds-media__body>div>button {
@@ -24,6 +32,7 @@
     width: 95px;
     box-shadow: black 4px 3px 8px;
     margin-left: 10px;
+    min-height: auto;
 }
 
 .slds-popover__body[c-treeItem_treeItem] {

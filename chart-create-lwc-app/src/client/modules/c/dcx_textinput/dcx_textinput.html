@@ -1,0 +1,23 @@
+<!--
+  https://github.com/salesforce/base-components-recipes/tree/master/force-app/stubs/lightning/input
+
+  Copyright (c) 2019, salesforce.com, inc.
+  All rights reserved.
+  SPDX-License-Identifier: MIT
+  For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
+ -->
+
+<template>
+    <!--  <span data-aria="" class="slds-assistive-text"></span> -->
+    <template if:true={label}>
+        <template if:true={required}>
+            <span class="required"> * </span>
+        </template>
+<label class="label slds-no-flex" style={labelStyling}>{label}</label>
+</template>
+<div class="slds-m-top_x-small slds-form-element__control slds-grow">
+    <input name={name} class={computedInputClass} placeholder={placeholder} disabled={disabled} readonly={readOnly} value={value} max={max} min={min} minlength={minLength} maxlength={maxLength} type={type} onchange={changeInput} onblur={blurInput} oninput={inputFunction}
+    />
+</div>
+<div role="alert" class="slds-form-element__help">{message}</div>
+</template>

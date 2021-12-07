@@ -1,0 +1,172 @@
+h1 {
+    font-size: 30px;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+input {
+    border-radius: 0px;
+    border: solid 1px #e7e7e7;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+h5 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+a {
+    color: #225792;
+    font-size: 14px;
+}
+
+hr {
+    margin: 0;
+}
+
+button {
+    color: var(--dcx_g_button_color, #225792);
+    background-color: var(
+        --dcx_g_button_backgroundcolor,
+        rgba(34, 87, 146, 0.1)
+    );
+    border: var(--dcx_g_button_border, 1px #a9b8c9 solid);
+    font-weight: var(--dcx_g_button_fontweight, bold);
+    font-size: var(--dcx_g_button_fontsize, 18px);
+    padding: var(--dcx_g_button_padding, 0 21px);
+    white-space: var(--dcx_g_button_whitespace, nowrap);
+    height: var(--dcx_g_button_height, 30px);
+    border-radius: var(--dcx_g_button_borderradius, 0);
+}
+
+button:hover {
+    color: var(--dcx_g_buttonh_color, #fff);
+    background: var(--dcx_g_buttonh_color, #225792);
+}
+
+button.green {
+    color: #00cf45;
+    background-color: #d8ffeb;
+    border: 1px solid #00cf45;
+}
+
+button.green:disabled {
+    opacity: 0.5;
+}
+
+button.green:hover {
+    color: #fff;
+    background: #00cf45;
+}
+
+button.red {
+    color: #e90029;
+    background-color: #ffe5ea;
+    border: 1px solid #e90029;
+}
+
+button.red:hover {
+    color: #fff;
+    background: #e90029;
+}
+
+button.gray {
+    color: #555555;
+    background-color: rgba(39, 39, 39, 0.1);
+    border: 1px solid #c2c2c2;
+}
+
+button.gray:hover {
+    color: #5c5c5c;
+    background-color: #c9c9c9;
+}
+
+button.transparent {
+    background: transparent;
+    color: #fff;
+    border: 1px solid #fff;
+}
+
+button.transparent:hover {
+    background: #fff;
+    color: #225792;
+}
+
+button.roundy {
+    border-radius: 50px;
+}
+
+span.required {
+    color: #e90029;
+}
+
+.uc {
+    text-transform: uppercase;
+}
+
+.placeholder_white::placeholder {
+    color: #fff;
+}
+
+::placeholder {
+    color: #555555;
+    font-weight: var(--lwc-fontWeightRegular, 400);
+    opacity: 1;
+}
+
+.emphasized::placeholder {
+    color: #225792;
+    font-size: 18px;
+}
+
+.emphasized {
+    color: #225792;
+    font-size: 18px;
+}
+
+.neutral {
+    color: #225792;
+    border: 1px solid #a9b8c9;
+    background-color: unset;
+    background-color: rgba(34, 87, 146, 0.1);
+    padding-left: var(--lwc-spacingSmall, 0.75rem);
+}
+
+.neutral::placeholder {
+    color: #225792;
+    font-weight: 500;
+    font-size: 18px;
+    padding: 0 21px;
+    white-space: nowrap;
+}
+
+input.shaded {
+    background-color: #f0f0f0;
+}
+
+input:focus {
+    background-color: #fff;
+}
+
+.dcx_std_height_2 {
+    height: 35px;
+}
+
+/* need to implement: 
+  --lwc-brandTextLinkActive: #225792;
+  --lwc-colorBorderInput: #A9B8C9;
+  --lwc-colorBackgroundButtonDefaultActive, #F0F0F0;
+*/

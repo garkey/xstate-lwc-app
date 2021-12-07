@@ -31,10 +31,7 @@ export default class cTreeItem extends LightningElement {
     @api nodeKey;
     @api isLeaf;
     @api selected;
-    @api isTreeModalOpen = false;
-    @api isNewModalOpen = false;
-    @api isEditModalOpen = false;
-    @api isDeleteModalOpen = false;
+    @track resetModal;
 
     @api get childItems() {
         return this._children;
@@ -83,8 +80,6 @@ export default class cTreeItem extends LightningElement {
                 child.tabIndex = '0';
             }
         }
-
-
     }
 
     get buttonLabel() {
@@ -135,9 +130,7 @@ export default class cTreeItem extends LightningElement {
     }
 
     handleClick(event) {
-
         if (!this.isDisabled) {
-
             // eslint-disable-next-line no-script-url
             event.preventDefault();
 
@@ -255,82 +248,38 @@ export default class cTreeItem extends LightningElement {
         );
     }
     lineModal(e) {
-        console.log('e', e);
+        //console.log('e', e);
         this.istoolBox = !this.istoolBox;
     }
-
-
-
     newHandle(event) {
-        console.log('newHandle', event);
-        //this.preventDefaultAndStopPropagation(event);
-        this.resetModal();
-        this.isTreeModalOpen = true;
-        this.isNewModalOpen = true;
-
-        // const newevent = new CustomEvent('neweventclick', {
-        //     bubbles: true,
-        //     composed: true,
-        //     cancelable: true,
-        // });
-
-        // this.dispatchEvent(newevent);
-
-
-
-    }
-    editHandle(event) {
-        console.log('editHandle', event);
+        //console.log('newHandle', event);
         this.preventDefaultAndStopPropagation(event);
-        this.resetModal();
-        this.isTreeModalOpen = true;
-        this.isEditModalOpen = true;
-
-        const editevent = new CustomEvent('editeventclick', {
+        const newevent = new CustomEvent('neweventclick', {
             bubbles: true,
             composed: true,
             cancelable: true,
         });
 
+        this.dispatchEvent(newevent);
+    }
+    editHandle(event) {
+        this.preventDefaultAndStopPropagation(event);
+        const editevent = new CustomEvent('editeventclick', {
+            bubbles: true,
+            composed: true,
+            cancelable: true,
+        });
         this.dispatchEvent(editevent);
-
     }
     deleteHandle(event) {
-        console.log('deleteHandle', event);
-        event.preventDefault();
         this.preventDefaultAndStopPropagation(event);
-        this.resetModal();
-        this.isTreeModalOpen = true;
-        this.isDeleteModalOpen = true;
-
         const deleteevent = new CustomEvent('deleteeventclick', {
-            bubbles: false,
-            composed: false,
-            cancelable: false,
+            bubbles: true,
+            composed: true,
+            cancelable: true,
         });
-
         this.dispatchEvent(deleteevent);
     }
-
-
-    submitDetails() {
-        this.resetModal();
-
-    }
-    closeModal() {
-        this.resetModal()
-
-    }
-
-    resetModal() {
-        this.isTreeModalOpen = false;
-        this.isNewModalOpen = false;
-        this.isEditModalOpen = false;
-        this.isDeleteModalOpen = false;
-
-    }
-
-
 
 
 }

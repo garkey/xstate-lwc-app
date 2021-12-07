@@ -18,6 +18,24 @@ export default class cTree extends LightningElement {
     @track _focusedChild = null;
     @track _items = [];
 
+    @track isTreeModalOpen = false;
+    @track isNewModalOpen = false;
+    @track isEditModalOpen = false;
+    @track isDeleteModalOpen = false;
+    @track btnLab = "Save";
+    @track treeHeadMod = "";
+
+    @track cancel = "Cancel"
+    @track portal_Save = "Save"
+    @track LocationName = "Location Name";
+
+    label = {
+        cancel: this.cancel,
+        portal_Save: this.portal_Save,
+        LocationName: this.LocationName,
+    };
+
+
     _defaultFocused = { key: '1', parent: '0' };
     _selected = null;
     @track _selectedItem = null;
@@ -364,4 +382,63 @@ export default class cTree extends LightningElement {
     get hasChildren() {
         return this._items && this._items.length > 0;
     }
+
+
+    newClickMe() {
+        this.resetModal();
+        this.isTreeModalOpen = true;
+        this.isNewModalOpen = true;
+        this.treeHeadMod = 'Add Location / North America';
+    }
+
+    editClickMe() {
+        this.resetModal();
+        this.isTreeModalOpen = true;
+        this.isEditModalOpen = true;
+        this.treeHeadMod = 'Edit Location / North America';
+    }
+
+    deleteClickMe() {
+        this.resetModal();
+        this.isTreeModalOpen = true;
+        this.isDeleteModalOpen = true;
+        this.treeHeadMod = 'Delete Location / North America';
+    }
+
+
+    resetModal() {
+        this.isTreeModalOpen = false;
+        this.isNewModalOpen = false;
+        this.isEditModalOpen = false;
+        this.isDeleteModalOpen = false;
+        console.log("reset", this.isTreeModalOpen);
+    }
+
+    submitDetails = () => {
+        this.resetModal();
+    }
+
+    handleClose = () => {
+        this.resetModal();
+    }
+
+    @api treeevent = {};
+    newinputChange = (e) => {
+        this.treeevent.newinput = e.target.value;
+        console.log("newinput", this.treeevent.newinput);
+    }
+
+    editinputChange = (e) => {
+        this.treeevent.editinput = e.target.value;
+        console.log("editinput", this.treeevent.editinput);
+    }
+
+    deleteinputChange = (e) => {
+        this.treeevent.deleteinput = e.target.value;
+        console.log("deleteinput", this.treeevent.deleteinput);
+    }
+
+    saveInfoClick() { console.log("saveInfoClick ", this.treeevent) };
+
+
 }

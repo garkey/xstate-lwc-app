@@ -1,0 +1,39 @@
+@import 'c/globalStyles';
+
+input {
+    padding: 0.5rem;
+    border: solid 2px #e7e7e7;
+    width: 100%;
+    border-radius: 2px;
+    font-size: 14px;
+    /* background-color: var(--lwc-colorBackgroundButtonDefaultActive, #F0F0F0); */
+    border-width: var(--dcx-field-border-width, 2px);
+    background-color: var(--dcx-field-background-color, #efefef);
+}
+
+.slds-form-element__help {
+    color: #c23934;
+}
+
+.warnrequired {
+    border-color: #c23934;
+}
+
+.label {
+    font-family: 'Neue Helvetica Condensed';
+    font-size: 13px;
+    font-weight: 600;
+}
+
+input::placeholder {
+    color: var(--dcx-field-placeholder-color, #959595);
+    font-style: italic;
+}
+
+input:focus {
+    border-color: var(--dcx-field-border-color-focus, #e7e7e7);
+}
+
+.slds-has-error input {
+    border-color: var(--dcx-field-border-color-error, #e7e7e7);
+}
