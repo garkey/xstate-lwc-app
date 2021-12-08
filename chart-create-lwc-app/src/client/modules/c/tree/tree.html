@@ -8,7 +8,8 @@
     <div class="slds-tree_container">
         <h4 class="slds-tree__group-header" id="treeheading">{header}</h4>
         <c-tree-item if:true={hasChildren} class="slds-tree" role="tree" aria-labelledby="treeheading" is-root
-            node-key={rootElement} child-items={children} focused-child={focusedChild} onneweventclick={newClickMe} onediteventclick={editClickMe} ondeleteeventclick={deleteClickMe}>
+            node-key={rootElement} child-items={children} focused-child={focusedChild} 
+            onneweventclick={newClickMe} onediteventclick={editClickMe} ondeleteeventclick={deleteClickMe} ontoolboxeventclick={manageSelections}>
         </c-tree-item>
     </div>
 <!-- modal start -->
@@ -25,6 +26,7 @@
         headtext={treeHeadMod}
         buttonlabel={btnLab}
         close-fn={handleClose}
+     
         >
     <template if:true={isNewModalOpen}>
         <!-- Modal/Popup Box LWC body starts here -->

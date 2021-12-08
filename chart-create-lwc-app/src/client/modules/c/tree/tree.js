@@ -28,6 +28,8 @@ export default class cTree extends LightningElement {
     @track cancel = "Cancel"
     @track portal_Save = "Save"
     @track LocationName = "Location Name";
+    closeLast;
+    resetHover;
 
     label = {
         cancel: this.cancel,
@@ -439,6 +441,65 @@ export default class cTree extends LightningElement {
     }
 
     saveInfoClick() { console.log("saveInfoClick ", this.treeevent) };
+
+    toolBoxevent = (event) => {
+        if (event) {
+            try {
+                event.currentTarget
+                    .closest('c-tree-item')
+                    .toggleOpen();
+            } catch (e) {}
+        }
+
+    }
+
+    manageSelections(event) {
+        if (this.closeLast) {
+            this.closeLast.call();
+        }
+
+        if (this.resetHover) {
+            this.resetHover.call();
+        }
+
+        if (event.detail.istoolBox) {
+            this.closeLast = event.detail.closeDropdown;
+            this.resetHover = event.detail.enforceHoverSlot;
+        } else {
+            this.closeLast = null;
+            this.resetHover = null;
+        }
+    }
+
+    disconnectedCallback() {
+        window.removeEventListener('click', function() {});
+        window.removeEventListener('keyup', function() {});
+        window.removeEventListener('click', this.closeOnPageClick);
+    }
+
+    connectedCallback() {
+        window.addEventListener('click', this.closeOnPageClick);
+    }
+
+    closeOnPageClick(event) {
+        if (
+            event.path[0]
+        ) {
+
+            if (this.closeLast) {
+                this.closeLast.call();
+            }
+            if (this.resetHover) {
+                this.resetHover.call();
+            }
+            this.closeLast = null;
+            this.resetHover = null;
+        }
+    }
+
+
+
+
 
 
 }

@@ -1,11 +1,8 @@
 .slds-media__body>div {
     display: inline-block;
-    margin-bottom: -8px;
 }
 
-.slds-popover__body {
-    margin-top: -2px;
-}
+.slds-popover__body {}
 
 .slds-media__body>div:not(:last-child) {
     border-right: #979797 1px solid;
@@ -25,19 +22,19 @@
 }
 
 .slds-popover__body {
-    padding: 5px;
+    padding: unset;
+    padding: 4px;
 }
 
 .slds-popover[c-treeItem_treeItem] {
-    width: 95px;
     box-shadow: black 4px 3px 8px;
-    margin-left: 10px;
-    min-height: auto;
+    width: 87px;
+    margin-left: 7px;
 }
 
 .slds-popover__body[c-treeItem_treeItem] {
-    width: auto;
-    padding-right: 0px;
+    padding: unset;
+    padding-top: 5px;
 }
 
 .slds-nubbin--left:before,

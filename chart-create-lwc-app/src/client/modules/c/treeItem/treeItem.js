@@ -25,13 +25,14 @@ export default class cTreeItem extends LightningElement {
     @api metatext;
     @api nodeRef;
     @api isExpanded;
-    @api istoolBox = false;
+    //@track istoolBox = false;
     @api isDisabled = false;
     @api nodename;
     @api nodeKey;
     @api isLeaf;
     @api selected;
     @track resetModal;
+    @track _istoolBox = false;
 
     @api get childItems() {
         return this._children;
@@ -247,12 +248,12 @@ export default class cTreeItem extends LightningElement {
             'c-tree-item:nth-of-type(' + n + ')',
         );
     }
-    lineModal(e) {
-        //console.log('e', e);
-        this.istoolBox = !this.istoolBox;
-    }
+
+
+    disconnectedCallback() {}
+
+
     newHandle(event) {
-        //console.log('newHandle', event);
         this.preventDefaultAndStopPropagation(event);
         const newevent = new CustomEvent('neweventclick', {
             bubbles: true,
@@ -282,4 +283,43 @@ export default class cTreeItem extends LightningElement {
     }
 
 
+    @api toggleOpen() {
+        this._istoolBox = !this._istoolBox;
+
+        if (this._istoolBox) {
+
+            // WARNING: if there is a tooltip as a ancestor wrapping this component, it will capture the event 'privateitemselect', src/lwc/tooltip/tooltip.js
+            this.dispatchEvent(
+                new CustomEvent('ontoolboxeventclick', {
+                    bubbles: true,
+                    cancelable: true,
+                    composed: true,
+                    detail: {
+                        closeDropdown: this.closeDropdown.bind(this),
+                        istoolBox: this._istoolBox,
+                    },
+                }),
+            );
+        }
+    }
+
+    @api closeDropdown() {
+        if (this._istoolBox) {
+            this._istoolBox = false;
+        }
+    }
+
+    toolBox(event) {
+        this._istoolBox = !this._istoolBox;
+        const toolboxevent = new CustomEvent('toolboxeventclick', {
+            bubbles: true,
+            composed: true,
+            cancelable: true,
+            detail: {
+                closeDropdown: this.closeDropdown.bind(this),
+                istoolBox: this._istoolBox,
+            },
+        });
+        this.dispatchEvent(toolboxevent);
+    }
 }

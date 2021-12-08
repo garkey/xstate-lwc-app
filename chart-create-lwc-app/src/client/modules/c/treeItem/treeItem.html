@@ -32,14 +32,14 @@
         <div class="slds-tree__item dcx-tree__item">
             <button type="button" class={computedButtonClass} onclick={handleClick} tabindex="-1" aria-hidden="true"
                 title={buttonLabel}>
-                <span style="border: solid red 1px;">
+                <span >
                     <c-primitive-icon icon-name={computedIconName} variant="bare"
                         svg-class="slds-button__icon slds-button__icon_small">
                     </c-primitive-icon>
                 </span>
                 <span class="slds-assistive-text"> {buttonLabel} </span>
             </button>
-            <span class="slds-has-flexi-truncate" onclick={lineModal}>
+            <span class="slds-has-flexi-truncate" onclick={toolBox}>
                 <template if:true={isDisabled}>
                     <span class="slds-tree__item-label slds-truncate" title={label}>{label}</span>
                     <template if:true={metatext}>
@@ -69,7 +69,7 @@
 </template>
 
 
-<template if:true={istoolBox}>
+<template if:true={_istoolBox}>
                     <div>
                         <section aria-describedby="dialog-body-id-107" aria-label="Dialog Title"
                             class="slds-popover slds-nubbin_left" role="dialog">
