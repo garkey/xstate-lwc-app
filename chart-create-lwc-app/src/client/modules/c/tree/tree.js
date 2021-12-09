@@ -204,6 +204,9 @@ export default class cTree extends LightningElement {
                     this.expandBranch(item.treeNode);
                 }
                 this.setFocusToItem(item);
+            }
+            if (target === 'click') {
+                this.setFocusToItem(item);
             } else {
                 this._selectedItem = item;
                 this.dispatchSelectEvent(item.treeNode);

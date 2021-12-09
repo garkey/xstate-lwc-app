@@ -297,7 +297,7 @@ export default class cTreeItem extends LightningElement {
                 focusCallback: this.makeChildFocusable.bind(this),
                 unfocusCallback: this.makeChildUnfocusable.bind(this),
                 key: this.nodeKey,
-                target: "chevron",
+                target: "click",
             },
         });
         this.dispatchEvent(toolboxevent);
