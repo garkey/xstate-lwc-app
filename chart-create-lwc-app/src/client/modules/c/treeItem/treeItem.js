@@ -98,7 +98,7 @@ export default class cTreeItem extends LightningElement {
     }
 
     get computedButtonClass() {
-        return classSet('slds-button slds-button_icon slds-m-right_x-small ')
+        return classSet('slds-button slds-button_icon slds-m-right_x-small nohover nonactive ')
             .add({
                 'slds-hidden': this.isLeaf || this.isDisabled,
             })

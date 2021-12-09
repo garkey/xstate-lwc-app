@@ -16,7 +16,7 @@ export function generateNode(
     labelPrefix,
     expanded,
     disabled,
-    withMetatext = false
+    withMetatext = false,
 ) {
     const node = {};
     node.name = generateUniqueId();
@@ -62,7 +62,7 @@ export function getNode(items, key) {
 
 function addNodes(label, nodes, levelOptions, level, withMetatext = false) {
     const levelTotal = Object.keys(levelOptions).map((key) =>
-        Object.prototype.hasOwnProperty.call(levelOptions, key)
+        Object.prototype.hasOwnProperty.call(levelOptions, key),
     ).length;
     if (level > levelTotal) {
         return;

@@ -60,7 +60,7 @@ export class TreeData {
             metatext: item.metatext,
             href: item.href,
             disabled: item.disabled,
-            items: []
+            items: [],
         };
 
         if (item.items && item.items.length > 0) {
@@ -83,7 +83,7 @@ export class TreeData {
                     currentNode,
                     level,
                     parent ? parent.key : null,
-                    childNum + 1
+                    childNum + 1,
                 );
 
                 if (
@@ -104,7 +104,7 @@ export class TreeData {
                         key: node.key,
                         parent: parent.key,
                         level: node.level,
-                        treeNode: node
+                        treeNode: node,
                     };
 
                     this.indices[node.key] = indexedObj;
@@ -113,7 +113,7 @@ export class TreeData {
                         this.syncDataToSelected(
                             node,
                             indexedObj.index,
-                            selected
+                            selected,
                         );
 
                         _selectedItem = indexedObj;
@@ -141,7 +141,7 @@ export class TreeData {
                         parent.visibleItems.push(node.key);
                         parent.visibleItems.push.apply(
                             parent.visibleItems,
-                            node.visibleItems
+                            node.visibleItems,
                         );
                     }
                     level--;
@@ -156,12 +156,12 @@ export class TreeData {
             const hasLabel = level === 0 ? true : !!currentNode.label;
             assert(
                 hasCycle === false,
-                `Data passed to lightning:tree has circular reference. Skipping the node`
+                `Data passed to lightning:tree has circular reference. Skipping the node`,
             );
 
             assert(
                 hasLabel === true,
-                `The node passed to lightning:tree has empty label. Skipping the node`
+                `The node passed to lightning:tree has empty label. Skipping the node`,
             );
 
             return !hasCycle && hasLabel;

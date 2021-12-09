@@ -841,3 +841,17 @@ button.edit:hover > .slds-icon {
   margin-right: 1rem;
   flex: none;
 }
+
+.dcxclick {
+  padding-right: 6px;
+}
+
+button.nonactive:active {
+  border: 0;
+  background-color: unset;
+  box-shadow: unset;
+}
+
+button.nohover:hover {
+  background: unset;
+}

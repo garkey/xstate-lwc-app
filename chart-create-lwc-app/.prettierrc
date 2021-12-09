@@ -4,7 +4,7 @@
   "singleQuote": true,
   "overrides": [
     {
-      "files": "**/lwc/**/*.html",
+      "files": "**/modules/c/**/*.html",
       "options": { "parser": "lwc" }
     },
     {

@@ -7,89 +7,120 @@
 <template>
     <div class="slds-tree_container">
         <h4 class="slds-tree__group-header" id="treeheading">{header}</h4>
-        <c-tree-item if:true={hasChildren} class="slds-tree" role="tree" aria-labelledby="treeheading" is-root
-            node-key={rootElement} child-items={children} focused-child={focusedChild} 
-            onneweventclick={newClickMe} onediteventclick={editClickMe} ondeleteeventclick={deleteClickMe} ontoolboxeventclick={manageSelections}>
+        <c-tree-item
+            if:true={hasChildren}
+            class="slds-tree"
+            role="tree"
+            aria-labelledby="treeheading"
+            is-root
+            node-key={rootElement}
+            child-items={children}
+            focused-child={focusedChild}
+            onneweventclick={newClickMe}
+            onediteventclick={editClickMe}
+            ondeleteeventclick={deleteClickMe}
+            ontoolboxeventclick={manageSelections}
+        >
         </c-tree-item>
     </div>
-<!-- modal start -->
-<template if:true={isTreeModalOpen}>
-    <section
-    role="dialog"
-    tabindex="-1"
-    aria-labelledby="modal-heading-01"
-    aria-modal="true"
-    aria-describedby="modal-content-id-1"
-    class="slds-modal slds-fade-in-open"
->
-    <c-dcx_modal 
-        headtext={treeHeadMod}
-        buttonlabel={btnLab}
-        close-fn={handleClose}
-     
+    <!-- modal start -->
+    <template if:true={isTreeModalOpen}>
+        <section
+            role="dialog"
+            tabindex="-1"
+            aria-labelledby="modal-heading-01"
+            aria-modal="true"
+            aria-describedby="modal-content-id-1"
+            class="slds-modal slds-fade-in-open"
         >
-    <template if:true={isNewModalOpen}>
-        <!-- Modal/Popup Box LWC body starts here -->
-        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
-            <c-dcx_textinput
-            shaded
-            type="text"
-            data-id="newinput"
-            class="LocationName"
-            label={label.LocationName}
-            name="LocationName"
-            value={treeevent.newinput}
-            required
-            onchange={newinputChange}
-            maxlength="40"
-        >
-        </c-dcx_textinput>
-        </div>
+            <c-dcx_modal
+                headtext={treeHeadMod}
+                buttonlabel={btnLab}
+                close-fn={handleClose}
+            >
+                <template if:true={isNewModalOpen}>
+                    <!-- Modal/Popup Box LWC body starts here -->
+                    <div
+                        class="slds-modal__content slds-p-around_medium"
+                        id="modal-content-id-1"
+                    >
+                        <c-dcx_textinput
+                            shaded
+                            type="text"
+                            data-id="newinput"
+                            class="LocationName"
+                            label={label.LocationName}
+                            name="LocationName"
+                            value={treeevent.newinput}
+                            required
+                            onchange={newinputChange}
+                            maxlength="40"
+                        >
+                        </c-dcx_textinput>
+                    </div>
+                </template>
+                <template if:true={isEditModalOpen}>
+                    <!-- Modal/Popup Box LWC body starts here -->
+                    <div
+                        class="slds-modal__content slds-p-around_medium"
+                        id="modal-content-id-2"
+                    >
+                        <c-dcx_textinput
+                            shaded
+                            type="text"
+                            data-id="editinput"
+                            class="LocationName"
+                            label={label.LocationName}
+                            name="LocationName"
+                            value={treeevent.editinput}
+                            required
+                            onchange={editinputChange}
+                            maxlength="40"
+                        >
+                        </c-dcx_textinput>
+                    </div>
+                </template>
+                <template if:true={isDeleteModalOpen}>
+                    <!-- Modal/Popup Box LWC body starts here -->
+                    <div
+                        class="slds-modal__content slds-p-around_medium"
+                        id="modal-content-id-3"
+                    >
+                        <c-dcx_textinput
+                            shaded
+                            type="text"
+                            data-id="deleteinput"
+                            class="LocationName"
+                            label={label.LocationName}
+                            name="LocationName"
+                            value={treeevent.deleteinput}
+                            required
+                            onchange={deleteinputChange}
+                            maxlength="40"
+                        >
+                        </c-dcx_textinput>
+                    </div>
+                </template>
+                <!-- Modal/Popup Box LWC footer starts here -->
+                <div class="slds-p-top_large btncont" slot="footer">
+                    <c-dcx_button
+                        label={label.cancel}
+                        onclick={handleClose}
+                        title={label.cancel}
+                        dcxstate="cancel"
+                        class="slds-m-right_large"
+                    ></c-dcx_button>
+                    <c-dcx_button
+                        label={label.portal_Save}
+                        onclick={saveInfoClick}
+                        title={label.portal_Save}
+                        dcxstate="go"
+                        icon-name="action:check"
+                    ></c-dcx_button>
+                </div>
+            </c-dcx_modal>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
     </template>
-<template if:true={isEditModalOpen}>
-        <!-- Modal/Popup Box LWC body starts here -->
-        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
-            <c-dcx_textinput
-            shaded
-            type="text"
-            data-id="editinput"
-            class="LocationName"
-            label={label.LocationName}
-            name="LocationName"
-            value={treeevent.editinput}
-            required
-            onchange={editinputChange}
-            maxlength="40"
-        >
-        </c-dcx_textinput>
-        </div>
-    </template>
-<template if:true={isDeleteModalOpen}>
-        <!-- Modal/Popup Box LWC body starts here -->
-        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-3">
-            <c-dcx_textinput
-            shaded
-            type="text"
-            data-id="deleteinput"
-            class="LocationName"
-            label={label.LocationName}
-            name="LocationName"
-            value={treeevent.deleteinput}
-            required
-            onchange={deleteinputChange}
-            maxlength="40"
-        >
-        </c-dcx_textinput>
-        </div>
-    </template>
-<!-- Modal/Popup Box LWC footer starts here -->
-<div class="slds-p-top_large btncont" slot="footer">
-    <c-dcx_button label={label.cancel} onclick={handleClose} title={label.cancel} dcxstate="cancel" class="slds-m-right_large"></c-dcx_button>
-    <c-dcx_button label={label.portal_Save} onclick={saveInfoClick} title={label.portal_Save} dcxstate="go" icon-name="action:check"></c-dcx_button>
-</div>
-</c-dcx_modal>
-</section>
-<div class="slds-backdrop slds-backdrop_open"></div>
-</template>
-<!-- modal end -->
+    <!-- modal end -->
 </template>
