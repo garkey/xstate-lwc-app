@@ -61,6 +61,11 @@ export default class cTree extends LightningElement {
             'privateregisteritem',
             this.handleRegistration.bind(this)
         );
+
+        this.template.addEventListener(
+            'toolboxeventclick',
+            this.handleClick.bind(this)
+        );
     }
 
     @api get items() {
@@ -181,9 +186,16 @@ export default class cTree extends LightningElement {
     }
 
     handleClick(event) {
+        event.preventDefault();
+        event.stopPropagation();
         const key = event.detail.key;
         const target = event.detail.target;
         const item = this.treedata.getItem(key);
+
+        console.log('key', key);
+        //console.log('detail', event.detail);
+        console.log('item', item);
+
         if (item) {
             if (target === 'chevron') {
                 if (item.treeNode.nodeRef.expanded) {
@@ -191,12 +203,15 @@ export default class cTree extends LightningElement {
                 } else {
                     this.expandBranch(item.treeNode);
                 }
+                this.setFocusToItem(item);
             } else {
                 this._selectedItem = item;
                 this.dispatchSelectEvent(item.treeNode);
-                this.setFocusToItem(item);
+                this.setFocusToLastItem();
             }
         }
+
+
     }
 
     expandBranch(node) {
@@ -251,6 +266,7 @@ export default class cTree extends LightningElement {
     handleKeydown(event) {
         event.preventDefault();
         event.stopPropagation();
+        console.log("handleKeydown", event);
         const item = this.treedata.getItem(event.detail.key);
         switch (event.detail.keyCode) {
             case keyCodes.up:
@@ -379,6 +395,8 @@ export default class cTree extends LightningElement {
 
         this.treedata.addVisible(itemKey);
         event.stopPropagation();
+
+
     }
 
     get hasChildren() {
@@ -497,9 +515,27 @@ export default class cTree extends LightningElement {
         }
     }
 
+    handleTooltip(event) {
+        console.log("handleTooltip", event);
+        const itemKey = event.detail.key;
+        const item = this.treedata.getItem(event.detail.key);
+        console.log("item", item);
+        // this.callbackMap[itemKey] = {
+        //     focusCallback: event.detail.focusCallback,
+        //     unfocusCallback: event.detail.unfocusCallback
+        // };
+
+        // event.detail.focusCallback(
+        //     itemKey,
+        //     true,
+        //     true
+        // );
 
 
 
 
+
+
+    }
 
 }

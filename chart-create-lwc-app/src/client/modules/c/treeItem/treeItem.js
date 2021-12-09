@@ -110,7 +110,7 @@ export default class cTreeItem extends LightningElement {
             document.dir === 'rtl' ?
             'utility:chevronleft' :
             'utility:chevronright';
-        console.log('icon', icon);
+        //console.log('icon', icon);
 
         return icon;
     }
@@ -157,8 +157,6 @@ export default class cTreeItem extends LightningElement {
         }
     }
     handleKeydown(event) {
-        console.log('handleKeydown.event.keyCode', event.keyCode);
-
         switch (event.keyCode) {
             case keyCodes.space:
             case keyCodes.enter:
@@ -250,9 +248,6 @@ export default class cTreeItem extends LightningElement {
     }
 
 
-    disconnectedCallback() {}
-
-
     newHandle(event) {
         this.preventDefaultAndStopPropagation(event);
         const newevent = new CustomEvent('neweventclick', {
@@ -282,27 +277,6 @@ export default class cTreeItem extends LightningElement {
         this.dispatchEvent(deleteevent);
     }
 
-
-    @api toggleOpen() {
-        this._istoolBox = !this._istoolBox;
-
-        if (this._istoolBox) {
-
-            // WARNING: if there is a tooltip as a ancestor wrapping this component, it will capture the event 'privateitemselect', src/lwc/tooltip/tooltip.js
-            this.dispatchEvent(
-                new CustomEvent('ontoolboxeventclick', {
-                    bubbles: true,
-                    cancelable: true,
-                    composed: true,
-                    detail: {
-                        closeDropdown: this.closeDropdown.bind(this),
-                        istoolBox: this._istoolBox,
-                    },
-                }),
-            );
-        }
-    }
-
     @api closeDropdown() {
         if (this._istoolBox) {
             this._istoolBox = false;
@@ -310,6 +284,8 @@ export default class cTreeItem extends LightningElement {
     }
 
     toolBox(event) {
+        this.preventDefaultAndStopPropagation(event);
+
         this._istoolBox = !this._istoolBox;
         const toolboxevent = new CustomEvent('toolboxeventclick', {
             bubbles: true,
@@ -318,8 +294,18 @@ export default class cTreeItem extends LightningElement {
             detail: {
                 closeDropdown: this.closeDropdown.bind(this),
                 istoolBox: this._istoolBox,
+                focusCallback: this.makeChildFocusable.bind(this),
+                unfocusCallback: this.makeChildUnfocusable.bind(this),
+                key: this.nodeKey,
+                target: "chevron",
             },
         });
         this.dispatchEvent(toolboxevent);
+
     }
+
+
+
+
+
 }
