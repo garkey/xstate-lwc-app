@@ -55,11 +55,11 @@ async function migrate(argv: Arguments) {
     moduledirname = modDir.split('/').slice(-1)[0];
 
     const imports = await recurseNeededImports([rootcomp], { rootdir });
-    
+
     const tempdir = await cloneToTempDir(imports);
-    // compressComponents(tempdir);
-    // move(tempdir, './');
     moveSync(tempdir, './dcx_component', { overwrite: true });
+    console.log('file written to ./dcx_component');
+    console.log(imports);
 }
 
 function compressTar(argv: Arguments) {
@@ -81,7 +81,6 @@ async function recurseNeededImports(
                 const htmltext = await Deno.readTextFile(
                     `${p}/${compname}.html`,
                 );
-                console.log('htmltext', htmltext);
                 /* 
                 
                 <template>
@@ -96,7 +95,7 @@ async function recurseNeededImports(
 
                   </template>
                 */
-                
+
                 const xml = xmlparse(
                     `<root>${htmltext}</root>`.replace(/[{,}]/g, '"'),
                 );

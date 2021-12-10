@@ -170,6 +170,7 @@ export default class cTreeItem extends LightningElement {
                         .querySelector('.slds-tree__item .dcxclick')
                         .click();
                 }
+                // if above code is not run, below code allows modals to surface.
                 event.stopPropagation();
                 break;
             case keyCodes.up:
