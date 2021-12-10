@@ -71,6 +71,8 @@ export default class cTreeItem extends LightningElement {
             }),
         );
 
+        console.log('this', this);
+
         this.addEventListener('keydown', this.handleKeydown.bind(this));
     }
 
@@ -159,13 +161,27 @@ export default class cTreeItem extends LightningElement {
         }
     }
     handleKeydown(event) {
+        console.log('***********************');
+
+        console.log('this.label', this.label);
+        console.log('this.template.activeElement', this.template.activeElement);
+
+        console.log('event', event);
+
         switch (event.keyCode) {
             case keyCodes.space:
             case keyCodes.enter:
-                this.preventDefaultAndStopPropagation(event);
-                this.template
-                    .querySelector('.slds-tree__item .dcxclick')
-                    .click();
+                if (
+                    this.template.activeElement === null ||
+                    (this.template.activeElement &&
+                        this.template.activeElement.tagName !== 'BUTTON')
+                ) {
+                    this.preventDefaultAndStopPropagation(event);
+                    this.template
+                        .querySelector('.slds-tree__item .dcxclick')
+                        .click();
+                }
+                event.stopPropagation();
                 break;
             case keyCodes.up:
             case keyCodes.down:
