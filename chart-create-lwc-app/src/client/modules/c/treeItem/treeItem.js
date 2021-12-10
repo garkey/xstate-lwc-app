@@ -71,8 +71,6 @@ export default class cTreeItem extends LightningElement {
             }),
         );
 
-        console.log('this', this);
-
         this.addEventListener('keydown', this.handleKeydown.bind(this));
     }
 
@@ -114,8 +112,6 @@ export default class cTreeItem extends LightningElement {
             document.dir === 'rtl'
                 ? 'utility:chevronleft'
                 : 'utility:chevronright';
-        //console.log('icon', icon);
-
         return icon;
     }
 
@@ -161,13 +157,6 @@ export default class cTreeItem extends LightningElement {
         }
     }
     handleKeydown(event) {
-        console.log('***********************');
-
-        console.log('this.label', this.label);
-        console.log('this.template.activeElement', this.template.activeElement);
-
-        console.log('event', event);
-
         switch (event.keyCode) {
             case keyCodes.space:
             case keyCodes.enter:
