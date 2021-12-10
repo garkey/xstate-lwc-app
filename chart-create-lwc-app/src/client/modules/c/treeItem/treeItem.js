@@ -98,7 +98,9 @@ export default class cTreeItem extends LightningElement {
     }
 
     get computedButtonClass() {
-        return classSet('slds-button slds-button_icon slds-m-right_x-small nohover nonactive ')
+        return classSet(
+            'slds-button slds-button_icon slds-m-right_x-small nohover nonactive ',
+        )
             .add({
                 'slds-hidden': this.isLeaf || this.isDisabled,
             })
@@ -107,9 +109,9 @@ export default class cTreeItem extends LightningElement {
 
     get computedIconName() {
         const icon =
-            document.dir === 'rtl' ?
-            'utility:chevronleft' :
-            'utility:chevronright';
+            document.dir === 'rtl'
+                ? 'utility:chevronleft'
+                : 'utility:chevronright';
         //console.log('icon', icon);
 
         return icon;
@@ -212,9 +214,9 @@ export default class cTreeItem extends LightningElement {
     getChildNum(childKey) {
         const idx = childKey.lastIndexOf('.');
         const childNum =
-            idx > -1 ?
-            parseInt(childKey.substring(idx + 1), 10) :
-            parseInt(childKey, 10);
+            idx > -1
+                ? parseInt(childKey.substring(idx + 1), 10)
+                : parseInt(childKey, 10);
         return childNum - 1;
     }
     makeChildFocusable(childKey, shouldFocus, shouldSelect) {
@@ -246,7 +248,6 @@ export default class cTreeItem extends LightningElement {
             'c-tree-item:nth-of-type(' + n + ')',
         );
     }
-
 
     newHandle(event) {
         this.preventDefaultAndStopPropagation(event);
@@ -297,15 +298,9 @@ export default class cTreeItem extends LightningElement {
                 focusCallback: this.makeChildFocusable.bind(this),
                 unfocusCallback: this.makeChildUnfocusable.bind(this),
                 key: this.nodeKey,
-                target: "click",
+                target: 'click',
             },
         });
         this.dispatchEvent(toolboxevent);
-
     }
-
-
-
-
-
 }

@@ -191,10 +191,6 @@ export default class cTree extends LightningElement {
         const target = event.detail.target;
         const item = this.treedata.getItem(key);
 
-        console.log('key', key);
-        //console.log('detail', event.detail);
-        console.log('item', item);
-
         if (item) {
             if (target === 'chevron') {
                 if (item.treeNode.nodeRef.expanded) {
@@ -266,7 +262,6 @@ export default class cTree extends LightningElement {
     handleKeydown(event) {
         event.preventDefault();
         event.stopPropagation();
-        console.log('handleKeydown', event);
         const item = this.treedata.getItem(event.detail.key);
         switch (event.detail.keyCode) {
             case keyCodes.up:
@@ -295,7 +290,7 @@ export default class cTree extends LightningElement {
             default:
                 break;
         }
-        this.closeLast && this.closeLast.call();
+        if (this.closeLast) this.closeLast.call();
     }
 
     setFocusToItem(item, shouldFocus = true, shouldSelect = true) {
