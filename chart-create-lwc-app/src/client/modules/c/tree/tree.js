@@ -266,15 +266,19 @@ export default class cTree extends LightningElement {
         switch (event.detail.keyCode) {
             case keyCodes.up:
                 this.setFocusToPrevItem();
+                if (this.closeLast) this.closeLast.call();
                 break;
             case keyCodes.down:
                 this.setFocusToNextItem();
+                if (this.closeLast) this.closeLast.call();
                 break;
             case keyCodes.home:
                 this.setFocusToFirstItem();
+                if (this.closeLast) this.closeLast.call();
                 break;
             case keyCodes.end:
                 this.setFocusToLastItem();
+                if (this.closeLast) this.closeLast.call();
                 break;
             case keyCodes.right:
                 this.expandBranch(item.treeNode);
@@ -284,13 +288,14 @@ export default class cTree extends LightningElement {
                     this.collapseBranch(item.treeNode);
                 } else {
                     this.handleParentCollapse(event.detail.key);
+                    if (this.closeLast) this.closeLast.call();
                 }
                 break;
 
             default:
                 break;
         }
-        if (this.closeLast) this.closeLast.call();
+        // if (this.closeLast) this.closeLast.call();
     }
 
     setFocusToItem(item, shouldFocus = true, shouldSelect = true) {
