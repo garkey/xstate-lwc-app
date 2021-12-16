@@ -8,10 +8,11 @@
 import { LightningElement, api, track } from 'lwc';
 import { TreeData } from './treeData';
 import { keyCodes, deepCopy } from 'c/utilsPrivate';
+import portal_Save from '@salesforce/label/c.portal_Save';
+import DCX_Cancel from '@salesforce/label/c.DCX_Cancel';
+import locationName from '@salesforce/label/c.locationName';
 
 export default class cTree extends LightningElement {
-    @api header;
-
     @track _currentFocusedItem = null;
     @track _childNodes;
     @track _key;
@@ -25,16 +26,13 @@ export default class cTree extends LightningElement {
     @track btnLab = 'Save';
     @track treeHeadMod = '';
 
-    @track cancel = 'Cancel';
-    @track portal_Save = 'Save';
-    @track LocationName = 'Location Name';
     closeLast;
     resetHover;
 
     label = {
-        cancel: this.cancel,
-        portal_Save: this.portal_Save,
-        LocationName: this.LocationName,
+        cancel: DCX_Cancel,
+        portal_Save: portal_Save,
+        LocationName: locationName,
     };
 
     _defaultFocused = { key: '1', parent: '0' };
