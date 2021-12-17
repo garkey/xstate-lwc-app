@@ -1,11 +1,15 @@
 {
-    "trailingComma": "all",
-    "singleQuote": true,
-    "tabWidth": 4,
-    "overrides": [
-        {
-            "files": "**/*.html",
-            "options": { "parser": "lwc" }
-        }
-    ]
+  "trailingComma": "all",
+  "tabWidth": 4,
+  "singleQuote": true,
+  "overrides": [
+    {
+      "files": "**/modules/c/**/*.html",
+      "options": { "parser": "lwc" }
+    },
+    {
+      "files": "*.{cmp,page,component}",
+      "options": { "parser": "html" }
+    }
+  ]
 }

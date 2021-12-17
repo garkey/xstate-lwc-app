@@ -1,0 +1,358 @@
+<!--
+  Copyright (c) 2019, salesforce.com, inc.
+  All rights reserved.
+  SPDX-License-Identifier: MIT
+  For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
+ -->
+<template>
+    <template if:true={isRoot}>
+        <template for:each={children} for:item="item" for:index="index">
+            <template if:true={item.node.isLeaf}>
+                <c-tree-item
+                    role="treeitem"
+                    data-key={item.node.key}
+                    key={item.node.key}
+                    node-key={item.node.key}
+                    aria-selected={item.selected}
+                    aria-level={item.node.level}
+                    aria-disabled={item.node.isDisabled}
+                    label={item.node.label}
+                    href={item.node.href}
+                    metatext={item.node.metatext}
+                    node-ref={item.node.nodeRef}
+                    is-expanded={item.node.isExpanded}
+                    is-disabled={item.node.isDisabled}
+                    focused-child={item.node.focusedChild}
+                    nodename={item.node.name}
+                    is-leaf={item.node.isLeaf}
+                    child-items={item.node.children}
+                >
+                </c-tree-item>
+            </template>
+            <template if:false={item.node.isLeaf}>
+                <c-tree-item
+                    role="treeitem"
+                    data-key={item.node.key}
+                    key={item.node.key}
+                    node-key={item.node.key}
+                    aria-selected={item.selected}
+                    aria-level={item.node.level}
+                    label={item.node.label}
+                    href={item.node.href}
+                    metatext={item.node.metatext}
+                    node-ref={item.node.nodeRef}
+                    is-expanded={item.node.isExpanded}
+                    is-disabled={item.node.isDisabled}
+                    focused-child={item.node.focusedChild}
+                    nodename={item.node.name}
+                    is-leaf={item.node.isLeaf}
+                    child-items={item.node.children}
+                    aria-label={item.node.label}
+                    aria-expanded={item.node.strexpanded}
+                    aria-disabled={item.node.isDisabled}
+                >
+                </c-tree-item>
+            </template>
+        </template>
+    </template>
+    <template if:false={isRoot}>
+        <div class="slds-tree__item dcx-tree__item">
+            <button
+                type="button"
+                class={computedButtonClass}
+                onclick={handleClick}
+                tabindex="-1"
+                aria-hidden="true"
+                title={buttonLabel}
+            >
+                <span>
+                    <c-primitive-icon
+                        icon-name={computedIconName}
+                        variant="bare"
+                        svg-class="slds-button__icon slds-button__icon_small"
+                    >
+                    </c-primitive-icon>
+                </span>
+                <span class="slds-assistive-text"> {buttonLabel} </span>
+            </button>
+            <span class="slds-has-flexi-truncate" onclick={toolBox}>
+                <template if:true={isDisabled}>
+                    <span
+                        class="slds-tree__item-label slds-truncate"
+                        title={label}
+                        >{label}</span
+                    >
+                    <template if:true={metatext}>
+                        <span
+                            class="slds-tree__item-meta slds-truncate"
+                            title={metatext}
+                        >
+                            <span class="slds-assistive-text">:</span>{metatext}
+                        </span>
+                    </template>
+                </template>
+                <template if:false={isDisabled}>
+                    <template if:true={href}>
+                        <a
+                            class="dcxclick"
+                            href={href}
+                            tabindex="-1"
+                            role="presentation"
+                        >
+                            <span
+                                class="slds-tree__item-label slds-truncate"
+                                title={label}
+                                >{label}</span
+                            >
+                            <template if:true={metatext}>
+                                <span
+                                    class="slds-tree__item-meta slds-truncate"
+                                    title={metatext}
+                                >
+                                    <span class="slds-assistive-text">:</span
+                                    >{metatext}
+                                </span>
+                            </template>
+                        </a>
+                    </template>
+                    <template if:false={href}>
+                        <div class="dcxclick" tabindex="-1" role="presentation">
+                            <span
+                                class="slds-tree__item-label slds-truncate"
+                                title={label}
+                                >{label}</span
+                            >
+                            <template if:true={metatext}>
+                                <span
+                                    class="slds-tree__item-meta slds-truncate"
+                                    title={metatext}
+                                >
+                                    <span class="slds-assistive-text">:</span
+                                    >{metatext}
+                                </span>
+                            </template>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:true={_istoolBox}>
+                    <div>
+                        <section
+                            aria-describedby="dialog-body-id-107"
+                            aria-label="Dialog Title"
+                            class="slds-popover slds-nubbin_left"
+                            role="dialog"
+                        >
+                            <div
+                                class="slds-popover__body"
+                                id="dialog-body-id-107"
+                            >
+                                <div class="slds-media">
+                                    <div class="slds-media__body">
+                                        <div>
+                                            <!-- b1 -->
+                                            <button
+                                                class="
+                                                    slds-button
+                                                    slds-button_icon
+                                                    slds-button_icon-small
+                                                    slds-float_right
+                                                    slds-popover__close
+                                                    nohover
+                                                    nonactive
+                                                "
+                                                id="newevent"
+                                                title="New dialog"
+                                                onclick={newHandle}
+                                            >
+                                                <!-- icons -->
+                                                <svg
+                                                    width="18px"
+                                                    height="18px"
+                                                    viewBox="0 0 18 18"
+                                                    class=""
+                                                    aria-hidden="true"
+                                                >
+                                                    <g
+                                                        id="Page-1"
+                                                        stroke="none"
+                                                        stroke-width="1"
+                                                        fill="none"
+                                                        fill-rule="evenodd"
+                                                    >
+                                                        <g
+                                                            id="add_circle---material"
+                                                            transform="translate(0.680000, 0.680000)"
+                                                            fill="#555555"
+                                                            fill-rule="nonzero"
+                                                        >
+                                                            <path
+                                                                d="M12.5,9.14 L12.5,7.5 L9.14,7.5 L9.14,4.14 L7.5,4.14 L7.5,7.5 L4.14,7.5 L4.14,9.14 L7.5,9.14 L7.5,12.5 L9.14,12.5 L9.14,9.14 L12.5,9.14 Z M8.32,0 C9.84,0 11.2466667,0.38 12.54,1.14 C13.7933333,1.86 14.78,2.84666667 15.5,4.1 C16.26,5.39333333 16.64,6.8 16.64,8.32 C16.64,9.84 16.26,11.2466667 15.5,12.54 C14.78,13.7933333 13.7933333,14.78 12.54,15.5 C11.2466667,16.26 9.84,16.64 8.32,16.64 C6.8,16.64 5.39333333,16.26 4.1,15.5 C2.84666667,14.7666667 1.86,13.7733333 1.14,12.52 C0.38,11.2266667 0,9.82666667 0,8.32 C0,6.81333333 0.38,5.41333333 1.14,4.12 C1.87333333,2.86666667 2.86666667,1.87333333 4.12,1.14 C5.41333333,0.38 6.81333333,0 8.32,0 Z"
+                                                                id=""
+                                                            ></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                <span
+                                                    class="slds-assistive-text"
+                                                    >new</span
+                                                >
+                                            </button>
+                                        </div>
+                                        <!-- b2 -->
+                                        <div>
+                                            <button
+                                                class="
+                                                    slds-button
+                                                    slds-button_icon
+                                                    slds-button_icon-small
+                                                    slds-float_right
+                                                    slds-popover__close
+                                                    nohover
+                                                    nonactive
+                                                "
+                                                title="Edit dialog"
+                                                onclick={editHandle}
+                                            >
+                                                <!-- icons -->
+                                                <svg
+                                                    width="16px"
+                                                    height="16px"
+                                                    viewBox="0 0 16 16"
+                                                    class=""
+                                                    aria-hidden="true"
+                                                >
+                                                    <g
+                                                        id="Page-2"
+                                                        stroke="none"
+                                                        stroke-width="1"
+                                                        fill="none"
+                                                        fill-rule="evenodd"
+                                                    >
+                                                        <g
+                                                            id="mode_edit---material"
+                                                            transform="translate(0.500000, 0.500000)"
+                                                            fill="#555555"
+                                                            fill-rule="nonzero"
+                                                        >
+                                                            <path
+                                                                d="M14.76,3.36 L13.24,4.88 L10.12,1.76 L11.64,0.24 C11.8,0.08 11.9966667,0 12.23,0 C12.4633333,0 12.66,0.08 12.82,0.24 L14.76,2.18 C14.92,2.34 15,2.53666667 15,2.77 C15,3.00333333 14.92,3.2 14.76,3.36 Z M0,11.88 L9.22,2.66 L12.34,5.78 L3.12,15 L0,15 L0,11.88 Z"
+                                                                id=""
+                                                            ></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                <span
+                                                    class="slds-assistive-text"
+                                                    >edit</span
+                                                >
+                                            </button>
+                                        </div>
+                                        <!-- <div>
+                                            <button
+                                                class="
+                                                    slds-button
+                                                    slds-button_icon
+                                                    slds-button_icon-small
+                                                    slds-float_right
+                                                    nohover
+                                                    nonactive
+                                                "
+                                                title="Delete dialog"
+                                                onclick={deleteHandle}
+                                            >
+                                                <svg
+                                                    width="12px"
+                                                    height="16px"
+                                                    viewBox="0 0 12 16"
+                                                    class=""
+                                                    aria-hidden="true"
+                                                >
+                                                    <g
+                                                        id="Page-3"
+                                                        stroke="none"
+                                                        stroke-width="1"
+                                                        fill="none"
+                                                        fill-rule="evenodd"
+                                                    >
+                                                        <g
+                                                            id="delete_forever---material"
+                                                            transform="translate(0.180000, 0.500000)"
+                                                            fill="#555555"
+                                                            fill-rule="nonzero"
+                                                        >
+                                                            <path
+                                                                d="M8.76,0.82 L11.64,0.82 L11.64,2.5 L0,2.5 L0,0.82 L2.9,0.82 L3.76,0 L7.9,0 L8.76,0.82 Z M2.86,7.38 L4.64,9.18 L2.9,10.94 L4.06,12.1 L5.82,10.36 L7.58,12.1 L8.76,10.94 L7,9.18 L8.76,7.38 L7.58,6.2 L5.82,8 L4.06,6.2 L2.86,7.38 Z M0.82,13.32 L0.82,3.32 L10.82,3.32 L10.82,13.32 C10.82,13.7733333 10.6533333,14.1666667 10.32,14.5 C9.98666667,14.8333333 9.59333333,15 9.14,15 L2.5,15 C2.04666667,15 1.65333333,14.8333333 1.32,14.5 C0.986666667,14.1666667 0.82,13.7733333 0.82,13.32 Z"
+                                                                id=""
+                                                            ></path>
+                                                        </g>
+                                                    </g>
+                                                </svg>
+                                                <span
+                                                    class="slds-assistive-text"
+                                                    >delete</span
+                                                >
+                                            </button>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </template>
+            </span>
+        </div>
+        <template if:true={showExpanded}>
+            <div role="group">
+                <template for:each={children} for:item="item">
+                    <template if:true={item.node.isLeaf}>
+                        <c-tree-item
+                            role="treeitem"
+                            data-key={item.node.key}
+                            key={item.node.key}
+                            node-key={item.node.key}
+                            aria-selected={item.selected}
+                            aria-level={item.node.level}
+                            aria-disabled={item.node.isDisabled}
+                            label={item.node.label}
+                            href={item.node.href}
+                            metatext={item.node.metatext}
+                            node-ref={item.node.nodeRef}
+                            is-expanded={item.node.isExpanded}
+                            is-disabled={item.node.isDisabled}
+                            focused-child={item.node.focusedChild}
+                            nodename={item.node.name}
+                            is-leaf={item.node.isLeaf}
+                            child-items={item.node.children}
+                        >
+                        </c-tree-item>
+                    </template>
+                    <template if:false={item.node.isLeaf}>
+                        <c-tree-item
+                            role="treeitem"
+                            data-key={item.node.key}
+                            key={item.node.key}
+                            node-key={item.node.key}
+                            aria-selected={item.selected}
+                            aria-level={item.node.level}
+                            aria-disabled={item.node.isDisabled}
+                            label={item.node.label}
+                            href={item.node.href}
+                            metatext={item.node.metatext}
+                            node-ref={item.node.nodeRef}
+                            is-expanded={item.node.isExpanded}
+                            is-disabled={item.node.isDisabled}
+                            focused-child={item.node.focusedChild}
+                            nodename={item.node.name}
+                            is-leaf={item.node.isLeaf}
+                            child-items={item.node.children}
+                            aria-label={item.node.label}
+                            aria-expanded={item.node.strexpanded}
+                        >
+                        </c-tree-item>
+                    </template>
+                </template>
+            </div>
+        </template>
+    </template>
+</template>

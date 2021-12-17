@@ -25,13 +25,7 @@
         title="Simple bar chart with slotted Legend component"
     >
         <c-chart-legend
-            slot="legend"
-            legend={legend_data}
-            lvalue={legend_value}
-        ></c-chart-legend>
-    </c-bar-chart>
-    <c-bar-chart
-        graph-data={barGraph1.graphData}
+            slot="legendhttps://github.com/salesforce/base-components-recipesraph1.graphData}
         legend-selected={barGraph1.legend_selected}
         x-axis-data={barGraph1.x_axis_data}
     >
@@ -107,31 +101,35 @@
     ></c-gauge-chart>
     <c-slide-date-grid rows={slidedate1.data}></c-slide-date-grid>
     <c-loan-management-home></c-loan-management-home>
+
+    <c-added-features>
+      <div slot="std">
+        <div>
+          <h4>Some Standard feature that needs to be hidden, if the user is a CAMS user.</h4>
+        </div>
+      </div>
+      <div slot="cams">
+        <div>
+          <h4>Some CAMS feature that in addition to, or replacement feature (related to above)</h4>
+          <c-details-table tabledata={servicehistorydata.data} columns={servicehistorydata.columns}
+            oneditrow={servicehistorydata.onEditRow}></c-details-table>
+  
+        </div>
+      </div>
+      <div slot="selfintel">
+        <br />
+        <br />
+        <div>
+          <h4>Some component that will define its own capabilities depending on the user.</h4>
+          <c-demo-some-self-intel-comp></c-demo-some-self-intel-comp>
+        </div>
+      </div>
+    </c-added-features>
+
   -->
 
-  <c-added-features>
-    <div slot="std">
-      <div>
-        <h4>Some Standard feature that needs to be hidden, if the user is a CAMS user.</h4>
-      </div>
-    </div>
-    <div slot="cams">
-      <div>
-        <h4>Some CAMS feature that in addition to, or replacement feature (related to above)</h4>
-        <c-details-table tabledata={servicehistorydata.data} columns={servicehistorydata.columns}
-          oneditrow={servicehistorydata.onEditRow}></c-details-table>
-
-      </div>
-    </div>
-    <div slot="selfintel">
-      <br />
-      <br />
-      <div>
-        <h4>Some component that will define its own capabilities depending on the user.</h4>
-        <c-demo-some-self-intel-comp></c-demo-some-self-intel-comp>
-      </div>
-    </div>
-  </c-added-features>
+  <c-tree onsave={tree_items.handleSave} items={tree_items.data} timestamp={tree_items.timestamp}></c-tree>
+  <!-- <lightning-tree items={tree_items.data} header="Roles"></lightning-tree> -->
 
   <!-- <c-e-asset-details></c-e-asset-details> -->
 </template>

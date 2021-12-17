@@ -1,0 +1,36 @@
+<template>
+    <div style="max-width: 620px" class="slds-modal__container">
+        <div class={dcxModalClass}>
+            <c-primitive-icon
+                class="primicon"
+                icon-name="utility:close"
+                size="x-small"
+                onclick={closeFn}
+            ></c-primitive-icon>
+            <h3
+                style="display: inline"
+                class="uc slds-text-heading_medium slds-hyphenate header-string"
+            >
+                {headtext}
+            </h3>
+        </div>
+        <div class="slds-modal__content slds-p-around_medium">
+            <slot></slot>
+        </div>
+        <footer class="slds-modal__footer">
+            <slot name="footer">
+                <div
+                    class="slds-p-vertical_large"
+                    style="display: flex; justify-content: flex-end"
+                >
+                    <div>
+                        <c-dcx_button
+                            label={buttonlabel}
+                            onclick={closeFn}
+                        ></c-dcx_button>
+                    </div>
+                </div>
+            </slot>
+        </footer>
+    </div>
+</template>

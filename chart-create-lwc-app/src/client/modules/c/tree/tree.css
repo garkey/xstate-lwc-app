@@ -1,0 +1,6 @@
+.slds-modal__content {
+    flex-direction: column;
+    display: flex;
+    align-items: baseline;
+    box-shadow: none;
+}

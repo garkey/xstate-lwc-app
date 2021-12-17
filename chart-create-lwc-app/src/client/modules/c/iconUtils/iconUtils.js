@@ -30,19 +30,16 @@ const tokenNameMapRtl = Object.assign(Object.create(null), {
 });
 
 const defaultTokenValueMap = Object.assign(Object.create(null), {
-    'lightning.actionSprite': '/assets/icons/action-sprite/svg/symbols.svg',
-    'lightning.actionSpriteRtl': '/assets/icons/action-sprite/svg/symbols.svg',
-    'lightning.customSprite': '/assets/icons/custom-sprite/svg/symbols.svg',
-    'lightning.customSpriteRtl': '/assets/icons/custom-sprite/svg/symbols.svg',
-    'lightning.doctypeSprite': '/assets/icons/doctype-sprite/svg/symbols.svg',
-    'lightning.doctypeSpriteRtl':
-        '/assets/icons/doctype-sprite/svg/symbols.svg',
-    'lightning.standardSprite': '/assets/icons/standard-sprite/svg/symbols.svg',
-    'lightning.standardSpriteRtl':
-        '/assets/icons/standard-sprite/svg/symbols.svg',
-    'lightning.utilitySprite': '/assets/icons/utility-sprite/svg/symbols.svg',
-    'lightning.utilitySpriteRtl':
-        '/assets/icons/utility-sprite/svg/symbols.svg',
+    'lightning.actionSprite': 'resources/assets/icons/action-sprite/svg/symbols.svg',
+    'lightning.actionSpriteRtl': 'resources/assets/icons/action-sprite/svg/symbols.svg',
+    'lightning.customSprite': 'resources/assets/icons/custom-sprite/svg/symbols.svg',
+    'lightning.customSpriteRtl': 'resources/assets/icons/custom-sprite/svg/symbols.svg',
+    'lightning.doctypeSprite': 'resources/assets/icons/doctype-sprite/svg/symbols.svg',
+    'lightning.doctypeSpriteRtl': 'resources/assets/icons/doctype-sprite/svg/symbols.svg',
+    'lightning.standardSprite': 'resources/assets/icons/standard-sprite/svg/symbols.svg',
+    'lightning.standardSpriteRtl': 'resources/assets/icons/standard-sprite/svg/symbols.svg',
+    'lightning.utilitySprite': 'resources/assets/icons/utility-sprite/svg/symbols.svg',
+    'lightning.utilitySpriteRtl': 'resources/assets/icons/utility-sprite/svg/symbols.svg',
 });
 
 const getDefaultBaseIconPath = (category, nameMap) =>
@@ -93,4 +90,5 @@ export const computeSldsClass = (iconName) => {
     return '';
 };
 
-export { polyfill } from './polyfill';
+export { polyfill }
+from './polyfill';

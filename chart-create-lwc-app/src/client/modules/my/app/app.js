@@ -10,8 +10,7 @@ import DCX_AssetGrid_AssetActions_SH_Received_Condition from '@salesforce/label/
 import DCX_Asset_Service_Returned_Condition from '@salesforce/label/c.DCX_Asset_Service_Returned_Condition';
 import DCX_AuthHome_CalibrationDue from '@salesforce/label/c.DCX_AuthHome_CalibrationDue';
 import DCX_Asset_Service_Returned_Documents from '@salesforce/label/c.DCX_Asset_Service_Returned_Documents';
-
-console.log('labelRequired', labelRequired);
+import { getOrgData, postOrgData, templocdata } from './tempdata';
 
 const x_axis_points = ['fee', 'fi', 'fo', 'fum'];
 const barGraph1_data = [
@@ -958,11 +957,30 @@ export default class App extends LightningElement {
                 label: DCX_Asset_Service_Returned_Documents,
                 fieldName: 'download',
                 sortable: true,
-                type: "download",
+                type: 'download',
             },
         ],
         onEditRow: (e) => {
             console.log('onEditRow.e', e);
+        },
+    };
+
+    tree_items = {
+        data: getOrgData(),
+        handleSave: (e) => {
+            if (e.detail.nodeRef.path) {
+                const newtree = postOrgData({
+                    path: e.detail.nodeRef.path,
+                    type: e.detail.type,
+                    value: e.detail.value,
+                });
+                this.tree_items = {
+                    ...this.tree_items,
+                    data: newtree,
+                    timestamp: Date.now(),
+                };
+                this.template.querySelector('c-tree').items = this.tree_items.data;
+            }
         },
     };
 
