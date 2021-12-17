@@ -5,6 +5,7 @@
   For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  -->
 <template>
+    <div>{timestamp}</div>
     <div class="slds-tree_container">
         <c-tree-item
             if:true={hasChildren}
@@ -17,7 +18,6 @@
             focused-child={focusedChild}
             onneweventclick={newClickMe}
             onediteventclick={editClickMe}
-            ondeleteeventclick={deleteClickMe}
             ontoolboxeventclick={manageSelections}
         >
         </c-tree-item>
@@ -46,13 +46,13 @@
                         <c-dcx_textinput
                             shaded
                             type="text"
-                            data-id="newinput"
+                            data-id="new"
                             class="LocationName"
                             label={label.LocationName}
                             name="LocationName"
                             value={treeevent.newinput}
                             required
-                            onchange={newinputChange}
+                            onchange={inputChange}
                             maxlength="40"
                         >
                         </c-dcx_textinput>
@@ -67,20 +67,19 @@
                         <c-dcx_textinput
                             shaded
                             type="text"
-                            data-id="editinput"
+                            data-id="edit"
                             class="LocationName"
                             label={label.LocationName}
                             name="LocationName"
                             value={treeevent.editinput}
                             required
-                            onchange={editinputChange}
+                            onchange={inputChange}
                             maxlength="40"
                         >
                         </c-dcx_textinput>
                     </div>
                 </template>
-                <template if:true={isDeleteModalOpen}>
-                    <!-- Modal/Popup Box LWC body starts here -->
+                <!-- <template if:true={isDeleteModalOpen}>
                     <div
                         class="slds-modal__content slds-p-around_medium"
                         id="modal-content-id-3"
@@ -94,12 +93,12 @@
                             name="LocationName"
                             value={treeevent.deleteinput}
                             required
-                            onchange={deleteinputChange}
+                            onchange={inputChange}
                             maxlength="40"
                         >
                         </c-dcx_textinput>
                     </div>
-                </template>
+                </template> -->
                 <!-- Modal/Popup Box LWC footer starts here -->
                 <div class="slds-p-top_large btncont" slot="footer">
                     <c-dcx_button

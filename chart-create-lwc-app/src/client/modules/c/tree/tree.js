@@ -25,6 +25,7 @@ export default class cTree extends LightningElement {
     @track isDeleteModalOpen = false;
     @track btnLab = 'Save';
     @track treeHeadMod = '';
+    @track nodeRef;
 
     closeLast;
     resetHover;
@@ -65,11 +66,14 @@ export default class cTree extends LightningElement {
         );
     }
 
+    @api timestamp;
     @api get items() {
         return this._items || [];
     }
 
     set items(value) {
+        console.log('value', JSON.parse(JSON.stringify(value)));
+
         this.normalizeData(value);
     }
 
@@ -180,6 +184,7 @@ export default class cTree extends LightningElement {
 
     disconnectedCallback() {
         this.hasDetachedListeners = true;
+        window.removeEventListener('click', this.closeOnPageClick);
     }
 
     handleClick(event) {
@@ -399,14 +404,16 @@ export default class cTree extends LightningElement {
         return this._items && this._items.length > 0;
     }
 
-    newClickMe() {
+    newClickMe(e) {
+        this.nodeRef = e.detail.nodeRef;
         this.resetModal();
         this.isTreeModalOpen = true;
         this.isNewModalOpen = true;
         this.treeHeadMod = 'Add Location / North America';
     }
 
-    editClickMe() {
+    editClickMe(e) {
+        this.nodeRef = e.detail.nodeRef;
         this.resetModal();
         this.isTreeModalOpen = true;
         this.isEditModalOpen = true;
@@ -425,7 +432,6 @@ export default class cTree extends LightningElement {
         this.isNewModalOpen = false;
         this.isEditModalOpen = false;
         this.isDeleteModalOpen = false;
-        console.log('reset', this.isTreeModalOpen);
     }
 
     submitDetails = () => {
@@ -437,23 +443,21 @@ export default class cTree extends LightningElement {
     };
 
     @api treeevent = {};
-    newinputChange = (e) => {
-        this.treeevent.newinput = e.target.value;
-        console.log('newinput', this.treeevent.newinput);
-    };
-
-    editinputChange = (e) => {
-        this.treeevent.editinput = e.target.value;
-        console.log('editinput', this.treeevent.editinput);
-    };
-
-    deleteinputChange = (e) => {
-        this.treeevent.deleteinput = e.target.value;
-        console.log('deleteinput', this.treeevent.deleteinput);
+    inputChange = (e) => {
+        const { id } = e.target.dataset;
+        this.treeevent.type = id;
+        this.treeevent.value = e.target.value;
     };
 
     saveInfoClick() {
-        console.log('saveInfoClick ', this.treeevent);
+        this.dispatchEvent(
+            new CustomEvent('save', {
+                detail: {
+                    ...this.treeevent,
+                    nodeRef: this.nodeRef,
+                },
+            }),
+        );
     }
 
     toolBoxevent = (event) => {
@@ -482,13 +486,9 @@ export default class cTree extends LightningElement {
         }
     }
 
-    disconnectedCallback() {
-        window.removeEventListener('click', function () {});
-        window.removeEventListener('keyup', function () {});
-        window.removeEventListener('click', this.closeOnPageClick);
-    }
-
     connectedCallback() {
+        console.log('this.items', this.items);
+
         window.addEventListener('click', this.closeOnPageClick);
     }
 
@@ -506,10 +506,8 @@ export default class cTree extends LightningElement {
     }
 
     handleTooltip(event) {
-        console.log('handleTooltip', event);
         const itemKey = event.detail.key;
         const item = this.treedata.getItem(event.detail.key);
-        console.log('item', item);
         // this.callbackMap[itemKey] = {
         //     focusCallback: event.detail.focusCallback,
         //     unfocusCallback: event.detail.unfocusCallback

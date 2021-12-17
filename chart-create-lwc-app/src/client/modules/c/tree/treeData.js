@@ -60,6 +60,9 @@ export class TreeData {
             metatext: item.metatext,
             href: item.href,
             disabled: item.disabled,
+            ltreePath: item.ltreePath,
+            path: item.path,
+            reversePath: item.reversePath,
             items: [],
         };
 

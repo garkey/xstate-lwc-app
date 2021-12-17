@@ -30,7 +30,6 @@
 
 .slds-popover[c-treeItem_treeItem] {
     box-shadow: black 4px 3px 8px;
-    width: 87px;
     margin-left: 7px;
 }
 
@@ -126,4 +125,7 @@ button.nohover:hover {
     font-weight: 600;
     color: #225792;
     text-decoration: none !important;
+}
+.slds-popover {
+  width: unset;
 }

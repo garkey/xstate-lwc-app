@@ -128,7 +128,7 @@
 
   -->
 
-  <c-tree onadditem={tree_items.handleAdd} items={tree_items.data}></c-tree>
+  <c-tree onsave={tree_items.handleSave} items={tree_items.data} timestamp={tree_items.timestamp}></c-tree>
   <!-- <lightning-tree items={tree_items.data} header="Roles"></lightning-tree> -->
 
   <!-- <c-e-asset-details></c-e-asset-details> -->

@@ -261,6 +261,9 @@ export default class cTreeItem extends LightningElement {
             bubbles: true,
             composed: true,
             cancelable: true,
+            detail: {
+                nodeRef: this.nodeRef,
+            },
         });
 
         this.dispatchEvent(newevent);
@@ -271,6 +274,9 @@ export default class cTreeItem extends LightningElement {
             bubbles: true,
             composed: true,
             cancelable: true,
+            detail: {
+                nodeRef: this.nodeRef,
+            },
         });
         this.dispatchEvent(editevent);
     }

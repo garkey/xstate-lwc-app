@@ -10,7 +10,7 @@ import DCX_AssetGrid_AssetActions_SH_Received_Condition from '@salesforce/label/
 import DCX_Asset_Service_Returned_Condition from '@salesforce/label/c.DCX_Asset_Service_Returned_Condition';
 import DCX_AuthHome_CalibrationDue from '@salesforce/label/c.DCX_AuthHome_CalibrationDue';
 import DCX_Asset_Service_Returned_Documents from '@salesforce/label/c.DCX_Asset_Service_Returned_Documents';
-import { temporgdata, templocdata } from './tempdata';
+import { getOrgData, postOrgData, templocdata } from './tempdata';
 
 const x_axis_points = ['fee', 'fi', 'fo', 'fum'];
 const barGraph1_data = [
@@ -966,9 +966,21 @@ export default class App extends LightningElement {
     };
 
     tree_items = {
-        data: temporgdata,
-        handleAdd: (e) => {
-            console.log('e', e);
+        data: getOrgData(),
+        handleSave: (e) => {
+            if (e.detail.nodeRef.path) {
+                const newtree = postOrgData({
+                    path: e.detail.nodeRef.path,
+                    type: e.detail.type,
+                    value: e.detail.value,
+                });
+                this.tree_items = {
+                    ...this.tree_items,
+                    data: newtree,
+                    timestamp: Date.now(),
+                };
+                this.template.querySelector('c-tree').items = this.tree_items.data;
+            }
         },
     };
 
@@ -1060,8 +1072,6 @@ export default class App extends LightningElement {
                 console.error('Do you need to run the server at mock/server?');
                 throw err;
             });
-
-        console.log('data', data);
 
         const keyrow = data[0];
 
