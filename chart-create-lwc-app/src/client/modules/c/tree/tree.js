@@ -66,14 +66,11 @@ export default class cTree extends LightningElement {
         );
     }
 
-    @api timestamp;
     @api get items() {
         return this._items || [];
     }
 
     set items(value) {
-        console.log('value', JSON.parse(JSON.stringify(value)));
-
         this.normalizeData(value);
     }
 

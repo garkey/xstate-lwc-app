@@ -127,5 +127,5 @@ button.nohover:hover {
     text-decoration: none !important;
 }
 .slds-popover {
-  width: unset;
+    width: unset;
 }
