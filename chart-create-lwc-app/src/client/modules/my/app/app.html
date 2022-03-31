@@ -1,16 +1,16 @@
 <template>
-  <!--     <div>
+    <c-details-table
+        tabledata={servicehistorydata.data}
+        columns={servicehistorydata.columns}
+        oneditrow={servicehistorydata.onEditRow}
+    ></c-details-table>
+
+    <!--     <div>
         <c-dcx_button label="default"> </c-dcx_button>
         <c-dcx_button label="default roundy" roundy> </c-dcx_button>
         <c-dcx_button label="go" dcxstate="go"> </c-dcx_button>
         <c-dcx_button label="go roundy" dcxstate="go" roundy> </c-dcx_button>
     </div>
-    <lightning-datatable
-        key-field="id"
-        data={datatable1.data}
-        columns={datatable1.columns}
-    >
-    </lightning-datatable>
     <c-bar-chart
         graph-data={barGraph1.graphData}
         legend-selected={barGraph1.legend_selected}
@@ -128,8 +128,8 @@
 
   -->
 
-  <c-tree onsave={tree_items.handleSave} items={tree_items.data}></c-tree>
-  <!-- <lightning-tree items={tree_items.data} header="Roles"></lightning-tree> -->
+    <!--   <c-tree onsave={tree_items.handleSave} items={tree_items.data}></c-tree> -->
+    <!-- <lightning-tree items={tree_items.data} header="Roles"></lightning-tree> -->
 
-  <!-- <c-e-asset-details></c-e-asset-details> -->
+    <!-- <c-e-asset-details></c-e-asset-details> -->
 </template>
