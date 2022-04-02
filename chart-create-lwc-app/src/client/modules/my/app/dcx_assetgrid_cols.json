@@ -1,0 +1,397 @@
+[
+  {
+    "hozAlign": "center",
+    "headerSort": false,
+    "download": false,
+    "minWidth": 90
+  },
+  {
+    "title": "KeysightCare Coverage",
+    "field": "keysight_care_coverage",
+    "headerFilter": "select",
+    "editorParams": {
+      "search": true
+    },
+    "maxWidth": 280,
+    "minWidth": 250,
+    "variableHeight": true,
+    "tooltip": true
+  },
+  {
+    "title": "Product",
+    "field": "product",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "maxWidth": 280,
+    "minWidth": 250
+  },
+  {
+    "title": "Serial Number",
+    "field": "serial_no",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Installed Licenses",
+    "field": "installed_licenses",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "formatter": "textarea",
+    "maxWidth": 250,
+    "tooltip": true
+  },
+  {
+    "title": "Host ID",
+    "field": "host_id",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "License Type",
+    "field": "license_type",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Calibration Due Date",
+    "field": "cal_due_date",
+    "headerFilterParams": {
+      "field": "cal_due_date"
+    },
+    "editorParams": {
+      "search": true
+    }
+  },
+  {
+    "title": "Asset Number",
+    "field": "cust_asset_no",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Asset Type",
+    "field": "asset_type",
+    "headerFilter": "select",
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Project Name",
+    "field": "project_name",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Installed Options",
+    "field": "option_no",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "KeysightCare Eligible",
+    "field": "keysight_care_eligible",
+    "headerFilter": "select",
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Product Support Status",
+    "field": "support_status_text",
+    "headerFilter": "select",
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "KeysightCare Expiration Date",
+    "field": "keysight_care_expiration",
+    "headerFilterParams": {
+      "field": "keysight_care_expiration"
+    },
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Calibration Type",
+    "field": "last_cal_type",
+    "headerFilter": "select",
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Last Calibration Date",
+    "field": "last_cal_date",
+    "headerFilterParams": {
+      "field": "last_cal_date"
+    },
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Calibration Certificate Number",
+    "field": "last_certificate_no",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Factory Calibration Interval",
+    "field": "factory_cal_interval",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Custom Calibration Interval",
+    "field": "custom_cal_int",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Last Reported Condition",
+    "field": "last_cal_result",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Asset Lifecycle Status",
+    "field": "asset_status",
+    "headerFilter": "select",
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "End of Support Life",
+    "field": "eos_date",
+    "headerFilterParams": {
+      "field": "eos_date"
+    },
+    "editorParams": {
+      "search": true
+    },
+    "headerSort": false,
+    "tooltip": true
+  },
+  {
+    "title": "Extended Service Eligible",
+    "field": "extended_service_period",
+    "headerFilter": "select",
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Sales Order Number",
+    "field": "sales_order_no",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Invoice Number",
+    "field": "invoice_no",
+    "headerFilter": false,
+    "headerSort": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Order Date",
+    "field": "order_date",
+    "headerFilter": false,
+    "headerSort": false,
+    "headerFilterParams": {
+      "field": "order_date"
+    },
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Received Date",
+    "field": "receive_date",
+    "headerFilter": false,
+    "headerSort": false,
+    "headerFilterParams": {
+      "field": "receive_date"
+    },
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Organization",
+    "field": "organization",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Site Location",
+    "field": "location",
+    "headerFilter": false,
+    "headerSort": false,
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "maxWidth": 200,
+    "tooltip": true
+  },
+  {
+    "title": "User",
+    "field": "user",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Model Number",
+    "field": "manuf_model_no",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Description",
+    "field": "description",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Manufacturer",
+    "field": "manufacturer",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Purchase Order Number",
+    "field": "purchase_order_no",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Calibration Required",
+    "field": "no_cal_required",
+    "headerFilter": "select",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": false
+  },
+  {
+    "title": "Alternate Description",
+    "field": "alt_description",
+    "headerFilter": false,
+    "headerSort": false,
+    "tooltip": true
+  },
+  {
+    "title": "Customer Location",
+    "field": "group_location",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Shipped Date",
+    "field": "ship_date",
+    "headerFilterParams": {
+      "field": "ship_date"
+    },
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  }
+]

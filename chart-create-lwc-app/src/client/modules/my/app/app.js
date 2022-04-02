@@ -33,6 +33,23 @@ const barGraph1_data = [
     };
 });
 
+const urlpToESQuery = {
+    q: 'query',
+    s: 'sorts',
+};
+
+const pmodels = {
+    query: (field, value) => ({
+        globalSearch: false,
+        search: value,
+        searchFields: Array.isArray(field) ? field : [field],
+    }),
+    sorts: (field, value) => ({
+        field,
+        order: value,
+    }),
+};
+
 export default class App extends LightningElement {
     isLoading = false;
     dzChecked = false;
@@ -905,7 +922,7 @@ export default class App extends LightningElement {
                     },
                 ],
             },
-        ].map((e, i) => ({ ...e, editable: i % 2 })),
+        ],
         columns: [
             {
                 type: 'editinform',
@@ -959,7 +976,7 @@ export default class App extends LightningElement {
                 sortable: true,
                 type: 'download',
             },
-        ],
+        ].map((e, i) => ({ ...e, editable: i % 2, hideDefaultActions: true })),
         onEditRow: (e) => {
             console.log('onEditRow.e', e);
         },
@@ -979,12 +996,133 @@ export default class App extends LightningElement {
                     data: newtree,
                     timestamp: Date.now(),
                 };
-                this.template.querySelector('c-tree').items = this.tree_items.data;
+                this.template.querySelector('c-tree').items =
+                    this.tree_items.data;
             }
         },
     };
 
+    cams_params = {
+        pageNumber: 1,
+        pageSize: 100,
+        filters: [],
+        facets: [],
+        query: [],
+        sorts: [],
+    };
+
+    /* 
+      for test cases:
+
+      http://localhost:3001/?f.serialNumber=1234&f.model_name=11&s.model_name=dsc&global=true
+
+      {
+        "q": {
+          "serialNumber": "1234",
+          "model_name": "11"
+        },
+        "s": {
+          "model_name": "dsc"
+        },
+        "global": "true"
+      }
+      
+    */
+
+    parseUrlSearch() {
+        const search = window.location.search.substring(1);
+        const params = Array.from(new URLSearchParams(search).entries());
+        return params.reduce((acc, val) => {
+            const [key, v] = val;
+            const [c, k] = key.split('.');
+            if (k) {
+                return { ...acc, [c]: { ...acc[c], [k]: v } };
+            }
+            return { ...acc, [c]: v };
+        }, {});
+    }
+    /* 
+    
+    {
+      "pageNumber": 1,
+      "pageSize": 100,
+      "filters": [],
+      "facets": [],
+      "query": [
+        {
+          "globalSearch": false,
+          "search": "163",
+          "searchFields": [
+            "serialNumber"
+          ]
+        },
+        {
+          "globalSearch": false,
+          "search": "basi",
+          "searchFields": [
+            "assignedLocation_path"
+          ]
+        }
+      ],
+      "sorts": [
+        {
+          "field": "model_number.keyword",
+          "order": "ASC"
+        },
+        {
+          "field": "description.keyword",
+          "order": "ASC"
+        },
+        {
+          "field": "model_manufacturer_name.keyword",
+          "order": "ASC"
+        }
+      ]
+    }
+    
+    */
+
+    convertToESParams(conf) {
+        console.log('urlpToESQuery', urlpToESQuery);
+        console.log('conf', conf);
+        const p = Object.entries(conf);
+        console.log('p', p);
+
+        return Object.fromEntries(
+            p.map(([c, keyv]) => {
+                const h = urlpToESQuery[c];
+                const retval = Object.entries(keyv).map((g) => {
+                    const t = pmodels[h];
+                    return t(g[0], g[1]);
+                });
+                return [h, retval];
+            }),
+        );
+    }
+    /* 
+      u is key-val object w/ watching this.cams_params properties, ie. 
+    */
+
+    appendParams(currparams, { filters, facets, query, sorts }) {
+        const u = { filters, facets, query, sorts };
+        const f = Object.entries(u).map(([k, v]) => {
+            return v ? [k, currparams[k].concat(v)] : [k, currparams[k]];
+        });
+        return Object.fromEntries(f);
+    }
+
     connectedCallback() {
+        const d = this.parseUrlSearch();
+
+        console.log(JSON.stringify(d, null, 2));
+
+        const e = this.convertToESParams(d);
+
+        console.log('e', e);
+
+        this.cams_params = this.appendParams(this.cams_params, e);
+        console.log('this.cams_params', this.cams_params);
+
         if (!this.datatable1.initialized) {
             this.fetchMockDatatable();
         }

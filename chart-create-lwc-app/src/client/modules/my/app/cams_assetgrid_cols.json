@@ -1,0 +1,220 @@
+[
+  {
+    "hozAlign": "center",
+    "headerSort": false,
+    "download": false,
+    "minWidth": 90
+  },
+  {
+    "title": "Product",
+    "field": "_product",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "maxWidth": 280,
+    "minWidth": 250
+  },
+  {
+    "title": "Serial Number",
+    "field": "serialNumber",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Calibration Due Date",
+    "field": "calibrationDueDate",
+    "headerFilterParams": {
+      "field": "cal_due_date"
+    },
+    "editorParams": {
+      "search": true
+    }
+  },
+  {
+    "title": "Asset Number",
+    "field": "customerAssetNumber",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Asset Type",
+    "field": "equipmentType",
+    "headerFilter": "select",
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Calibration Type",
+    "field": "calibrationType",
+    "headerFilter": "select",
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Last Calibration Date",
+    "field": "lastCalibrationDate",
+    "headerFilterParams": {
+      "field": "last_cal_date"
+    },
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "User",
+    "field": "operatorUser_fullName",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Model Number",
+    "field": "model_name",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Description",
+    "field": "description",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Manufacturer",
+    "field": "model_manufacturer_name",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Shipped Date",
+    "field": "workflowState_SHIPPED_date",
+    "headerFilterParams": {
+      "field": "ship_date"
+    },
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "editorParams": {
+      "search": true
+    },
+    "field": "assignedLocation_path",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "title": "Assigned Location",
+    "tooltip": true
+  },
+  {
+    "editorParams": {
+      "search": true
+    },
+    "field": "assignedOrganization_path",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "title": "Assigned Organization",
+    "tooltip": true
+  },
+  {
+    "editorParams": {
+      "search": true
+    },
+    "field": "assignedProject_path",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "title": "Assigned Project",
+    "tooltip": true
+  },
+  {
+    "title": "Asset Lifecycle Status",
+    "field": "currentWorkflowState_state",
+    "headerFilter": "select",
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Last Calibration Certificate Number",
+    "field": "lastCalibrationCertificateNumber",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Received Date",
+    "field": "workflowState_ARRIVED_date",
+    "headerFilterParams": {
+      "field": "workflowState_ARRIVED_date"
+    },
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Order Date",
+    "field": "workflowState_ORDERED_date",
+    "headerFilterParams": {
+      "field": "workflowState_ORDERED_date"
+    },
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Factory Calibration Interval",
+    "field": "model_oemCalibrationIntervalAndUnits",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  },
+  {
+    "title": "Custom Calibration Interval",
+    "field": "calibrationIntervalAndUnits",
+    "headerFilter": "input",
+    "headerFilterLiveFilter": false,
+    "editorParams": {
+      "search": true
+    },
+    "tooltip": true
+  }
+]

@@ -11,13 +11,10 @@ export default class DcxDataTable extends LightningDatatable {
     static customTypes = {
         editinform: {
             template: editButtonTemplate,
-            // editTemplate:
-            standardCellLayout: false,
             typeAttributes: ['rowid'],
         },
         download: {
             template: downloadCellTemplate,
-            standardCellLayout: false,
         },
     };
 
