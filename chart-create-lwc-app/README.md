@@ -4,6 +4,9 @@ This is a generated application from create-lwc-app. It has then been outfitted 
 
 `yarn watch`
 
+- also runs mock server on localhost:8081
+  - see mock/server/README.md
+
 ## For Focused View Development
 
 To only show the root level elements for focused development view purposes, you can query the root level element display against 'none'.

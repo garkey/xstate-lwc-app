@@ -18,6 +18,8 @@ window.echarts = lib;
 }
 
 */
+import camsassets from './cams_asset_grid.json';
+
 export function loadScript(path, lib) {
     if (window) {
         if (
@@ -30,4 +32,11 @@ export function loadScript(path, lib) {
         }
     }
     return Promise.resolve();
+}
+
+export function camsElasticSearchData(args) {
+    // console.log('camsassets', camsassets);
+    console.log('args.searchString', args.searchString);
+
+    return Promise.resolve(JSON.stringify(camsassets));
 }

@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import { color_swatch } from 'c/utils';
+import { color_swatch, derivedCamsFields } from 'c/utils';
 import qs from 'qs';
 import labelRequired from '@salesforce/label/c.lightning_LightningControl_required';
 
@@ -11,6 +11,8 @@ import DCX_Asset_Service_Returned_Condition from '@salesforce/label/c.DCX_Asset_
 import DCX_AuthHome_CalibrationDue from '@salesforce/label/c.DCX_AuthHome_CalibrationDue';
 import DCX_Asset_Service_Returned_Documents from '@salesforce/label/c.DCX_Asset_Service_Returned_Documents';
 import { getOrgData, postOrgData, templocdata } from './tempdata';
+
+import { camsElasticSearchData } from 'lightning/platformResourceLoader';
 
 const x_axis_points = ['fee', 'fi', 'fo', 'fum'];
 const barGraph1_data = [
@@ -37,6 +39,9 @@ const urlpToESQuery = {
     q: 'query',
     s: 'sorts',
 };
+const esQueryToUrlp = Object.fromEntries(
+    Object.entries(urlpToESQuery).reverse(),
+);
 
 const pmodels = {
     query: (field, value) => ({
@@ -48,6 +53,28 @@ const pmodels = {
         field,
         order: value,
     }),
+};
+
+const convertToESParams = (conf) => {
+    const p = Object.entries(conf);
+    // http://localhost:3001/?q.serialNumber=1234&q.model_name=11&s.model_name=asc&global=true
+    return Object.fromEntries(
+        p.map(([h, v]) => {
+            const r = Object.entries(v).map((g) => {
+                const t = pmodels[h];
+                return t && t(g[0], g[1]);
+            });
+            return r ? [h, r] : [];
+        }),
+    );
+};
+
+const appendES = (params, { filters, facets, query, sorts }) => {
+    const u = { filters, facets, query, sorts };
+    const f = Object.entries(u).map(([k, v]) => {
+        return v ? [k, params[k].concat(v)] : [k, params[k]];
+    });
+    return Object.fromEntries(f);
 };
 
 export default class App extends LightningElement {
@@ -1002,15 +1029,6 @@ export default class App extends LightningElement {
         },
     };
 
-    cams_params = {
-        pageNumber: 1,
-        pageSize: 100,
-        filters: [],
-        facets: [],
-        query: [],
-        sorts: [],
-    };
-
     /* 
       for test cases:
 
@@ -1082,46 +1100,122 @@ export default class App extends LightningElement {
     
     */
 
-    convertToESParams(conf) {
-        console.log('urlpToESQuery', urlpToESQuery);
-        console.log('conf', conf);
-        const p = Object.entries(conf);
-        console.log('p', p);
+    replaceParam(currparams, { filters, facets, query, sorts }) {
+        const u = { filters, facets, query, sorts };
 
-        return Object.fromEntries(
-            p.map(([c, keyv]) => {
-                const h = urlpToESQuery[c];
-                const retval = Object.entries(keyv).map((g) => {
-                    const t = pmodels[h];
-                    return t(g[0], g[1]);
-                });
-                return [h, retval];
-            }),
-        );
+        console.log('u', u);
     }
+
+    // this.updateUrlParams({ query: { serialNumber: 'fee' } });
+    //
+    updateUrlParams({ filters, facets, query, sorts }, push = true) {
+        console.log('esQueryToUrlp', esQueryToUrlp);
+
+        const u = { filters, facets, query, sorts };
+        console.log('u', u);
+
+        if (push) {
+            if (window.history.pushState) {
+                const url = new URL(window.location);
+                // url.searchParams.set('foo', 'bar');
+                //   //prevents browser from storing history with each change:
+                //   console.log('window.history.replaceState', window.history.replaceState)
+            }
+            console.log('push', push);
+        } else {
+            if (window.history.replaceState) {
+                const url = new URL(window.location);
+
+                // const s = [...Object.entries(query), ...Object.entries(sorts)];
+                // console.log('s', s)
+                console.log('url', url);
+
+                //prevents browser from storing history with each change:
+            }
+        }
+    }
+
+    clearAllParam() {
+        return {
+            pageNumber: 1,
+            pageSize: 100,
+            filters: [],
+            facets: [],
+            query: [],
+            sorts: [],
+        };
+    }
+
     /* 
-      u is key-val object w/ watching this.cams_params properties, ie. 
+      destructured arguments for limited key parameter names
     */
 
-    appendParams(currparams, { filters, facets, query, sorts }) {
-        const u = { filters, facets, query, sorts };
-        const f = Object.entries(u).map(([k, v]) => {
-            return v ? [k, currparams[k].concat(v)] : [k, currparams[k]];
+    assetdata = [];
+    assetcolumns = [
+        {
+            label: 'Serial Number',
+            fieldName: 'serialNumber',
+            sortedBy: 'serialNumber',
+            sortable: true,
+            // columnKey: 'srv_date'
+        },
+        {
+            label: 'Product',
+            fieldName: '_product',
+            sortedBy: '_product',
+            sortable: true,
+            // columnKey: 'srv_date'
+        },
+    ];
+    cams_params = {
+        pageNumber: 1,
+        pageSize: 100,
+        filters: [],
+        facets: [],
+        query: [],
+        sorts: [],
+    };
+    es_params = { ...this.cams_params };
+    totalResults = 0;
+
+    normalizeUrlParams(params) {
+        return Object.fromEntries(
+            Object.entries(params)
+                .filter(([k]) => urlpToESQuery[k])
+                .map(([k, v]) => {
+                    console.log('k', k);
+                    const h = urlpToESQuery[k];
+                    return [h, v];
+                }),
+        );
+    }
+
+    async queryES(params) {
+        const rawdata = await camsElasticSearchData({
+            viewName: 'assets',
+            searchString: JSON.stringify(params, null, 2),
+        }).then((d) => {
+            return JSON.parse(d);
         });
-        return Object.fromEntries(f);
+
+        this.assetdata = rawdata.response.results.map(derivedCamsFields);
+        this.totalResults = rawdata.response.totalResults;
+
+        console.log('this.assetdata', this.assetdata);
+        console.log('this.totalResults', this.totalResults);
     }
 
     connectedCallback() {
-        const d = this.parseUrlSearch();
-
-        console.log(JSON.stringify(d, null, 2));
-
-        const e = this.convertToESParams(d);
-
-        console.log('e', e);
-
-        this.cams_params = this.appendParams(this.cams_params, e);
+        this.cams_params = this.normalizeUrlParams(this.parseUrlSearch());
         console.log('this.cams_params', this.cams_params);
+        const esp = convertToESParams(this.cams_params);
+        this.es_params = appendES(this.es_params, esp);
+        console.log('this.es_params', this.es_params);
+
+        this.queryES(this.es_params);
+        // this.updateUrlParams( , false);
+
+        // end dev
 
         if (!this.datatable1.initialized) {
             this.fetchMockDatatable();
@@ -1197,8 +1291,10 @@ export default class App extends LightningElement {
         const q = Object.entries(params)
             .map((p) => `${p[0]}=${p[1]}`)
             .join('&');
+        const query = `http://localhost:8081/dcx_mock?${q}`;
+        console.log('query', query);
 
-        const data = await fetch(`http://localhost:8081/dcx_mock?${q}`)
+        const data = await fetch(query)
             .then((response) => {
                 if (response.ok) {
                     return response.json();

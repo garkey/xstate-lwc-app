@@ -1,13 +1,8 @@
 <template>
-    <c-dcx-data-table
-        key-field="id"
-        data={tabledata}
+    <c-dcx-table
+        tabledata={tabledata}
         columns={columns}
-        hide-checkbox-column={hidecheckboxcolumn}
-        default-sort-direction={defaultSortDirection}
-        sorted-direction={sortDirection}
-        sorted-by={sortedBy}
-        onsort={doSorting}
+        hide-checkbox-column={hidechecks}
     >
-    </c-dcx-data-table>
+    </c-dcx-table>
 </template>
