@@ -108,11 +108,9 @@
                                                 actions={def.actions}
                                             >
                                             </c-primitive-header-factory>
-                                            <div>
-                                                <input
-                                                    placeholder="query here"
-                                                />
-                                            </div>
+                                            <c-column-query-field
+                                                query-field={def.queryField}
+                                            ></c-column-query-field>
                                         </template>
                                     </th>
                                 </template>

@@ -1172,6 +1172,7 @@ export default class App extends LightningElement {
             fieldName: 'calibrationIntervalAndUnits',
             sortedBy: 'calibrationIntervalAndUnits',
             sortable: true,
+            queryField: 'calendar',
             // columnKey: 'srv_date'
         },
     ].map((e) => ({ ...e, hideDefaultActions: true }));
