@@ -1164,6 +1164,14 @@ export default class App extends LightningElement {
             fieldName: '_product',
             sortedBy: '_product',
             sortable: true,
+            type: '_product',
+            // columnKey: 'srv_date'
+        },
+        {
+            label: 'Calibration Interval',
+            fieldName: 'calibrationIntervalAndUnits',
+            sortedBy: 'calibrationIntervalAndUnits',
+            sortable: true,
             // columnKey: 'srv_date'
         },
     ];
@@ -1183,7 +1191,6 @@ export default class App extends LightningElement {
             Object.entries(params)
                 .filter(([k]) => urlpToESQuery[k])
                 .map(([k, v]) => {
-                    console.log('k', k);
                     const h = urlpToESQuery[k];
                     return [h, v];
                 }),
@@ -1217,18 +1224,18 @@ export default class App extends LightningElement {
 
         // end dev
 
-        if (!this.datatable1.initialized) {
-            this.fetchMockDatatable();
-        }
+        // if (!this.datatable1.initialized) {
+        //     this.fetchMockDatatable();
+        // }
 
-        // Do we really need this guard?
-        // https://stackoverflow.com/questions/54874212/can-a-custom-elements-connectedcallback-be-called-more-than-once-before-disc
-        if (!this.byFilter1.initialized) {
-            this.fetchMockBarChart({
-                filters: this.byFilter1.filter,
-                targetData: this.byFilter1.targetData,
-            });
-        }
+        // // Do we really need this guard?
+        // // https://stackoverflow.com/questions/54874212/can-a-custom-elements-connectedcallback-be-called-more-than-once-before-disc
+        // if (!this.byFilter1.initialized) {
+        //     this.fetchMockBarChart({
+        //         filters: this.byFilter1.filter,
+        //         targetData: this.byFilter1.targetData,
+        //     });
+        // }
     }
 
     renderedCallback() {

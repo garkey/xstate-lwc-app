@@ -13,7 +13,7 @@
         style="width: 100%; height: 0px"
     ></div>
     <div class="dt-outer-container" style="height: 100%; position: relative">
-        <lightning-primitive-datatable-iedit-panel
+        <c-primitive-datatable-iedit-panel
             data-iedit-panel="true"
             visible={state.inlineEdit.isPanelVisible}
             row-key-value={state.inlineEdit.rowKeyValue}
@@ -24,7 +24,7 @@
             number-of-selected-rows={state.inlineEdit.massEditSelectedRows}
             onieditfinished={handleInlineEditFinish}
             onmasscheckboxchange={handleMassCheckboxChange}
-        ></lightning-primitive-datatable-iedit-panel>
+        ></c-primitive-datatable-iedit-panel>
         <div
             class={computedTableContainerClass}
             onscroll={handleHorizontalScroll}
@@ -71,7 +71,7 @@
                                         key={def.colKeyValue}
                                     >
                                         <template if:true={def.fixedWidth}>
-                                            <lightning-primitive-header-factory
+                                            <c-primitive-header-factory
                                                 style={def.style}
                                                 def={def}
                                                 dt-context-id={privateDatatableId}
@@ -87,10 +87,10 @@
                                                 show-checkbox={showSelectAllCheckbox}
                                                 actions={def.actions}
                                             >
-                                            </lightning-primitive-header-factory>
+                                            </c-primitive-header-factory>
                                         </template>
                                         <template if:false={def.fixedWidth}>
-                                            <lightning-primitive-header-factory
+                                            <c-primitive-header-factory
                                                 style={def.style}
                                                 def={def}
                                                 dt-context-id={privateDatatableId}
@@ -107,7 +107,7 @@
                                                 resizestep={state.resizeStep}
                                                 actions={def.actions}
                                             >
-                                            </lightning-primitive-header-factory>
+                                            </c-primitive-header-factory>
                                             <div>
                                                 <input
                                                     placeholder="query here"
@@ -148,7 +148,7 @@
                                                 data-label={cell.dataLabel}
                                                 key={cell.colKeyValue}
                                             >
-                                                <lightning-primitive-cell-checkbox
+                                                <c-primitive-cell-checkbox
                                                     dt-context-id={privateDatatableId}
                                                     has-focus={cell.hasFocus}
                                                     data-label={cell.dataLabel}
@@ -160,7 +160,7 @@
                                                     is-selected={row.isSelected}
                                                     is-disabled={row.isDisabled}
                                                 >
-                                                </lightning-primitive-cell-checkbox>
+                                                </c-primitive-cell-checkbox>
                                             </td>
                                         </template>
                                         <template
@@ -176,7 +176,7 @@
                                                 data-label={cell.dataLabel}
                                                 key={cell.colKeyValue}
                                             >
-                                                <lightning-primitive-cell-factory
+                                                <c-primitive-cell-factory
                                                     types={privateTypes}
                                                     aria-selected={cell.ariaSelected}
                                                     data-label={cell.dataLabel}
@@ -212,7 +212,7 @@
                                                     type-attribute-21={cell.typeAttribute21}
                                                     type-attribute-22={cell.typeAttribute22}
                                                 >
-                                                </lightning-primitive-cell-factory>
+                                                </c-primitive-cell-factory>
                                             </th>
                                         </template>
                                         <template if:true={cell.isDataType}>
@@ -226,7 +226,7 @@
                                                 data-label={cell.dataLabel}
                                                 key={cell.colKeyValue}
                                             >
-                                                <lightning-primitive-cell-factory
+                                                <c-primitive-cell-factory
                                                     types={privateTypes}
                                                     aria-selected={cell.ariaSelected}
                                                     role="gridcell"
@@ -263,7 +263,7 @@
                                                     type-attribute-21={cell.typeAttribute21}
                                                     type-attribute-22={cell.typeAttribute22}
                                                 >
-                                                </lightning-primitive-cell-factory>
+                                                </c-primitive-cell-factory>
                                             </td>
                                         </template>
                                     </template>
@@ -275,7 +275,7 @@
                                         colspan={numberOfColumns}
                                         class="slds-is-relative"
                                     >
-                                        <lightning-primitive-datatable-loading-indicator></lightning-primitive-datatable-loading-indicator>
+                                        <c-primitive-datatable-loading-indicator></c-primitive-datatable-loading-indicator>
                                     </td>
                                 </tr>
                             </template>
@@ -285,11 +285,11 @@
             </div>
         </div>
         <template if:true={showStatusBar}>
-            <lightning-primitive-datatable-status-bar
+            <c-primitive-datatable-status-bar
                 error={tableError}
                 onprivatesave={handleInlineEditSave}
                 onprivatecancel={handleInlineEditCancel}
-            ></lightning-primitive-datatable-status-bar>
+            ></c-primitive-datatable-status-bar>
         </template>
     </div>
 </template>

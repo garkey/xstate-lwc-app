@@ -10,25 +10,12 @@ export const once = (fn) => {
     };
 };
 
-export const product_entity = [
-  'model_number',
-  'description',
-  'model_manufacturer_name',
-];
-
-export const calibrationInterval_entity = [
-  'calibrationInterval',
-  'calibrationIntervalUnits',
-];
-
-
 export const derivedCamsFields = (o) => ({
-  ...o,
-  _id: o._id || o.id,
-  id: o.id || o._id,
-  _product: product_entity.map((e) => o[e]).join('<br>'),
-  _calibrationInterval: calibrationInterval_entity.map((e) => o[e]).join(' '),
-  _model_oemCalibration: o.model_oemCalibrationInterval
-      ? `${o.model_oemCalibrationInterval} ${o.model_oemCalibrationIntervalUnits}`
-      : '',
+    ...o,
+    id: o.id || o._id,
+    _product: {
+        model_number: o.model_number,
+        description: o.description,
+        model_manufacturer_name: o.model_manufacturer_name,
+    },
 });

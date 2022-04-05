@@ -35,8 +35,7 @@ export function loadScript(path, lib) {
 }
 
 export function camsElasticSearchData(args) {
-    // console.log('camsassets', camsassets);
-    console.log('args.searchString', args.searchString);
+    console.log('args', args);
 
     return Promise.resolve(JSON.stringify(camsassets));
 }
