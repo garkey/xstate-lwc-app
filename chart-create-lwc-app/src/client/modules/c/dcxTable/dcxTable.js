@@ -1,9 +1,10 @@
 import { LightningElement, api } from 'lwc';
 
-export default class DetailsTable extends LightningElement {
+export default class DcxTable extends LightningElement {
     @api tabledata;
     @api columns;
     @api hideCheckboxColumn = false;
+    @api isLoading;
     defaultSortDirection = 'asc';
     sortDirection = 'asc';
     sortedBy;
@@ -25,10 +26,11 @@ export default class DetailsTable extends LightningElement {
 
     doSorting(e) {
         const { fieldName: sortedBy, sortDirection } = e.detail;
-        const cloneData = [...this.tabledata];
-        cloneData.sort(this.sortBy(sortedBy, sortDirection === 'asc' ? 1 : -1));
-        this.tabledata = cloneData;
         this.sortDirection = sortDirection;
         this.sortedBy = sortedBy;
+
+        console.log('sortedBy', sortedBy);
+        console.log('sortDirection', sortDirection);
+        console.log('need to refetch sorted data');
     }
 }

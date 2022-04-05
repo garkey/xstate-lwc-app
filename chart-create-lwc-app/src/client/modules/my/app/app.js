@@ -1174,7 +1174,12 @@ export default class App extends LightningElement {
             sortable: true,
             // columnKey: 'srv_date'
         },
-    ];
+    ].map((e) => ({ ...e, hideDefaultActions: true }));
+
+    dt = {
+        isLoading: false,
+    };
+
     cams_params = {
         pageNumber: 1,
         pageSize: 100,
