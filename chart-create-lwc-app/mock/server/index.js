@@ -10,7 +10,7 @@ function streamCsvRead(query, endcallback) {
 
         parse(serverdata, {
             trim: true,
-            skip_empty_lines: true
+            skip_empty_lines: true,
         })
             // Use the readable stream api
             .on('readable', function () {
@@ -65,7 +65,7 @@ async function respond(req, res, next) {
                 if (acc[val[filtersIndex]]) {
                     acc[val[filtersIndex]] = [
                         ...acc[val[filtersIndex]],
-                        val[targetDataindex]
+                        val[targetDataindex],
                     ];
                 } else {
                     acc[val[filtersIndex]] = [val[targetDataindex]];
