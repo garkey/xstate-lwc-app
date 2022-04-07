@@ -9,7 +9,7 @@ This is a generated application from create-lwc-app. It has then been outfitted 
 
 ## Proxy of CAMS Server for Local Development
 
-There is proxy server to run agains the CAMS server to make requeests. You must first retrieve a valid bearer token, and submit it to the command line. Ie, `npm run watch:proxy <bearer token>`.
+There is proxy server to run agains the CAMS server to make requeests. You must first retrieve a valid bearer token, and submit it to the command line. Ie, `npm run watch:proxy <bearer token>`. Then revisit CAMS API at localhost:3008. Eg, `http://localhost:3008/api/assets/124401` 
 
 ## For Focused View Development
 

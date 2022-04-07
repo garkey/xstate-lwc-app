@@ -4,7 +4,7 @@
 //         target: 'http://camsdev-1266214049.us-west-2.elb.amazonaws.com',
 //     })
 //     .listen(3008);
-
+const url = require('url');
 const target = 'http://camsdev-1266214049.us-west-2.elb.amazonaws.com';
 const port = 3008;
 
@@ -23,17 +23,51 @@ if (bearer) {
     // a web request to the target passed in the options
     // also you can use `proxy.ws()` to proxy a websockets request
     //
+
+
     const server = http.createServer(function (req, res) {
         // You can define here your custom logic to handle the request
         // and then proxy the request.
+        const allowedOrigins = ['localhost'];
+        let allowedOrigin = false;
+        if (req.headers.origin) {
+            const originHostName = url.parse(req.headers.origin).hostname;
+            if (
+                originHostName &&
+                allowedOrigins.some((o) => o === originHostName)
+            ) {
+                res.setHeader(
+                    'access-control-allow-origin',
+                    req.headers.origin,
+                );
+                res.setHeader('access-control-allow-credentials', 'true');
+                allowedOrigin = true;
+            }
+        }
 
-        // console.log('req.headers', req.headers);
-        
+        if (req.headers['access-control-request-method']) {
+            res.setHeader(
+                'access-control-allow-methods',
+                req.headers['access-control-request-method'],
+            );
+        }
+
+        if (req.headers['access-control-request-headers']) {
+            res.setHeader(
+                'access-control-allow-headers',
+                req.headers['access-control-request-headers'],
+            );
+        }
+
+        if (allowedOrigin) {
+            res.setHeader('access-control-max-age', 60 * 60 * 24 * 30);
+            if (req.method === 'OPTIONS') {
+                res.send(200);
+                res.end();
+            }
+        }
+
         req.headers.authorization = `Bearer ${bearer}`;
-        // console.log('req.headers', req.headers);
-        console.log('req', req)
-        
-
         proxy.web(req, res, { target });
     });
 
