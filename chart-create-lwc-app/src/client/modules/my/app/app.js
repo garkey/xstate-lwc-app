@@ -13,6 +13,7 @@ import DCX_Asset_Service_Returned_Documents from '@salesforce/label/c.DCX_Asset_
 import { getOrgData, postOrgData, templocdata } from './tempdata';
 
 import { camsElasticSearchData } from 'lightning/platformResourceLoader';
+import { loadSelectOptions } from 'c/utils';
 
 const x_axis_points = ['fee', 'fi', 'fo', 'fum'];
 const barGraph1_data = [
@@ -1202,8 +1203,12 @@ export default class App extends LightningElement {
                 }),
         );
     }
-
+    /* 
+      this is the main side effect function
+    */
     async queryES(params) {
+        console.log('TODO: scrub params here!!!');
+
         const rawdata = await camsElasticSearchData({
             viewName: 'assets',
             searchString: JSON.stringify(params, null, 2),
@@ -1216,9 +1221,10 @@ export default class App extends LightningElement {
 
         console.log('this.assetdata', this.assetdata);
         console.log('this.totalResults', this.totalResults);
+        console.log('TODO: return scrubbed params here');
     }
 
-    connectedCallback() {
+    async connectedCallback() {
         this.cams_params = this.normalizeUrlParams(this.parseUrlSearch());
         console.log('this.cams_params', this.cams_params);
         const esp = convertToESParams(this.cams_params);
@@ -1226,6 +1232,17 @@ export default class App extends LightningElement {
         console.log('this.es_params', this.es_params);
 
         this.queryES(this.es_params);
+
+        console.log(
+            'loadSelectOptions()',
+            await loadSelectOptions(
+                'service-center-services/distinct-code-category?countryCode=GB',
+            ),
+        );
+
+        console.log('assets/124401', await loadSelectOptions('assets/124401'))
+        
+
         // this.updateUrlParams( , false);
 
         // end dev

@@ -5,6 +5,7 @@ export default class DcxTable extends LightningElement {
     @api columns;
     @api hideCheckboxColumn = false;
     @api isLoading;
+    @api hideColumnQuery = false;
     defaultSortDirection = 'asc';
     sortDirection = 'asc';
     sortedBy;

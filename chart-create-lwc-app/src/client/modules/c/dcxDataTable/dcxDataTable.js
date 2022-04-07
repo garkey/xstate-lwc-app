@@ -7,6 +7,8 @@ import datatable from './datatable.html';
 
 export default class DcxDataTable extends LightningDatatable {
     @api isLoading;
+    @api hideColumnQuery = false;
+
     connectedCallback() {
         super.connectedCallback();
         console.log('this.state', JSON.parse(JSON.stringify(this.state)));

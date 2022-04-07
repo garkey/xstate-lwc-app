@@ -1,3 +1,5 @@
+import { camsCallOut } from './CamsExternalCallout';
+
 export const once = (fn) => {
     let called = false;
     let result;
@@ -19,3 +21,17 @@ export const derivedCamsFields = (o) => ({
         model_manufacturer_name: o.model_manufacturer_name,
     },
 });
+
+export const loadSelectOptions = (requestPath) => {
+    return camsCallOut({
+        requestPath: `api/${requestPath}`,
+        method: 'GET',
+        requestbody: JSON.stringify({}),
+    })
+        .then((result) => {
+            return JSON.parse(result.Body);
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+};

@@ -108,9 +108,13 @@
                                                 actions={def.actions}
                                             >
                                             </c-primitive-header-factory>
-                                            <c-column-query-field
-                                                query-field={def.queryField}
-                                            ></c-column-query-field>
+                                            <template
+                                                if:false={hideColumnQuery}
+                                            >
+                                                <c-column-query-field
+                                                    query-field={def.queryField}
+                                                ></c-column-query-field>
+                                            </template>
                                         </template>
                                     </th>
                                 </template>

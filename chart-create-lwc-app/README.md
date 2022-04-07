@@ -1,15 +1,20 @@
 # chartjs-create-lwc-app
+## Proxy of CAMS Server for Local Development
 
-This is a generated application from create-lwc-app. It has then been outfitted to test LWC components, mostly charts.
+There is proxy server to run agains the CAMS server to make requeests. You must first retrieve a valid bearer token, and submit it to the command line.
+
+`npm run watch:proxy <bearer token>`
+
+Then visit CAMS API at localhost:3008. Eg, `http://localhost:3008/api/assets/124401` 
+
+##
+
+After running the proxy server, start up the devlopment server to serve up local development for dCX compnoents.
 
 `yarn watch`
 
 - also runs mock server on localhost:8081
   - see mock/server/README.md
-
-## Proxy of CAMS Server for Local Development
-
-There is proxy server to run agains the CAMS server to make requeests. You must first retrieve a valid bearer token, and submit it to the command line. Ie, `npm run watch:proxy <bearer token>`. Then revisit CAMS API at localhost:3008. Eg, `http://localhost:3008/api/assets/124401` 
 
 ## For Focused View Development
 
