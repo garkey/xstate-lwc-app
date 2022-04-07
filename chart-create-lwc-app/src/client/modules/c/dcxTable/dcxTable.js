@@ -7,32 +7,28 @@ export default class DcxTable extends LightningElement {
     @api isLoading;
     @api hideColumnQuery = false;
     @api queries = {};
-    defaultSortDirection = 'asc';
-    sortDirection = 'asc';
-    sortedBy;
-
-    sortBy(field, reverse, primer) {
-        const key = primer
-            ? function (x) {
-                  return primer(x[field]);
-              }
-            : function (x) {
-                  return x[field];
-              };
-        return function (a, b) {
-            a = key(a);
-            b = key(b);
-            return reverse * ((a > b) - (b > a));
-        };
-    }
 
     doSorting(e) {
-        const { fieldName: sortedBy, sortDirection } = e.detail;
-        this.sortDirection = sortDirection;
-        this.sortedBy = sortedBy;
+        this.dispatchAjaxRequest(e);
+    }
 
-        console.log('sortedBy', sortedBy);
-        console.log('sortDirection', sortDirection);
-        console.log('need to refetch sorted data');
+    dispatchAjaxRequest({ type, detail }) {
+        console.log('this', this);
+        console.log('this.state', this.state);
+
+        this.sortDirection = detail.sortDirection === 'asc' ? 'desc' : 'asc';
+        this.dispatchEvent(
+            new CustomEvent('ajaxrequest', {
+                detail: {
+                    [type]: [{ ...detail, sortDirection: this.sortDirection }],
+                },
+                bubbles: true,
+                composed: true,
+            }),
+        );
+    }
+
+    renderedCallback() {
+        console.log('this.columns', JSON.parse(JSON.stringify(this.columns)));
     }
 }

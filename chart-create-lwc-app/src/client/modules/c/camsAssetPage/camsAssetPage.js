@@ -47,37 +47,36 @@ const appendES = (params, { filters, facets, query, sorts }) => {
 };
 
 export default class CamsAssetPage extends LightningElement {
-    queries = {};
+    queries = {
+        inputs: [],
+        sources: [],
+    };
     isLoading = false;
     assetdata = [];
     assetcolumns = [
         {
             label: 'Serial Number',
             fieldName: 'serialNumber',
-            sortable: true,
-            // columnKey: 'srv_date'
         },
         {
             label: 'Product',
             fieldName: '_product',
-            sortable: true,
             type: '_product',
-            // columnKey: 'srv_date'
         },
         {
             label: 'Calibration Interval',
             fieldName: 'calibrationIntervalAndUnits',
-            sortable: true,
             queryField: 'date',
-            // columnKey: 'srv_date'
         },
         {
             label: 'Calibration Type',
             fieldName: 'calibrationType',
-            sortable: true,
             querySource: 'servicecentersservices',
             queryField: 'select',
-            queryFn: (obj) => ({ value: obj.id, label: obj.codeCategoryDescription }),
+            queryFn: (obj) => ({
+                value: obj.id,
+                label: obj.codeCategoryDescription,
+            }),
         },
     ].map((e) => ({ ...e, hideDefaultActions: true }));
     propkeys = this.assetcolumns.map((e) => e.fieldName);
@@ -95,12 +94,15 @@ export default class CamsAssetPage extends LightningElement {
     connectedCallback() {
         const urlvars = this.parseUrlSearch();
         const cams_params = this.normalizeUrlParams(urlvars);
+        console.log('cams_params', cams_params);
+
         this.queryES(cams_params);
         this.loadOptions();
     }
 
     async loadOptions() {
         this.queries = {
+            ...this.queries,
             sources: {
                 servicecentersservices: await loadSelectOptions(
                     'service-center-services/distinct-code-category?countryCode=GB',
@@ -108,7 +110,6 @@ export default class CamsAssetPage extends LightningElement {
                 debug: await loadSelectOptions('assets/124401'),
             },
         };
-        console.log('this.queries >>>>', this.queries);
     }
 
     parseUrlSearch() {
@@ -124,8 +125,30 @@ export default class CamsAssetPage extends LightningElement {
         }, {});
     }
 
+    reconcileQueries(params) {
+        this.queries = {
+            ...this.queries,
+            inputs: params.query,
+        };
+    }
+
+    preAjaxRequestFunc(e) {
+        console.log('preAjaxRequestFunc >>>');
+        console.log('this.queries', this.queries);
+        console.log('e.detail', e.detail);
+        this.queries = { ...this.queries, ...e.detail };
+    }
+
+    ajaxRequestFunc(e) {
+        console.log('ajaxRequestFunc >>>');
+
+        console.log('e.detail', e.detail);
+    }
+
     async queryES(params) {
+        console.log('>>>>>>>>>>> queryES >>>>>>>>>>>>>>>>');
         console.log('params', params);
+        this.reconcileQueries(params);
         console.log('pkeys', pkeys);
         console.log('this.assetcolumns', this.assetcolumns);
         console.log('this.propkeys', this.propkeys);
@@ -149,6 +172,8 @@ export default class CamsAssetPage extends LightningElement {
         const temp = rawdata.response.results
             .map(derivedCamsFields)
             .slice(0, 5);
+        console.log('temp', temp);
+
         this.assetdata = temp;
         // this.assetdata = rawdata.response.results.map(derivedCamsFields);
         this.totalResults = rawdata.response.totalResults;
@@ -156,6 +181,8 @@ export default class CamsAssetPage extends LightningElement {
         console.log('this.assetdata', this.assetdata);
         console.log('this.totalResults', this.totalResults);
         console.log('TODO: return scrubbed params here');
+
+        console.log('>>>>>>>>>>> end queryES >>>>>>>>>>>>>>>>');
     }
 
     normalizeUrlParams(params) {
@@ -175,8 +202,4 @@ export default class CamsAssetPage extends LightningElement {
     onEditRow = (e) => {
         console.log('onEditRow.e', e);
     };
-
-    ajaxRequestFunc() {
-        console.log('ajaxRequestFunc >>>');
-    }
 }

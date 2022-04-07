@@ -4,6 +4,7 @@ import select from './select.html';
 import defaulthtml from './columnQueryField.html';
 
 export default class ColumnQueryField extends LightningElement {
+    @api fieldName;
     @api queryField;
     @api querySource;
     @api queryFn;
@@ -15,6 +16,9 @@ export default class ColumnQueryField extends LightningElement {
     };
 
     @api set queries(v) {
+        // console.log('v', JSON.parse(JSON.stringify(v)));
+        // console.log('fieldName', this.fieldName);
+
         this._queries = v;
     }
 
@@ -23,26 +27,42 @@ export default class ColumnQueryField extends LightningElement {
     }
 
     get options() {
-        if (this.queries.sources && this.querySource) {
+        if (this.queries.sources && this.queries.sources[this.querySource]) {
             return this.queryFn
                 ? this.queries.sources[this.querySource].map(this.queryFn)
                 : this.queries.sources[this.querySource];
         }
-        console.error('expected a source for a select dropdown');
+
         return [];
     }
 
-    handleChange() {
+    get value() {
+        return this.queries.inputs[this.fieldName] || '';
+    }
+
+    dispatchAjaxRequest(detail) {
         this.dispatchEvent(
             new CustomEvent('ajaxrequest', {
-                detail: true,
+                detail,
                 bubbles: true,
                 composed: true,
             }),
         );
     }
 
-    handleInput() {}
+    handleChange(e) {
+        console.log('handleChange: ', e);
+    }
+
+    handleInput(e) {
+        console.log('handleInput: ', e.target.value);
+        const detail = { inputs: { [this.fieldName]: e.target.value } };
+        this.dispatchAjaxRequest(detail);
+    }
+
+    handleKeydown(e) {
+        console.log('handleKeydown: ', e);
+    }
 
     render() {
         return this.queryField ? this.templates[this.queryField] : defaulthtml;
