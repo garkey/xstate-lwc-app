@@ -28,7 +28,7 @@ function streamCsvRead(query, endcallback) {
     });
 }
 
-fs.readFile('../assetgrid_data_source.csv', 'utf8', function (err, data) {
+fs.readFile('../assetgrid_data_source.csv', 'utf8', (err, data) => {
     if (err) {
         return console.log(err);
     }

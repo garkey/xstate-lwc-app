@@ -7,6 +7,10 @@ This is a generated application from create-lwc-app. It has then been outfitted 
 - also runs mock server on localhost:8081
   - see mock/server/README.md
 
+## Proxy of CAMS Server for Local Development
+
+There is proxy server to run agains the CAMS server to make requeests. You must first retrieve a valid bearer token, and submit it to the command line. Ie, `npm run watch:proxy <bearer token>`.
+
 ## For Focused View Development
 
 To only show the root level elements for focused development view purposes, you can query the root level element display against 'none'.

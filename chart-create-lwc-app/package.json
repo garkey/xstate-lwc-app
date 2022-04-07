@@ -61,10 +61,10 @@
         "test:unit:coverage": "lwc-services test:unit --coverage",
         "test:unit:debug": "lwc-services test:unit --debug",
         "test:unit:watch": "lwc-services test:unit --watch",
-        "watch": "run-p watch:client watch:server watch:proxy",
+        "watch": "run-p watch:client watch:server",
         "watch:client": "lwc-services watch -w ./dcx.webpack.config.js",
         "watch:server": "cd mock/server && nodemon",
-        "watch:proxy": "cd mock/server && nodemon camsproxy.js"
+        "watch:proxy": "cd mock/server && node camsproxy.js "
     },
     "devDependencies": {
         "@rollup/plugin-node-resolve": "^13.0.5",
