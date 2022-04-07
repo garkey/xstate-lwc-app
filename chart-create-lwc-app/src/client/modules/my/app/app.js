@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import { color_swatch, derivedCamsFields } from 'c/utils';
+import { color_swatch } from 'c/utils';
 import qs from 'qs';
 import labelRequired from '@salesforce/label/c.lightning_LightningControl_required';
 
@@ -11,9 +11,6 @@ import DCX_Asset_Service_Returned_Condition from '@salesforce/label/c.DCX_Asset_
 import DCX_AuthHome_CalibrationDue from '@salesforce/label/c.DCX_AuthHome_CalibrationDue';
 import DCX_Asset_Service_Returned_Documents from '@salesforce/label/c.DCX_Asset_Service_Returned_Documents';
 import { getOrgData, postOrgData, templocdata } from './tempdata';
-
-import { camsElasticSearchData } from 'lightning/platformResourceLoader';
-import { loadSelectOptions } from 'c/utils';
 
 const x_axis_points = ['fee', 'fi', 'fo', 'fum'];
 const barGraph1_data = [
@@ -36,47 +33,6 @@ const barGraph1_data = [
     };
 });
 
-const urlpToESQuery = {
-    q: 'query',
-    s: 'sorts',
-};
-const esQueryToUrlp = Object.fromEntries(
-    Object.entries(urlpToESQuery).reverse(),
-);
-
-const pmodels = {
-    query: (field, value) => ({
-        globalSearch: false,
-        search: value,
-        searchFields: Array.isArray(field) ? field : [field],
-    }),
-    sorts: (field, value) => ({
-        field,
-        order: value,
-    }),
-};
-
-const convertToESParams = (conf) => {
-    const p = Object.entries(conf);
-    // http://localhost:3001/?q.serialNumber=1234&q.model_name=11&s.model_name=asc&global=true
-    return Object.fromEntries(
-        p.map(([h, v]) => {
-            const r = Object.entries(v).map((g) => {
-                const t = pmodels[h];
-                return t && t(g[0], g[1]);
-            });
-            return r ? [h, r] : [];
-        }),
-    );
-};
-
-const appendES = (params, { filters, facets, query, sorts }) => {
-    const u = { filters, facets, query, sorts };
-    const f = Object.entries(u).map(([k, v]) => {
-        return v ? [k, params[k].concat(v)] : [k, params[k]];
-    });
-    return Object.fromEntries(f);
-};
 
 export default class App extends LightningElement {
     isLoading = false;
@@ -1048,18 +1004,6 @@ export default class App extends LightningElement {
       
     */
 
-    parseUrlSearch() {
-        const search = window.location.search.substring(1);
-        const params = Array.from(new URLSearchParams(search).entries());
-        return params.reduce((acc, val) => {
-            const [key, v] = val;
-            const [c, k] = key.split('.');
-            if (k) {
-                return { ...acc, [c]: { ...acc[c], [k]: v } };
-            }
-            return { ...acc, [c]: v };
-        }, {});
-    }
     /* 
     
     {
@@ -1151,106 +1095,16 @@ export default class App extends LightningElement {
       destructured arguments for limited key parameter names
     */
 
-    assetdata = [];
-    assetcolumns = [
-        {
-            label: 'Serial Number',
-            fieldName: 'serialNumber',
-            sortedBy: 'serialNumber',
-            sortable: true,
-            // columnKey: 'srv_date'
-        },
-        {
-            label: 'Product',
-            fieldName: '_product',
-            sortedBy: '_product',
-            sortable: true,
-            type: '_product',
-            // columnKey: 'srv_date'
-        },
-        {
-            label: 'Calibration Interval',
-            fieldName: 'calibrationIntervalAndUnits',
-            sortedBy: 'calibrationIntervalAndUnits',
-            sortable: true,
-            queryField: 'calendar',
-            // columnKey: 'srv_date'
-        },
-    ].map((e) => ({ ...e, hideDefaultActions: true }));
-
     dt = {
         isLoading: false,
     };
 
-    cams_params = {
-        pageNumber: 1,
-        pageSize: 100,
-        filters: [],
-        facets: [],
-        query: [],
-        sorts: [],
-    };
-    es_params = { ...this.cams_params };
-    totalResults = 0;
-
-    normalizeUrlParams(params) {
-        return Object.fromEntries(
-            Object.entries(params)
-                .filter(([k]) => urlpToESQuery[k])
-                .map(([k, v]) => {
-                    const h = urlpToESQuery[k];
-                    return [h, v];
-                }),
-        );
-    }
-    /* 
-      this is the main side effect function
-    */
-    async queryES(params) {
-        console.log('TODO: scrub params here!!!');
-
-        const rawdata = await camsElasticSearchData({
-            viewName: 'assets',
-            searchString: JSON.stringify(params, null, 2),
-        }).then((d) => {
-            return JSON.parse(d);
-        });
-
-        this.assetdata = rawdata.response.results.map(derivedCamsFields);
-        this.totalResults = rawdata.response.totalResults;
-
-        console.log('this.assetdata', this.assetdata);
-        console.log('this.totalResults', this.totalResults);
-        console.log('TODO: return scrubbed params here');
-    }
-
     async connectedCallback() {
-        this.cams_params = this.normalizeUrlParams(this.parseUrlSearch());
-        console.log('this.cams_params', this.cams_params);
-        const esp = convertToESParams(this.cams_params);
-        this.es_params = appendES(this.es_params, esp);
-        console.log('this.es_params', this.es_params);
-
-        this.queryES(this.es_params);
-
-        console.log(
-            'loadSelectOptions()',
-            await loadSelectOptions(
-                'service-center-services/distinct-code-category?countryCode=GB',
-            ),
-        );
-
-        console.log('assets/124401', await loadSelectOptions('assets/124401'))
-        
-
         // this.updateUrlParams( , false);
-
         // end dev
-
         // if (!this.datatable1.initialized) {
         //     this.fetchMockDatatable();
         // }
-
         // // Do we really need this guard?
         // // https://stackoverflow.com/questions/54874212/can-a-custom-elements-connectedcallback-be-called-more-than-once-before-disc
         // if (!this.byFilter1.initialized) {

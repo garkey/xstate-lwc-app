@@ -1,0 +1,11 @@
+<template>
+    <div>cams asset page</div>
+    <c-dcx-table
+        tabledata={assetdata}
+        columns={assetcolumns}
+        oneditrow={onEditRow}
+        is-loading={isLoading}
+        onajaxrequest={ajaxRequestFunc}
+        queries={queries}
+    ></c-dcx-table>
+</template>

@@ -6,8 +6,9 @@ import productCellTemplate from './productCellTemplate.html';
 import datatable from './datatable.html';
 
 export default class DcxDataTable extends LightningDatatable {
-    @api isLoading;
+    @api isLoading = false;
     @api hideColumnQuery = false;
+    @api queries = {};
 
     connectedCallback() {
         super.connectedCallback();

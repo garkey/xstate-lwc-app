@@ -1,0 +1,7 @@
+<template>
+    <select>
+        <template for:each={options} for:item="o">
+            <option key={o.value} value={o.value}>{o.label}</option>
+        </template>
+    </select>
+</template>

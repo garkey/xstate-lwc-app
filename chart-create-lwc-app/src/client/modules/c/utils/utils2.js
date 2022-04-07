@@ -35,3 +35,19 @@ export const loadSelectOptions = (requestPath) => {
             console.error(err);
         });
 };
+
+export const trimProps = (props, params) => {
+    console.log('props', props);
+    console.log('params', params);
+
+    const recurfn = obj => {
+      
+      const c = Object.entries(params);
+      return c;
+    }
+
+    console.log();
+    
+
+    return params;
+};
